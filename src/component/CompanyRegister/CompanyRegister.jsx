@@ -1,48 +1,65 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { register, reset } from "../../features/suplier/supSlice";
 
 const CompanyRegister = () => {
   const initialValue = {
-    CIF: "",
-    companyName: "",
-    email: "",
-    numberOfEmployees: 0,
-    password: "",
+    cif: "", 
+    name: "", 
+    email: "", 
+    employes: 0, 
+    password: "", 
   };
 
   const [data, setData] = useState(initialValue);
   const [btnDisable, setBtnDisable] = useState(true);
   const [errors, setErrors] = useState({});
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { isError, isSuccess, message } = useSelector((state) => state.sup);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/");
+      dispatch(reset());
+    }
+  }, [isSuccess, navigate, dispatch]);
 
   const validate = (fieldValues = data) => {
     let tempErrors = { ...errors };
 
-    if ("CIF" in fieldValues) {
-      if (!fieldValues.CIF) tempErrors.CIF = "CIF is required";
-      else if (!/^[A-Za-z0-9]{8,10}$/.test(fieldValues.CIF)) tempErrors.CIF = "CIF must be 8-10 alphanumeric characters";
-      else delete tempErrors.CIF;
+    if ("cif" in fieldValues) {
+      if (!fieldValues.cif) tempErrors.cif = "CIF is required";
+      else if (!/^[A-Za-z0-9]{8,10}$/.test(fieldValues.cif))
+        tempErrors.cif = "CIF must be 8-10 alphanumeric characters";
+      else delete tempErrors.cif;
     }
 
-    if ("companyName" in fieldValues) {
-      if (!fieldValues.companyName) tempErrors.companyName = "Company name is required";
-      else delete tempErrors.companyName;
+    if ("name" in fieldValues) {
+      if (!fieldValues.name) tempErrors.name = "Name is required";
+      else delete tempErrors.name;
     }
 
     if ("email" in fieldValues) {
       if (!fieldValues.email) tempErrors.email = "Email is required";
-      else if (!/\S+@\S+\.\S+/.test(fieldValues.email)) tempErrors.email = "Email is invalid";
+      else if (!/\S+@\S+\.\S+/.test(fieldValues.email))
+        tempErrors.email = "Email is invalid";
       else delete tempErrors.email;
     }
 
-    if ("numberOfEmployees" in fieldValues) {
-      if (fieldValues.numberOfEmployees < 0 || fieldValues.numberOfEmployees > 20) tempErrors.numberOfEmployees = "Number of employees must be between 0 and 20";
-      else delete tempErrors.numberOfEmployees;
+    if ("employes" in fieldValues) {
+      if (fieldValues.employes < 0 || fieldValues.employes > 20)
+        tempErrors.employes = "Number of employees must be between 0 and 20";
+      else delete tempErrors.employes;
     }
 
     if ("password" in fieldValues) {
       if (!fieldValues.password) tempErrors.password = "Password is required";
-      else if (fieldValues.password.length < 8) tempErrors.password = "Password must be at least 8 characters long";
+      else if (fieldValues.password.length < 8)
+        tempErrors.password = "Password must be at least 8 characters long";
       else delete tempErrors.password;
     }
 
@@ -68,10 +85,9 @@ const CompanyRegister = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      
+      dispatch(register(data));
       console.log("Form data:", data);
       setData(initialValue);
-    
     }
   };
 
@@ -82,20 +98,20 @@ const CompanyRegister = () => {
         <form>
           <input
             type="text"
-            name="CIF"
+            name="cif"
             placeholder="CIF"
-            value={data.CIF}
+            value={data.cif}
             onChange={handleInputChange}
           />
-          {errors.CIF && <p>{errors.CIF}</p>}
+          {errors.cif && <p>{errors.cif}</p>}
           <input
             type="text"
-            name="companyName"
+            name="name"
             placeholder="Company name"
-            value={data.companyName}
+            value={data.name}
             onChange={handleInputChange}
           />
-          {errors.companyName && <p>{errors.companyName}</p>}
+          {errors.name && <p>{errors.name}</p>}
           <input
             type="email"
             name="email"
@@ -106,14 +122,14 @@ const CompanyRegister = () => {
           {errors.email && <p>{errors.email}</p>}
           <input
             type="number"
-            name="numberOfEmployees"
+            name="employes"
             min="0"
             max="20"
-            placeholder="number of employees"
-            value={data.numberOfEmployees}
+            placeholder="Number of employees"
+            value={data.employes}
             onChange={handleInputChange}
           />
-          {errors.numberOfEmployees && <p>{errors.numberOfEmployees}</p>}
+          {errors.employes && <p>{errors.employes}</p>}
           <input
             type="password"
             name="password"
@@ -122,7 +138,9 @@ const CompanyRegister = () => {
             onChange={handleInputChange}
           />
           {errors.password && <p>{errors.password}</p>}
-          <button onClick={handleSubmit} disabled={btnDisable}>Submit</button>
+          <button onClick={handleSubmit} disabled={btnDisable}>
+            Submit
+          </button>
         </form>
       </div>
     </div>
