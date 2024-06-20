@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Register from './component/Register/Register'
+import CompanyRegister from './component/CompanyRegister/CompanyRegister';
+
 import Login from './component/Login/Login'
 
 function App() {
@@ -9,9 +11,10 @@ function App() {
       <Routes>
         <Route path='/register'element={<Register />} />
         <Route path='/login' element={<Login/>} />
+        <Route path="/CompanyRegister" element={<CompanyRegister />} />
       </Routes>
     </BrowserRouter>
   )
 }
 
-export default App
+export default App;
