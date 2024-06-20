@@ -1,14 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CompanyRegister from "./component/CompanyRegister/CompanyRegister";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Register from './component/Register/Register'
 
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/CompanyRegister" element={<CompanyRegister />} />
+        <Route path='/register'element={<Register />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App;
