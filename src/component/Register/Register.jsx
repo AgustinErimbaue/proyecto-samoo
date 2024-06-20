@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { register } from '../../features/auth/authSlice';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -7,7 +10,18 @@ const Register = () => {
         password: '',
     });
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const { isError, isSuccess, message } = useSelector((state) => state.auth);
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    useEffect(() => {
+        if (isSuccess) {
+            navigate('/');
+            dispatch(reset());
+        }
+    }, [isSuccess, navigate, dispatch]);
 
     const onChange = (e) => {
         setFormData({
@@ -24,6 +38,7 @@ const Register = () => {
         e.preventDefault();
         if (formData.password === confirmPassword) {
             console.log('Form Data:', formData);
+            dispatch(register(formData));
             setFormData({
                 name: '',
                 email: '',
