@@ -47,5 +47,7 @@ export const register = createAsyncThunk('auth/register', async (user) => {
     }
 });
 
+
+
 export const { reset } = authSlice.actions;
 export default authSlice.reducer;
