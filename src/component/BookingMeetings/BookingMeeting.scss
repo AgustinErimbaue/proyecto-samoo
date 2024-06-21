@@ -1,0 +1,25 @@
+/* BookingMeetings.scss */
+
+.booking-meetings-container {
+    color: gray;
+  }
+  
+  .available-hours {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .hour {
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .hour.reserved {
+    background-color: black; /* Color de fondo gris para horas reservadas */
+    color: #999; /* Color de texto gris para horas reservadas */
+    cursor: not-allowed; /* Cambiar cursor a no permitido */
+    pointer-events: none; /* Deshabilitar eventos de clic */
+  }
