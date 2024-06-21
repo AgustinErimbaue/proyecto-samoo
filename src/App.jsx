@@ -3,6 +3,7 @@ import Register from "./component/Register/Register";
 import CompanyRegister from "./component/CompanyRegister/CompanyRegister";
 import CompanyLogin from "./component/CompanyLogin/CompanyLogin";
 import Login from './component/Login/Login'
+import Calendar from "./component/Calendar/Calendar";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path="/CompanyRegister" element={<CompanyRegister />} />
         <Route path="/CompanyLogin" element={<CompanyLogin />} />
+        <Route path="/Calendar" element={<Calendar />} />
       </Routes>
     </BrowserRouter>
   );

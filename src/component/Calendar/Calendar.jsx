@@ -1,0 +1,51 @@
+import { Eventcalendar, getJson, setOptions, localeEs } from '@mobiscroll/react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import "./Calendar.scss"
+setOptions({
+  locale: localeEs,
+  theme: 'ios',
+  themeVariant: 'light'
+});
+
+function Calendar() {
+  const [myEvents, setEvents] = useState([]);
+
+  const myView = useMemo(() => ({ agenda: { type: 'month' } }), []);
+
+  const customEvent = useCallback(
+    (data) => (
+      <div className="mbsc-flex mbsc-flex-1-1">
+        <img className="mds-agenda-event-img" alt={data.title} src={'https://img.mobiscroll.com/demos/' + data.original.img} />
+        <div className="mbsc-flex-1-1">
+          <div className="mds-agenda-event-title">{data.title}</div>
+          <div className="mbsc-flex">
+            <div className="mds-agenda-event-location mbsc-flex-1-1">
+              <div className="mds-agenda-event-label">Location</div>
+              <div>{data.original.location}</div>
+            </div>
+            <div className="mds-agenda-event-time">
+              <div className="mds-agenda-event-label">Time</div>
+              <div>{data.start}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+    [],
+  );
+
+  useEffect(() => {
+    getJson(
+      'https://trial.mobiscroll.com/agenda-events/',
+      (events) => {
+        setEvents(events);
+      },
+      'jsonp',
+    );
+  }, []);
+
+  return <Eventcalendar renderEvent={customEvent} data={myEvents} view={myView} />;
+}
+
+export default Calendar;
+
