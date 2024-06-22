@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 const ReservationFormMeeting = ({ hour, onSubmit }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+//   const [name, setName] = useState('');
+//   const [email, setEmail] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit({ hour, name, email });
+    onSubmit({ hour });
   };
 
   return ( //AQUI ABAJO CUANDO ELIJAS UNA HORA DEBERIA HACERSE LA RESERVA

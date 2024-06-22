@@ -1,5 +1,3 @@
-/* BookingMeetings.scss */
-
 .booking-meetings-container {
     color: gray;
   }
@@ -18,8 +16,8 @@
   }
   
   .hour.reserved {
-    background-color: black; /* Color de fondo gris para horas reservadas */
-    color: #999; /* Color de texto gris para horas reservadas */
-    cursor: not-allowed; /* Cambiar cursor a no permitido */
-    pointer-events: none; /* Deshabilitar eventos de clic */
+    background-color: #f2f2f2; 
+    color: #999; 
+    cursor: not-allowed; 
+    pointer-events: none; 
   }
