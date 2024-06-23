@@ -38,6 +38,12 @@ const Participants = () => {
                         </defs>
                     </svg>
                 </div>
+                <div className='suppliers-info'>
+                    <h4>Nombre de la empresa</h4>
+                    <p>Descripción de la empresa</p>
+                    <p>Tema de ponencias</p>
+                    <p>Asistentes</p>
+                </div>
             </div>
 
         </div>
