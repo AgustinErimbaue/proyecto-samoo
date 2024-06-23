@@ -1,43 +1,10 @@
-// .participants-body {
-//     font-family: "DM Sans";
-// }
-
-// .title-continer {
-//     align-self: stretch;
-//     margin-left: 50px;
-// }
-
-// .title-page {
-//     color: var(--Neutral-10, #486284);
-//     font-size: 40px;
-//     font-style: normal;
-//     font-weight: 700;
-//     line-height: 76px;
-//     letter-spacing: 1px;
-
-// }
-
-// .btn-filters {
-//     button {
-//         background-color: #fff;
-//         color: #486284;
-//         line-height: 24px;
-//         letter-spacing: 0.5px;
-//         font-style: normal;
-//         border: 1px solid var(--Neutral-10, #486284);
-//         padding: 8px 20px;
-//         margin: 5px;
-//         border-radius: 50px;
-//         cursor: pointer;
-//     }
-// }
-
 $supplier-gap: 20px;
 $neutral-10: #486284;
 $hover-background: darken($neutral-10, 10%);
 
 .participants-body {
   font-family: "DM Sans";
+  margin-left: 45px;
 }
 
 .title-continer {
@@ -73,7 +40,7 @@ $hover-background: darken($neutral-10, 10%);
   }
 }
 
-.suppliers-continer {
+.suppliers-header {
   display: flex;
   align-items: center;
   align-self: stretch;
@@ -117,3 +84,9 @@ $hover-background: darken($neutral-10, 10%);
     }
   }
 }
+
+.svg-container {
+    position: absolute;
+    transform: translateX(-20);
+    z-index: 1;
+  }
