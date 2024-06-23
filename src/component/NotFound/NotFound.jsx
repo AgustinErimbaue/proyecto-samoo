@@ -3,7 +3,9 @@ import './NotFound.scss'
 import { Link } from 'react-router-dom'
 import { Button } from '@mobiscroll/react'
 
-const NotFound = () => {
+//ESTO ES UNA PRUEBA 
+
+const NotFound = () => { 
   return (
     <>
     <div className="main_wrapper">
