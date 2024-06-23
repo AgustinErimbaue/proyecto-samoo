@@ -1,30 +1,110 @@
-.participants-body{
-   font-family: "DM Sans";
+// .participants-body {
+//     font-family: "DM Sans";
+// }
+
+// .title-continer {
+//     align-self: stretch;
+//     margin-left: 50px;
+// }
+
+// .title-page {
+//     color: var(--Neutral-10, #486284);
+//     font-size: 40px;
+//     font-style: normal;
+//     font-weight: 700;
+//     line-height: 76px;
+//     letter-spacing: 1px;
+
+// }
+
+// .btn-filters {
+//     button {
+//         background-color: #fff;
+//         color: #486284;
+//         line-height: 24px;
+//         letter-spacing: 0.5px;
+//         font-style: normal;
+//         border: 1px solid var(--Neutral-10, #486284);
+//         padding: 8px 20px;
+//         margin: 5px;
+//         border-radius: 50px;
+//         cursor: pointer;
+//     }
+// }
+
+$supplier-gap: 20px;
+$neutral-10: #486284;
+
+.participants-body {
+  font-family: "DM Sans";
 }
 
-.title-continer{
-    align-self: stretch;
-    margin-left: 50px;
+.title-continer {
+  align-self: stretch;
+  margin-left: 50px;
 }
 
-.title-page{
-    color: var(--Neutral-10, #486284);
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 76px;
-    letter-spacing: 1px;
-   
+.title-page {
+  color: var(--Neutral-10, $neutral-10);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 76px;
+  letter-spacing: 1px;
 }
 
-.btn-filters button{
+.btn-filters {
+  button {
     background-color: #fff;
-    color: #486284;
+    color: $neutral-10;
     line-height: 24px;
     letter-spacing: 0.5px;
-    border: 1px solid var(--Neutral-10, #486284);
+    font-style: normal;
+    border: 1px solid var(--Neutral-10, $neutral-10);
     padding: 8px 20px;
     margin: 5px;
     border-radius: 50px;
     cursor: pointer;
+  }
+}
+
+.suppliers-continer {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  color: var(--Neutral-10, $neutral-10);
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 76px;
+  letter-spacing: 1px;
+
+  h2 {
+    margin: 0;
+  }
+
+  .show-data {
+    margin-left: 700px;
+
+    button {
+      background-color: #fff;
+      color: $neutral-10;
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 1px solid var(--Neutral-10, $neutral-10);
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .suppliers-continer {
+    flex-direction: column;
+    align-items: flex-start;
+    
+    .show-data {
+      margin-top: 10px;
+      margin-left: 0;
+    }
+  }
 }

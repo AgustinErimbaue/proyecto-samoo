@@ -5,7 +5,7 @@ import './Participants.scss'
 
 const Participants = () => {
   return (
-    <body className='participants-body'>
+    <div className='participants-body'>
         <header>
            <h1 className='title-page'>Participantes</h1>
            <div className='btn-filters'>
@@ -17,8 +17,14 @@ const Participants = () => {
             <button>Silver</button>
            </div>
         </header> 
+        <div className='suppliers-continer'>
+            <h2>Empresas</h2>
+            <div className='show-data'>
+                <button>Ver datos de todos</button>
+            </div>
+        </div>
 
-    </body>
+    </div>
 
   )
 }
