@@ -34,6 +34,7 @@
 
 $supplier-gap: 20px;
 $neutral-10: #486284;
+$hover-background: darken($neutral-10, 10%);
 
 .participants-body {
   font-family: "DM Sans";
@@ -65,6 +66,10 @@ $neutral-10: #486284;
     margin: 5px;
     border-radius: 50px;
     cursor: pointer;
+    &:hover{
+       background-color: $hover-background;
+       color: #fff;
+    }
   }
 }
 
@@ -93,6 +98,10 @@ $neutral-10: #486284;
       border-radius: 50px;
       border: 1px solid var(--Neutral-10, $neutral-10);
       cursor: pointer;
+      &:hover{
+        background-color: $hover-background;
+        color: #fff
+      }
     }
   }
 }
