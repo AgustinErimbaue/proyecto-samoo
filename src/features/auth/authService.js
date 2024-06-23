@@ -17,9 +17,29 @@ const login = async (user) => {
     return res.data
   };
 
+const getUserById = async (token, userId) => {
+  const res = await axios.get(API_URL + 'id/' + userId, {
+    headers: {
+      Authorization: token
+    }
+  })
+  return res.data
+};
+
+const getUserContactInfoById = async (token, userId) => {
+  const res = await axios.get(API_URL + 'id/' + userId, {
+      headers: {
+          Authorization: token
+      }
+  });
+  return res.data;
+};
+
 const authService = {
     register,
     login,
+    getUserById,
+    getUserContactInfoById,
   };
   
   export default authService;

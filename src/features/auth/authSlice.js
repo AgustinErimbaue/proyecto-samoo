@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem('user')) || null;
 
 const initialState = {
     user: user,
+    userContactInfo: null,
     token: token,
     isError: false,
     isSuccess: false,
@@ -34,16 +35,35 @@ export const authSlice = createSlice({
                 state.isError = true;
                 state.message = action.payload;
             })
-            .addCase(login.fulfilled, (state, action)=>{
+            .addCase(login.fulfilled, (state, action) => {
                 state.user = action.payload.user;
                 state.token = action.payload.token;
                 state.message = action.payload.message;
                 state.isSuccess = true;
-              })
-              .addCase(login.rejected, (state, action) =>{
+            })
+            .addCase(login.rejected, (state, action) => {
                 state.message = action.payload;
                 state.isError = true
-              })
+            })
+            .addCase(getUserById.fulfilled, (state, action) => {
+                state.user = action.payload;
+                state.isSuccess = true;
+            })
+            .addCase(getUserById.rejected, (state, action) => {
+                state.message = action.payload;
+                state.isError = true;
+            })
+            .addCase(getUserContactInfoById.fulfilled, (state, action) => {
+                state.userContactInfo = action.payload;
+                state.isSuccess = true;
+                state.isError = false;
+                state.message = '';
+            })
+            .addCase(getUserContactInfoById.rejected, (state, action) => {
+                state.message = action.payload;
+                state.isError = true;
+                state.isSuccess = false;
+            });
     }
 });
 
@@ -64,7 +84,33 @@ export const login = createAsyncThunk('auth/login', async (user) => {
     } catch (error) {
         console.error(error);
     }
-})
+});
+
+export const getUserById = createAsyncThunk('auth/getUserById', async () => {
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!token || !user) {
+        return ('Token or user not found');
+    }
+    try {
+        return await authService.getUserById(token, user._id);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+export const getUserContactInfoById = createAsyncThunk('auth/getUserContactInfoById', async (userId) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return ('Token not found');
+    }
+    try {
+        return await authService.getUserContactInfoById(token, userId);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 
 export const { reset } = authSlice.actions;
 export default authSlice.reducer;
