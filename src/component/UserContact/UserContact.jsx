@@ -31,8 +31,9 @@ const UserContact = () => {
             <p><strong>Email:</strong> {userContactInfo.email}</p>
             <p><strong>Phone:</strong> {userContactInfo.phone_prefx} {userContactInfo.phone_number}</p>
             <p><strong>Company:</strong> {userContactInfo.company}</p>
-            <p><strong>Job Title:</strong> {userContactInfo.job_title.join(', ')}</p>
+            <p><strong>Job Title:</strong> {userContactInfo.job_title}</p>
             <p><strong>LinkedIn:</strong> <a href={userContactInfo.url_linkedin} target="_blank" rel="noopener noreferrer">{userContactInfo.url_linkedin}</a></p>
+            
         </div>
   )
 }

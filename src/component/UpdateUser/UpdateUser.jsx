@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../../features/auth/authSlice';
+import { updateUser } from '../../features/auth/authSlice';
 
-const Register = () => {
+const UpdateUser = () => {
     const [formData, setFormData] = useState({
         name: '',
         surname: '',
-        email: '',
         password: '',
         confirmed: false,
         phone_prefx: '',
@@ -28,12 +27,21 @@ const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { isError, isSuccess, message } = useSelector((state) => state.auth);
+    const { user, isError, isSuccess, message } = useSelector((state) => state.auth);
     const [confirmPassword, setConfirmPassword] = useState('');
 
     useEffect(() => {
+        if (user) {
+            setFormData({
+                ...formData,
+                ...user
+            });
+        }
+    }, [user]);
+
+    useEffect(() => {
         if (isSuccess) {
-            navigate('/login');
+            navigate('/UserProfile');
             dispatch(reset());
         }
     }, [isSuccess, navigate, dispatch]);
@@ -61,11 +69,10 @@ const Register = () => {
         e.preventDefault();
         if (formData.password === confirmPassword) {
             console.log('Form Data:', formData);
-            dispatch(register(formData));
+            dispatch(updateUser(formData));
             setFormData({
                 name: '',
                 surname: '',
-                email: '',
                 password: '',
                 confirmed: false,
                 phone_prefx: '',
@@ -89,17 +96,15 @@ const Register = () => {
     };
 
     return (
-        <form className='register-form' onSubmit={onSubmit}>
-            <p>Register</p>
+        <form className='update-user-form' onSubmit={onSubmit}>
+            <p>Update User</p>
             <label>
                 <input required placeholder="Insert your name" type="text" className="input" name="name" id="name" value={formData.name} onChange={onChange} />
             </label>
             <label>
                 <input required placeholder="Insert your surname" type="text" className="input" name="surname" id="surname" value={formData.surname} onChange={onChange} />
             </label>
-            <label>
-                <input required placeholder="Insert your email" type="email" className="input" name="email" id="email" value={formData.email} onChange={onChange} />
-            </label>
+            {/* Note that the email field is omitted */}
             <label>
                 <input required placeholder="Phone prefix" type="tel" className="input" name="phone_prefx" id="phone_prefx" value={formData.phone_prefx} onChange={onChange} />
             </label>
@@ -120,13 +125,6 @@ const Register = () => {
             </label>
             <label>
                 <input required placeholder="LinkedIn URL" type="url" className="input" name="url_linkedin" id="url_linkedin" value={formData.url_linkedin} onChange={onChange} />
-            </label>
-            <label>
-                <select name="user_type" id="user_type" value={formData.user_type} onChange={onChange}>
-                    <option value="assitant">Assitant</option>
-                    <option value="admin">Admin</option>
-                    {/* Add other user types as needed */}
-                </select>
             </label>
             <label>
                 <input required placeholder="Company" type="text" className="input" name="company" id="company" value={formData.company} onChange={onChange} />
@@ -196,9 +194,9 @@ const Register = () => {
                 <input required placeholder="Confirm your password" type="password" className="input" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={onConfirmPasswordChange} />
             </label>
             <button className="submit" type="submit">Submit</button>
-            <p className="signin">Already have an account? <a href="/login">Signin</a></p>
+            <p className="signin">Want to go back? <a href="/profile">Profile</a></p>
         </form>
-    )
-}
+    );
+};
 
-export default Register
+export default UpdateUser;

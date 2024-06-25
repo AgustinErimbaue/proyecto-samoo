@@ -63,6 +63,17 @@ export const authSlice = createSlice({
                 state.message = action.payload;
                 state.isError = true;
                 state.isSuccess = false;
+            })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                state.user = action.payload;
+                localStorage.setItem('user', JSON.stringify(action.payload));
+                state.isSuccess = true;
+                state.message = 'User updated successfully';
+            })
+            .addCase(updateUser.rejected, (state, action) => {
+                state.message = action.payload;
+                state.isError = true;
+                state.isSuccess = false;
             });
     }
 });
@@ -74,6 +85,16 @@ export const register = createAsyncThunk('auth/register', async (user) => {
         return authService.register(user)
     } catch (error) {
         console.error(error);
+    }
+});
+
+export const updateUser = createAsyncThunk('auth/updateUser', async (user) => {
+    try {
+        console.log(user);
+        return await authService.updateUser(user);
+    } catch (error) {
+        console.error(error);
+        throw error.response.data;
     }
 });
 

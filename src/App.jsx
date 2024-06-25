@@ -5,12 +5,14 @@ import CompanyLogin from "./component/CompanyLogin/CompanyLogin";
 import Login from './component/Login/Login'
 import UserProfile from "./component/UserProfile/UserProfile";
 import UserContact from "./component/UserContact/UserContact";
+import UpdateUser from "./component/UpdateUser/UpdateUser";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/register" element={<Register />} />
+        <Route path="/updateUser" element={<UpdateUser />} />
         <Route path='/login' element={<Login/>} />
         <Route path="/CompanyRegister" element={<CompanyRegister />} />
         <Route path="/CompanyLogin" element={<CompanyLogin />} />
