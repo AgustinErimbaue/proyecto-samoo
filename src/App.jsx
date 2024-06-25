@@ -7,6 +7,7 @@ import Calendar from "./component/Calendar/Calendar";
 import BookingMeetings from "./component/BookingMeetings/BookingMeetings";
 import NotFound from "./component/NotFound/NotFound";
 import Participants from "./component/Participants/Participants";
+import Suppliers from "./component/Suppliers/Suppliers";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/Calendar" element={<Calendar />} />
         <Route path="/BookingMeeting" element={<BookingMeetings/>} />
         <Route path="/participants" element={<Participants />} />
+        <Route path="/suppliers" element={<Suppliers />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
