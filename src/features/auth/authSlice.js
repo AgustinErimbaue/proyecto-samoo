@@ -121,10 +121,6 @@ export const getUserById = createAsyncThunk('auth/getUserById', async () => {
 });
 
 export const getUserContactInfoById = createAsyncThunk('auth/getUserContactInfoById', async (userId) => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        return ('Token not found');
-    }
     try {
         return await authService.getUserContactInfoById(token, userId);
     } catch (error) {
