@@ -3,7 +3,6 @@ import Register from "./component/Register/Register";
 import CompanyRegister from "./component/CompanyRegister/CompanyRegister";
 import CompanyLogin from "./component/CompanyLogin/CompanyLogin";
 import Login from './component/Login/Login'
-import Calendar from "./component/Calendar/Calendar";
 import BookingMeetings from "./component/BookingMeetings/BookingMeetings";
 import NotFound from "./component/NotFound/NotFound";
 import Participants from "./component/Participants/Participants";
@@ -16,11 +15,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/register" element={<Register />} />
-        <Route path='/login' element={<Login/>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/CompanyRegister" element={<CompanyRegister />} />
         <Route path="/CompanyLogin" element={<CompanyLogin />} />
-        <Route path="/Calendar" element={<Calendar />} />
-        <Route path="/BookingMeeting" element={<BookingMeetings/>} />
+        <Route path="/BookingMeeting" element={<BookingMeetings />} />
         <Route path="/participants" element={<Participants />} />
         <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/speakers" element={<Speakers />} />
