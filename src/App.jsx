@@ -9,6 +9,7 @@ import NotFound from "./component/NotFound/NotFound";
 import Participants from "./component/Participants/Participants";
 import Suppliers from "./component/Suppliers/Suppliers";
 import Speakers from "./component/Speakers/Speakers";
+import Assistants from "./component/Assistants/Assistants";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/participants" element={<Participants />} />
         <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/speakers" element={<Speakers />} />
+        <Route path="/assistants" element={<Assistants />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

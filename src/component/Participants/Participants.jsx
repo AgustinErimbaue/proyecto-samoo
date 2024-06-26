@@ -14,7 +14,7 @@ const Participants = () => {
                 <Box className="btn-filters" display="flex" flexWrap="wrap" gap="10px" mb="4" mt='50px'>
                     <Button size="md"><Link to='/speakers'>Ponentes</Link></Button>
                     <Button size="md"><Link to='/suppliers'>Empresas</Link></Button>
-                    <Button size="md"><Link to='/asistentes'>Asistentes</Link></Button>
+                    <Button size="md"><Link to='/assistants'>Asistentes</Link></Button>
                     <Button size="md">Platinum</Button>
                     <Button size="md">Gold</Button>
                     <Button size="md">Silver</Button>
