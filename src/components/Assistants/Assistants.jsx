@@ -9,11 +9,22 @@ const Assistants = () => {
 
   useEffect(() => {
     dispatch(getAllUsers());
-  }, []);
+  }, [dispatch]);
 
   if (!user) {
-    return `Cargando`;
+    return "Cargando";
   }
+
+  if (!Array.isArray(user) || user.length === 0) {
+    return (
+      <Box padding="20px">
+        <Heading as="h2" size="lg" mb="4">
+          No hay asistentes disponibles.
+        </Heading>
+      </Box>
+    );
+  }
+
   return (
     <Box className="participants-body" padding="20px">
       <Box className="suppliers-header" mb="4" mt="50px">
@@ -21,8 +32,9 @@ const Assistants = () => {
           Asistentes
         </Heading>
       </Box>
-      {user.map((assistants) => (
+      {user.map((assistant) => (
         <Box
+          key={assistant.id || assistant.email}
           className="card"
           display="flex"
           flexDirection={["column", "row"]}
@@ -31,6 +43,7 @@ const Assistants = () => {
           bg="white"
           borderRadius="md"
           boxShadow="md"
+          mb="4"
         >
           <Box className="image-container" flexShrink="0" mb={["4", "0"]}>
             <svg
@@ -66,12 +79,12 @@ const Assistants = () => {
           </Box>
           <Box className="info-container" ml={["0", "20px"]} mb={["4", "0"]}>
             <Heading as="h4" size="md">
-              {assistants.surname},{assistants.name}
+              {assistant.surname}, {assistant.name}
             </Heading>
-            <Text>Empresa: {assistants.company}</Text>
-            <Text>Cargo: {assistants.position}</Text>
-            <Text>Email: {assistants.email}</Text>
-            <Text>Preferencias: {assistants.interests}</Text>
+            <Text>Empresa: {assistant.company}</Text>
+            <Text>Cargo: {assistant.position}</Text>
+            <Text>Email: {assistant.email}</Text>
+            <Text>Preferencias: {assistant.interests}</Text>
           </Box>
           <Box
             className="presentation-container"

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import {
-  Avatar,
   AvatarGroup,
   Box,
   Button,
@@ -19,22 +18,19 @@ const Suppliers = () => {
   }, [dispatch]);
 
   if (!user) {
-    return `Cargando`;
+    return "Cargando";
   }
 
-  // Ensure `user` is an array
-  const userList = Array.isArray(user) ? user : [];
-
-  const getGradient = (type) => {
+  const getColor = (type) => {
     switch (type) {
-      case "gold":
-        return "#FFF48D, #DCD279, #FFF7AB";
-      case "platinum":
-        return "#C2DEF3, #88B3DC, #ACE2FA";
-      case "silver":
-        return "#CBCBCB, #E7E7E7, #A4A4A4";
+      case "Gold":
+        return "#D4AF37";
+      case "Platinum":
+        return "#E5E4E2";
+      case "Silver":
+        return "#C0C0C0";
       default:
-        return "#FFFFFF"; 
+        return "#FFFFFF";
     }
   };
 
@@ -47,13 +43,12 @@ const Suppliers = () => {
       </Box>
       {userList.map((company) => (
         <Box
-          key={company.id} 
+          key={company.id}
           className="card"
           display="flex"
           flexDirection={["column", "row"]}
           alignItems="center"
           padding="20px"
-          bg="white"
           borderRadius="md"
           boxShadow="md"
           mb="4"
@@ -66,7 +61,7 @@ const Suppliers = () => {
               viewBox="0 0 236 236"
               fill="none"
             >
-              <circle cx="118" cy="118" r="118" fill="url(#paint0_linear_1_33)" />
+              <circle cx="118" cy="118" r="118" fill={getColor(company.type_collab)} />
               <image
                 href="https://bit.ly/dan-abramov"
                 x="29"
@@ -75,20 +70,6 @@ const Suppliers = () => {
                 width="178px"
                 clipPath="circle(89px at center)"
               />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_1_33"
-                  x1="37.4603"
-                  y1="32.5197"
-                  x2="202.574"
-                  y2="237.278"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#C2DEF3" />
-                  <stop offset="0.5" stopColor="#88B3DC" />
-                  <stop offset="1" stopColor="#ACE2FA" />
-                </linearGradient>
-              </defs>
             </svg>
           </Box>
 
@@ -110,9 +91,7 @@ const Suppliers = () => {
             display="flex"
             alignItems="center"
           >
-            <AvatarGroup size="sm" max={2}>
-              
-            </AvatarGroup>
+            <AvatarGroup size="sm" max={2}></AvatarGroup>
           </Box>
         </Box>
       ))}
