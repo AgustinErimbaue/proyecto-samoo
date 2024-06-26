@@ -10,12 +10,13 @@ import Participants from "./components/Participants/Participants";
 import Suppliers from "./components/Suppliers/Suppliers";
 import Speakers from "./views/Speakers/Speakers";
 import Assistants from "./views/Assistants/Assistants";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
   return (
     <BrowserRouter>
-        <Header/>
+        <Header />
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
@@ -28,6 +29,7 @@ function App() {
         <Route path="/assistants" element={<Assistants />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

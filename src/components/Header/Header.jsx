@@ -18,7 +18,7 @@ const Header = () => {
                 position: 'fixed',
                 top: 0,
                 left: 0,
-                zIndex: 1000, // para asegurarse de que el header esté por encima de otros elementos
+                zIndex: 1000, 
             }}>
                 <Flex as='header' width='100%' alignItems='center' justifyContent='space-between'>
                     <Box className='logo-container' sx={{
