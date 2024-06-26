@@ -37,6 +37,11 @@ const Suppliers = () => {
   };
   return (
     <Box className="suppliers-body" padding="20px">
+      <Box className="suppliers-header" mb="4" mt="50px">
+        <Heading as="h2" size="lg" mb="4">
+          Empresas
+        </Heading>
+      </Box>
       {user.map((company) => (
         <Box
           key={company.id} 
