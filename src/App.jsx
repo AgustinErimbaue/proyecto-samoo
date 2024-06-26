@@ -22,9 +22,6 @@ function App() {
         <Route path="/CompanyLogin" element={<CompanyLogin />} />
         <Route path="/BookingMeeting" element={<BookingMeetings />} />
         <Route path="/participants" element={<Participants />} />
-        <Route path="/suppliers" element={<Suppliers />} />
-        <Route path="/speakers" element={<Speakers />} />
-        <Route path="/assistants" element={<Assistants />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/viewparticipants" element={<ViewParticipants />} />
       </Routes>

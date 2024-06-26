@@ -30,7 +30,7 @@ const Suppliers = () => {
       case "Silver":
         return "#C0C0C0";
       default:
-        return "#FFFFFF";
+        return "#000000";
     }
   };
 
