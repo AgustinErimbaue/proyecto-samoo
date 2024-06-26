@@ -8,6 +8,7 @@ import BookingMeetings from "./component/BookingMeetings/BookingMeetings";
 import NotFound from "./component/NotFound/NotFound";
 import Participants from "./component/Participants/Participants";
 import Suppliers from "./component/Suppliers/Suppliers";
+import Speakers from "./component/Speakers/Speakers";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/BookingMeeting" element={<BookingMeetings/>} />
         <Route path="/participants" element={<Participants />} />
         <Route path="/suppliers" element={<Suppliers />} />
+        <Route path="/speakers" element={<Speakers />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
