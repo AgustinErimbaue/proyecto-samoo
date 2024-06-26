@@ -7,7 +7,6 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSuppliers } from "../../features/suplier/supSlice";
 
@@ -17,11 +16,14 @@ const Suppliers = () => {
 
   useEffect(() => {
     dispatch(getAllSuppliers());
-  }, []);
+  }, [dispatch]);
 
   if (!user) {
     return `Cargando`;
   }
+
+  // Ensure `user` is an array
+  const userList = Array.isArray(user) ? user : [];
 
   const getGradient = (type) => {
     switch (type) {
@@ -35,6 +37,7 @@ const Suppliers = () => {
         return "#FFFFFF"; 
     }
   };
+
   return (
     <Box className="suppliers-body" padding="20px">
       <Box className="suppliers-header" mb="4" mt="50px">
@@ -42,7 +45,7 @@ const Suppliers = () => {
           Empresas
         </Heading>
       </Box>
-      {user.map((company) => (
+      {userList.map((company) => (
         <Box
           key={company.id} 
           className="card"
