@@ -8,12 +8,10 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
-import ParticipantsHeader from "../ParticipantsHeader/ParticipantsHeader";
 
 const Participants = () => {
   return (
     <Box className="participants-body" padding="20px">
-      <ParticipantsHeader />
       <Box className="suppliers-header" mb="4" mt="50px">
         <Heading as="h2" size="lg" mb="4">
           Empresas

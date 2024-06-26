@@ -1,26 +1,12 @@
 import { Box, Button, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 const Speakers = () => {
     return (
         <Box className="participants-body" padding="20px">
-            <header>
-                <Heading className="title-page" as="h1" size="xl" mb="4">Participantes</Heading>
-                <Box className="btn-filters" display="flex" flexWrap="wrap" gap="10px" mb="4" mt='50px'>
-                    <Button size="md"><Link to='/speakers'>Ponentes</Link></Button>
-                    <Button size="md"><Link to='/suppliers'>Empresas</Link></Button>
-                    <Button size="md"><Link to='/assistants'>Asistentes</Link></Button>
-                    <Button size="md">Platinum</Button>
-                    <Button size="md">Gold</Button>
-                    <Button size="md">Silver</Button>
-                </Box>
-            </header>
             <Box className='suppliers-header' mb="4" mt='50px'>
                 <Heading as="h2" size="lg" mb="4">Ponentes</Heading>
-                <Box className='show-data'>
-                    <Button size="md">Ver datos de todos</Button>
-                </Box>
+
             </Box>
             <Box className="card" display="flex" flexDirection={["column", "row"]} alignItems="center" padding="20px" bg="white" borderRadius="md" boxShadow="md">
                 <Box className="image-container" flexShrink="0" mb={["4", "0"]}>
