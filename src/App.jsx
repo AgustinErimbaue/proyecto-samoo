@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header/Header";
 import Register from "./views/Register/Register";
 import CompanyRegister from "./views/CompanyRegister/CompanyRegister";
 import CompanyLogin from "./views/CompanyLogin/CompanyLogin";
@@ -14,6 +15,8 @@ import Assistants from "./views/Assistants/Assistants";
 function App() {
   return (
     <BrowserRouter>
+        <Header/>
+        <div className="space"></div>
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
