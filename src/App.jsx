@@ -14,6 +14,7 @@ import ViewParticipants from "./views/ViewParticipants/ViewParticipants";
 function App() {
   return (
     <BrowserRouter>
+      
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/supliers/";
+const API_URL = "http://localhost:8080/suppliers/";
 
 const register = async (suplier) => {
   const res = await axios.post(API_URL, suplier);
@@ -16,9 +16,20 @@ export const login = async (suplier) => {
   return res.data;
 };
 
+export const getAllSuppliers = async () => {
+  try {
+    const res = await axios.get(API_URL + "companies");
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching suppliers:", error);
+    throw error;
+  }
+};
+
 const supService = {
   register,
   login,
+  getAllSuppliers,
 };
 
 export default supService;
