@@ -1,14 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Register from "./component/Register/Register";
-import CompanyRegister from "./component/CompanyRegister/CompanyRegister";
-import CompanyLogin from "./component/CompanyLogin/CompanyLogin";
-import Login from './component/Login/Login'
-import BookingMeetings from "./component/BookingMeetings/BookingMeetings";
-import NotFound from "./component/NotFound/NotFound";
-import Participants from "./component/Participants/Participants";
-import Suppliers from "./component/Suppliers/Suppliers";
-import Speakers from "./component/Speakers/Speakers";
-import Assistants from "./component/Assistants/Assistants";
+import Register from "./views/Register/Register";
+import CompanyRegister from "./views/CompanyRegister/CompanyRegister";
+import CompanyLogin from "./views/CompanyLogin/CompanyLogin";
+import Login from "./views/Login/Login";
+import BookingMeetings from "./components/BookingMeetings/BookingMeetings";
+import NotFound from "./views/NotFound/NotFound";
+import Participants from "./components/Participants/Participants";
+import Suppliers from "./components/Suppliers/Suppliers";
+import Speakers from "./views/Speakers/Speakers";
+import Assistants from "./views/Assistants/Assistants";
+
 
 function App() {
   return (
