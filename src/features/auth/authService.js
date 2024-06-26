@@ -44,6 +44,16 @@ const updateUser = async (user) => {
   });
   return res.data;
 };
+  export const getAllUser = async () => {
+    try {
+      const res = await axios.get(API_URL);
+      return res.data;
+    } catch (error) {
+      console.error("Error fetching suppliers:", error);
+      throw error;
+    }
+  };
+  
 
 const authService = {
     register,
@@ -51,6 +61,7 @@ const authService = {
     getUserById,
     getUserContactInfoById,
     updateUser,
+    getAllUser
   };
   
   export default authService;

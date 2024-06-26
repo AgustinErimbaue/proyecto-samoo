@@ -31,6 +31,15 @@ export const login = createAsyncThunk("sup/login", async (suplier) => {
   }
 });
 
+export const getAllSuppliers = createAsyncThunk("sup/getSuppliers", async () => {
+  try {
+    const res = await supService.getAllSuppliers()
+    return res
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 const supSlice = createSlice({
   name: "sup",
   initialState,
@@ -52,6 +61,9 @@ const supSlice = createSlice({
       .addCase(register.rejected, (state, action) => {
         state.isError = true;
         state.message = action.payload || "Registration failed";
+      })
+      .addCase(getAllSuppliers.fulfilled, (state, action) => {
+        state.user = action.payload;
       });
   },
 });
