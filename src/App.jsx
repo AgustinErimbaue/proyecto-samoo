@@ -8,10 +8,7 @@ import BookingMeetings from "./components/BookingMeetings/BookingMeetings";
 import NotFound from "./views/NotFound/NotFound";
 import Participants from "./components/Participants/Participants";
 import Suppliers from "./components/Suppliers/Suppliers";
-import Speakers from "./views/Speakers/Speakers";
-import Assistants from "./views/Assistants/Assistants";
 import Footer from "./components/Footer/Footer";
-
 import Speakers from "./components/Speakers/Speakers";
 import Assistants from "./components/Assistants/Assistants";
 import ViewParticipants from "./views/ViewParticipants/ViewParticipants";
@@ -19,6 +16,7 @@ import ViewParticipants from "./views/ViewParticipants/ViewParticipants";
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
