@@ -16,7 +16,6 @@ function App() {
   return (
     <BrowserRouter>
         <Header/>
-        <div className="space"></div>
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
