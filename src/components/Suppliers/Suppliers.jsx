@@ -1,21 +1,11 @@
 import React from 'react'
 import { Avatar, AvatarGroup, Box, Button, Heading, Text } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import ParticipantsHeader from '../../components/ParticipantsHeader/ParticipantsHeader'
 
 const Suppliers = () => {
   return (
     <Box className='suppliers-body' padding='20px'> 
-        <header>
-                <Heading className="title-page" as="h1" size="xl" mb="4">Participantes</Heading>
-                <Box className="btn-filters" display="flex" flexWrap="wrap" gap="10px" mb="4" mt='50px'>
-                    <Button size="md"><Link to='/ponentes'>Ponentes</Link></Button>
-                    <Button size="md">Empresas</Button>
-                    <Button size="md"><Link to='/asistentes'>Asistentes</Link></Button>
-                    <Button size="md">Platinum</Button>
-                    <Button size="md">Gold</Button>
-                    <Button size="md">Silver</Button>
-                </Box>
-            </header>
+            <ParticipantsHeader />
             <Box className='suppliers-header' mb="4" mt='50px'>
                 <Heading as="h2" size="lg" mb="4">Empresas</Heading>
                 <Box className='show-data'>

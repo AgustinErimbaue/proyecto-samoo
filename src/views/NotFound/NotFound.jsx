@@ -1,7 +1,8 @@
 import React from 'react'
 import './NotFound.scss'
 import { Link } from 'react-router-dom'
-import { Button } from '@mobiscroll/react'
+import { Button } from '@chakra-ui/react'
+
 
 //ESTO ES UNA PRUEBA 
 
