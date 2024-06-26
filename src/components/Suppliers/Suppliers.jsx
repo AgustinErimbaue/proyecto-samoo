@@ -24,13 +24,13 @@ const Suppliers = () => {
   const getColor = (type) => {
     switch (type) {
       case "Gold":
-        return "#D4AF37";
+        return "#E8DD80";
       case "Platinum":
-        return "#E5E4E2";
+        return "#94BCE0";
       case "Silver":
         return "#C0C0C0";
       default:
-        return "#000000";
+        return "#4875a3";
     }
   };
 

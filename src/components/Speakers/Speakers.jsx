@@ -24,7 +24,7 @@ const Speakers = () => {
       </Box>
     );
   }
-  const speakers = user.filter((user) => user.role === "speaker");
+  const speakers = user.filter((user) => user.user_type === "speaker");
 
   return (
     <Box className="participants-body" padding="20px">
@@ -80,7 +80,7 @@ const Speakers = () => {
           </Box>
           <Box className="info-container" ml={["0", "20px"]} mb={["4", "0"]}>
             <Heading as="h4" size="md">
-              {assistant.surname}, {assistant.name}
+              {assistant.name} {assistant.surname}
             </Heading>
             <Text>Empresa: {assistant.company}</Text>
             <Text>Cargo: {assistant.position}</Text>
