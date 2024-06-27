@@ -5,6 +5,7 @@ import Suppliers from "../../components/Suppliers/Suppliers";
 import { Box } from "@chakra-ui/react";
 import Participants from "../../components/Participants/Participants";
 import Speakers from "../../components/Speakers/Speakers";
+import PlatinumSuppliers from "../../components/PlatinumSuppliers/PlatinumSuppliers";
 
 const ViewParticipants = () => {
   const [visibleComponent, setVisibleComponent] = useState("Participants");
@@ -19,8 +20,8 @@ const ViewParticipants = () => {
         return <Participants />;
       case "Speakers":
         return <Speakers />;
-    //   case "Platinum":
-    //     return <PlatinumSuppliers />;
+      case "PlatinumSuppliers":
+        return <PlatinumSuppliers />;
     //   case "Gold":
     //     return <GoldSuppliers />;
     //   case "Silver":
