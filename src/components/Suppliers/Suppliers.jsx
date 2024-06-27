@@ -82,9 +82,9 @@ const Suppliers = () => {
             <Heading as="h4" size="md">
               {company.company_name}
             </Heading>
-            <Text>Descripción de la empresa:</Text>
+            <Text>E-Mail: {company.email}</Text>
             <Text>Tema de ponencias: {company.interests} </Text>
-            <Text>Representantes: {company.id_users}</Text>
+            <Text>Representantes: {company.employes}</Text>
             <EventDetail company={company}/>
           </Box>
 
