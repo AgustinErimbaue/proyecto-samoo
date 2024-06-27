@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSuppliers } from "../../features/suplier/supSlice";
+import EventDetail from "../SupplierDetail/SupplierDetail";
 
 const Suppliers = () => {
   const { user } = useSelector((state) => state.sup);
@@ -84,9 +85,7 @@ const Suppliers = () => {
             <Text>Descripción de la empresa:</Text>
             <Text>Tema de ponencias: {company.interests} </Text>
             <Text>Representantes: {company.id_users}</Text>
-            <Button className="info-btn" size="md">
-              + Info
-            </Button>
+            <EventDetail company={company}/>
           </Box>
 
           <Box

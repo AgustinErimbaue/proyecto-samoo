@@ -12,9 +12,10 @@ import Footer from "./components/Footer/Footer";
 import Speakers from "./components/Speakers/Speakers";
 import Assistants from "./components/Assistants/Assistants";
 import ViewParticipants from "./views/ViewParticipants/ViewParticipants";
-import UserProfile from "./component/UserProfile/UserProfile";
-import UserContact from "./component/UserContact/UserContact";
-import UpdateUser from "./component/UpdateUser/UpdateUser";
+import UserProfile from "./views/UserProfile/UserProfile";
+import UserContact from "./views/UserContact/UserContact";
+import UpdateUser from "./views/UpdateUser/UpdateUser";
+import MeetingsViews from "./views/MeetingsViews/MeetingsViews";
 import ViewHall from "./views/ViewHall/ViewHall";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/participants" element={<Participants />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/viewparticipants" element={<ViewParticipants />} />
+        <Route path="/meetingsViews" element={<MeetingsViews />} />
         <Route path="/viewhall" element={<ViewHall />} />
       </Routes>
       <Footer />
