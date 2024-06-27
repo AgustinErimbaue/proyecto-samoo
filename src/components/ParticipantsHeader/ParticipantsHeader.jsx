@@ -18,9 +18,9 @@ const ParticipantsHeader = ({ onShowComponent }) => {
         <Button size="md" onClick={() => onShowComponent('Speakers')}>Ponentes</Button>
         <Button size="md" onClick={() => onShowComponent('Suppliers')}>Empresas </Button>
         <Button size="md" onClick={() => onShowComponent('Assistants')}>Asistentes</Button>
-        <Button size="md">Platinum</Button>
-        <Button size="md">Gold</Button>
-        <Button size="md">Silver</Button>
+        <Button size="md" onClick={() => onShowComponent('PlatinumSuppliers')}>Platinum</Button>
+        <Button size="md" onClick={() => onShowComponent('GoldSuppliers')}>Gold</Button>
+        <Button size="md" onClick={() => onShowComponent('SilverSuppliers')}>Silver</Button>
       </Box>
     </header>
   );

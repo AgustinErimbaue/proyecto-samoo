@@ -17,6 +17,33 @@ const login = async (user) => {
     return res.data
   };
 
+const getUserById = async (token, userId) => {
+  const res = await axios.get(API_URL + 'id/' + userId, {
+    headers: {
+      Authorization: token
+    }
+  })
+  return res.data
+};
+
+const getUserContactInfoById = async (token, userId) => {
+  const res = await axios.get(API_URL + 'id/' + userId, {
+      headers: {
+          Authorization: token
+      }
+  });
+  return res.data;
+};
+
+const updateUser = async (user) => {
+  const token = localStorage.getItem('token');
+  const res = await axios.put(API_URL + 'id/' + user._id, user, {
+      headers: {
+          Authorization: token
+      }
+  });
+  return res.data;
+};
   export const getAllUser = async () => {
     try {
       const res = await axios.get(API_URL);
@@ -31,6 +58,9 @@ const login = async (user) => {
 const authService = {
     register,
     login,
+    getUserById,
+    getUserContactInfoById,
+    updateUser,
     getAllUser
   };
   

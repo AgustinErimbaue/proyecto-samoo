@@ -7,18 +7,24 @@ import Participants from "../../components/Participants/Participants";
 import Speakers from "../../components/Speakers/Speakers";
 
 const ViewParticipants = () => {
-  const [visibleComponent, setVisibleComponent] = useState('Participants');
+  const [visibleComponent, setVisibleComponent] = useState("Participants");
 
   const renderComponent = () => {
     switch (visibleComponent) {
-      case 'Assistants':
+      case "Assistants":
         return <Assistants />;
-      case 'Suppliers':
+      case "Suppliers":
         return <Suppliers />;
-      case 'Participants':
+      case "Participants":
         return <Participants />;
-      case 'Speakers':
+      case "Speakers":
         return <Speakers />;
+    //   case "Platinum":
+    //     return <PlatinumSuppliers />;
+    //   case "Gold":
+    //     return <GoldSuppliers />;
+    //   case "Silver":
+    //     return <SilverSuppliers />;
       default:
         return null;
     }
