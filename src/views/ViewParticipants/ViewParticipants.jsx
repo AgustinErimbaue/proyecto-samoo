@@ -5,7 +5,7 @@ import Suppliers from "../../components/Suppliers/Suppliers";
 import { Box } from "@chakra-ui/react";
 import Participants from "../../components/Participants/Participants";
 import Speakers from "../../components/Speakers/Speakers";
-
+ºº
 const ViewParticipants = () => {
   const [visibleComponent, setVisibleComponent] = useState("Participants");
 
