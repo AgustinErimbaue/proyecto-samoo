@@ -15,6 +15,7 @@ import ViewParticipants from "./views/ViewParticipants/ViewParticipants";
 import UserProfile from "./component/UserProfile/UserProfile";
 import UserContact from "./component/UserContact/UserContact";
 import UpdateUser from "./component/UpdateUser/UpdateUser";
+import ViewHall from "./views/ViewHall/ViewHall";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/participants" element={<Participants />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/viewparticipants" element={<ViewParticipants />} />
+        <Route path="/viewhall" element={<ViewHall />} />
       </Routes>
       <Footer />
     </BrowserRouter>
