@@ -3,7 +3,7 @@ import { AvatarGroup, Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSuppliers } from "../../features/suplier/supSlice";
 
-const Suppliers = () => {
+const PlatinumSuppliers = () => {
   const { user } = useSelector((state) => state.sup);
   const dispatch = useDispatch();
 
@@ -104,4 +104,4 @@ const Suppliers = () => {
   );
 };
 
-export default Suppliers;
+export default PlatinumSuppliers;

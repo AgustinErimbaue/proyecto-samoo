@@ -7,6 +7,7 @@ import Participants from "../../components/Participants/Participants";
 import Speakers from "../../components/Speakers/Speakers";
 import PlatinumSuppliers from "../../components/PlatinumSuppliers/PlatinumSuppliers";
 import GoldSuppliers from "../../components/GoldSuppliers/GoldSuppliers";
+import SilverSuppliers from "../../components/SilverSuppliers/SilverSuppliers";
 
 const ViewParticipants = () => {
   const [visibleComponent, setVisibleComponent] = useState("Participants");
