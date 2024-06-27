@@ -22,9 +22,10 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    padding-top: 69px;
+    padding-left: 90px;
   }
 }
-
 
 .cards-info {
   display: flex;
@@ -39,12 +40,14 @@
 .card-3 {
   display: flex;
   flex-direction: row;
-  width: 1178px;
+  width: 974px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
+  justify-content: flex-end;
+  align-items: center;
 
   &:hover {
     transform: translateY(-5px);
@@ -69,7 +72,8 @@
     padding: 16px;
     display: flex;
     flex-direction: row;
-    gap: 8px;
+    gap: 94px;
+    align-items: baseline;
 
     .text-1,
     .text1 {
@@ -103,6 +107,13 @@
 
     .hour {
       /* Add your styles here */
+    }
+
+    .pencil-and-number {
+      display: flex;
+      flex-direction: column; /* Cambio a columnas */
+      align-items: flex-start; /* Alineación al inicio */
+      gap: 8px; /* Espacio entre elementos */
     }
 
     .pencil-img {
