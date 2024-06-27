@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../features/auth/authSlice';
+import './Register.scss'
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -90,49 +91,49 @@ const Register = () => {
 
     return (
         <form className='register-form' onSubmit={onSubmit}>
-            <p>Register</p>
+            <p>Registro</p>
             <label>
-                <input required placeholder="Insert your name" type="text" className="input" name="name" id="name" value={formData.name} onChange={onChange} />
+                <input required placeholder="Inserte su nombre" type="text" className="input" name="name" id="name" value={formData.name} onChange={onChange} />
             </label>
             <label>
-                <input required placeholder="Insert your surname" type="text" className="input" name="surname" id="surname" value={formData.surname} onChange={onChange} />
+                <input required placeholder="Inserte su username" type="text" className="input" name="surname" id="surname" value={formData.surname} onChange={onChange} />
             </label>
             <label>
-                <input required placeholder="Insert your email" type="email" className="input" name="email" id="email" value={formData.email} onChange={onChange} />
+                <input required placeholder="Inserte su email" type="email" className="input" name="email" id="email" value={formData.email} onChange={onChange} />
             </label>
             <label>
-                <input required placeholder="Phone prefix" type="tel" className="input" name="phone_prefx" id="phone_prefx" value={formData.phone_prefx} onChange={onChange} />
+                <input required placeholder="Prefijo telefónico" type="tel" className="input" name="phone_prefx" id="phone_prefx" value={formData.phone_prefx} onChange={onChange} />
             </label>
             <label>
-                <input required placeholder="Phone number" type="tel" className="input" name="phone_number" id="phone_number" value={formData.phone_number} onChange={onChange} />
+                <input required placeholder="Número de teléfono" type="tel" className="input" name="phone_number" id="phone_number" value={formData.phone_number} onChange={onChange} />
             </label>
             <label>
-                <input required placeholder="Address" type="text" className="input" name="address" id="address" value={formData.address} onChange={onChange} />
+                <input required placeholder="Dirección" type="text" className="input" name="address" id="address" value={formData.address} onChange={onChange} />
             </label>
             <label>
-                <input required placeholder="Zip code" type="text" className="input" name="zip_code" id="zip_code" value={formData.zip_code} onChange={onChange} />
+                <input required placeholder="Códico postal" type="text" className="input" name="zip_code" id="zip_code" value={formData.zip_code} onChange={onChange} />
             </label>
             <label>
-                <input required placeholder="City" type="text" className="input" name="city" id="city" value={formData.city} onChange={onChange} />
+                <input required placeholder="Ciudad" type="text" className="input" name="city" id="city" value={formData.city} onChange={onChange} />
             </label>
             <label>
-                <input required placeholder="Country" type="text" className="input" name="country" id="country" value={formData.country} onChange={onChange} />
+                <input required placeholder="País" type="text" className="input" name="country" id="country" value={formData.country} onChange={onChange} />
             </label>
             <label>
-                <input required placeholder="LinkedIn URL" type="url" className="input" name="url_linkedin" id="url_linkedin" value={formData.url_linkedin} onChange={onChange} />
+                <input required placeholder="Enlace a LinkedIn" type="url" className="input" name="url_linkedin" id="url_linkedin" value={formData.url_linkedin} onChange={onChange} />
             </label>
             <label>
                 <select name="user_type" id="user_type" value={formData.user_type} onChange={onChange}>
-                    <option value="assitant">Assitant</option>
+                    <option value="assitant">Asistente</option>
                     <option value="admin">Admin</option>
                     {/* Add other user types as needed */}
                 </select>
             </label>
             <label>
-                <input required placeholder="Company" type="text" className="input" name="company" id="company" value={formData.company} onChange={onChange} />
+                <input required placeholder="Empresa" type="text" className="input" name="company" id="company" value={formData.company} onChange={onChange} />
             </label>
-            <fieldset>
-                <legend>Select your job titles:</legend>
+            <fieldset className="checkbox-group">
+                <legend>Seleccione su trabajo:</legend>
                 {[
                     "Desarrollador de Contenidos",
                     "Instructor / Formador",
@@ -162,7 +163,7 @@ const Register = () => {
                 ))}
             </fieldset>
             <label>
-                <p>Select your food preferences:</p>
+                <p>Selecciona sus preferencias alimenticias:</p>
                 <select name="food_preferences" id="food_preferences" value={formData.food_preferences} onChange={onChange}>
                     <option value="">Select...</option>
                     <option value="vegetariano">Vegetariano</option>
@@ -170,35 +171,34 @@ const Register = () => {
                     <option value="omnivore">Omnivore</option>
                 </select>
             </label>
-            <fieldset>
-                <legend>Select your allergies:</legend>
+            <fieldset className="checkbox-group">
+                <legend>Seleccione sus alergias:</legend>
                 {["Gluten", "Lácteos", "Huevos", "Frutos secos", "Cacahuetes", "Mariscos", "Pescado", "Soja", "Sésamo", "Mostaza", "Apio", "Sulfitos", "Altramuz", "Moluscos", "Azucar", "Sal"].map((allergy) => (
                     <label key={allergy}>
                         <input type="checkbox" name="allergies" value={allergy} checked={formData.allergies.includes(allergy)} onChange={onChange} />
                         {allergy}
                     </label>
                 ))}
-            </fieldset>
-
-            <fieldset>
-                <legend>Select your interests:</legend>
-                {["Tecnología", "Gestión de Proyectos", "Agile", "Softskills", "Marketing Digital", "Negocios", "Emprendimiento", "Educación", "Formación", "Salud y Bienestar", "Creatividad", "Diseño"].map((interest) => (
-                    <label key={interest}>
-                        <input type="checkbox" name="interests" value={interest} checked={formData.interests.includes(interest)} onChange={onChange} />
-                        {interest}
-                    </label>
-                ))}
-            </fieldset>
-            <label>
-                <input required placeholder="Insert your password" type="password" className="input" name="password" id="password" value={formData.password} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="Confirm your password" type="password" className="input" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={onConfirmPasswordChange} />
-            </label>
-            <button className="submit" type="submit">Submit</button>
-            <p className="signin">Already have an account? <a href="/login">Signin</a></p>
-        </form>
-    )
+                </fieldset>
+                <fieldset className="checkbox-group">
+            <legend>Seleccione sus:</legend>
+            {["Tecnología", "Gestión de Proyectos", "Agile", "Softskills", "Marketing Digital", "Negocios", "Emprendimiento", "Educación", "Formación", "Salud y Bienestar", "Creatividad", "Diseño"].map((interest) => (
+                <label key={interest}>
+                    <input type="checkbox" name="interests" value={interest} checked={formData.interests.includes(interest)} onChange={onChange} />
+                    {interest}
+                </label>
+            ))}
+        </fieldset>
+        <label>
+            <input required placeholder="Inserte su contraseña" type="password" className="input" name="password" id="password" value={formData.password} onChange={onChange} />
+        </label>
+        <label>
+            <input required placeholder="Confirmar contraseña" type="password" className="input" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={onConfirmPasswordChange} />
+        </label>
+        <button className="submit" type="submit">Submit</button>
+        <p className="signin">¿Ya tienes cuenta? <a href="/login">Iniciar sesión</a></p>
+    </form>
+)
 }
 
 export default Register
