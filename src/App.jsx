@@ -15,6 +15,7 @@ import ViewParticipants from "./views/ViewParticipants/ViewParticipants";
 import UserProfile from "./views/UserProfile/UserProfile";
 import UserContact from "./views/UserContact/UserContact";
 import UpdateUser from "./views/UpdateUser/UpdateUser";
+import MeetingsViews from "./views/MeetingsViews/MeetingsViews";
 
 function App() {
   return (
