@@ -12,10 +12,9 @@ import Footer from "./components/Footer/Footer";
 import Speakers from "./components/Speakers/Speakers";
 import Assistants from "./components/Assistants/Assistants";
 import ViewParticipants from "./views/ViewParticipants/ViewParticipants";
-import UserProfile from "./component/UserProfile/UserProfile";
-import UserContact from "./component/UserContact/UserContact";
-import UpdateUser from "./component/UpdateUser/UpdateUser";
-import MeetingsViews from "./views/MeetingsViews/MeetingsViews";
+import UserProfile from "./views/UserProfile/UserProfile";
+import UserContact from "./views/UserContact/UserContact";
+import UpdateUser from "./views/UpdateUser/UpdateUser";
 
 function App() {
   return (
