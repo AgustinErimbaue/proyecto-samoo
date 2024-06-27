@@ -17,6 +17,7 @@ import UserContact from "./views/UserContact/UserContact";
 import UpdateUser from "./views/UpdateUser/UpdateUser";
 import MeetingsViews from "./views/MeetingsViews/MeetingsViews";
 import ViewHall from "./views/ViewHall/ViewHall";
+import Halls from "./views/Halls/Halls";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/CompanyLogin" element={<CompanyLogin />} />
         <Route path="/BookingMeeting" element={<BookingMeetings />} />
         <Route path="/participants" element={<Participants />} />
+        <Route path="/halls" element={<Halls />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/viewparticipants" element={<ViewParticipants />} />
         <Route path="/meetingsViews" element={<MeetingsViews />} />
