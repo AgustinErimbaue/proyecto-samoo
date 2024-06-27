@@ -22,6 +22,10 @@ const Suppliers = () => {
     return "Cargando";
   }
 
+  if (!Array.isArray(user)) {
+    return "Error: Expected an array of users.";
+  }
+
   const getColor = (type) => {
     switch (type) {
       case "Gold":
