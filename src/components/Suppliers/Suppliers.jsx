@@ -21,6 +21,10 @@ const Suppliers = () => {
     return "Cargando";
   }
 
+  if (!Array.isArray(user)) {
+    return "Error: Expected an array of users.";
+  }
+
   const getColor = (type) => {
     switch (type) {
       case "Gold":
@@ -41,7 +45,7 @@ const Suppliers = () => {
           Empresas
         </Heading>
       </Box>
-      {userList.map((company) => (
+      {user.map((company) => (
         <Box
           key={company.id}
           className="card"
