@@ -48,7 +48,7 @@ const Halls = () => {
               <CardHeader display="flex" justifyContent="center">
                 <Box boxSize="200px" overflow="hidden">
                   <Image
-                    src={place.image || "src/assets/Img/Background-img.png"} // Usa una imagen por defecto si no hay imagen en el lugar
+                    src={place.image || "src/assets/Img/Background-img.png"}
                     alt={place.place_name}
                     objectFit="cover"
                     width="100%"
