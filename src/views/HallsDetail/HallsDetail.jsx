@@ -1,19 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllEvents } from "../../features/event/eventSlice";
+import EditInfoEvent from '../../components/EditInfoEvent/EditInfo'
 
 const HallsDetail = () => {
   const dispatch = useDispatch();
   const { events } = useSelector((state) => state.event);
+  const [selectedEvent, setSelectedEvent] = useState(null); 
 
   useEffect(() => {
     dispatch(getAllEvents());
   }, [dispatch]);
-  
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const options = { day: 'numeric', month: 'short' };
-    return date.toLocaleDateString('en-US', options);
+    const options = { day: "numeric", month: "short" };
+    return date.toLocaleDateString("en-US", options);
+  };
+
+  const handleEditClick = (event) => {
+    setSelectedEvent(event);
   };
 
   return (
@@ -24,7 +30,6 @@ const HallsDetail = () => {
 
       {events.map((event, index) => (
         <div key={index} className="cards-info">
-          {console.log(event)}
           <div className="card-1">
             <div className="img-card">
               <img src="" alt="" />
@@ -32,13 +37,12 @@ const HallsDetail = () => {
             <div className="text-card">
               <div className="text-1">
                 <p>{event.desc_event}</p>
-                <p></p>
                 <p>{event.company}</p>
               </div>
               <div className="date">{formatDate(event.date)}</div>
               <div className="hour">{event.hour}</div>
               <div className="pencil-and-number">
-                <div className="pencil-img">
+                <div className="pencil-img" onClick={() => handleEditClick(event)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="22"
@@ -58,6 +62,15 @@ const HallsDetail = () => {
           </div>
         </div>
       ))}
+
+      
+      {selectedEvent && (
+        <EditInfoEvent
+          isOpen={true} 
+          onClose={() => setSelectedEvent(null)} 
+          event={selectedEvent} 
+        />
+      )}
     </div>
   );
 };

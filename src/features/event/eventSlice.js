@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import eventService from "./eventService";
 
-
 const initialState = {
   events: [],
   isLoading: false,
@@ -10,7 +9,6 @@ const initialState = {
   message: "",
   place: null,
 };
-
 
 export const getAllEvents = createAsyncThunk("event/getAllEvents", async () => {
   try {
@@ -21,10 +19,21 @@ export const getAllEvents = createAsyncThunk("event/getAllEvents", async () => {
   }
 });
 
+export const updateEvent = createAsyncThunk(
+  "event/updateEvent",
+  async (event) => {
+    try {
+      return await eventService.updateEvent(event);
+    } catch (error) {
+      console.error("Error al actualizar el evento:", error.message);
+      throw error;
+    }
+  }
+);
 
 const eventSlice = createSlice({
-  name: "event", 
-  initialState, 
+  name: "event",
+  initialState,
   reducers: {
     reset: (state) => {
       state.isLoading = false;
@@ -44,6 +53,21 @@ const eventSlice = createSlice({
         state.events = action.payload;
       })
       .addCase(getAllEvents.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.error.message;
+      })
+      .addCase(updateEvent.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateEvent.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.events = state.events.map((event) =>
+          event._id === action.payload._id ? action.payload : event
+        );
+      })
+      .addCase(updateEvent.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.error.message;
