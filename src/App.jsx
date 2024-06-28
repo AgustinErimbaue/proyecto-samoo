@@ -32,7 +32,6 @@ function App() {
         <Route path="/CompanyLogin" element={<CompanyLogin />} />
         <Route path="/BookingMeeting" element={<BookingMeetings />} />
         <Route path="/participants" element={<Participants />} />
-        <Route path="/halls" element={<Halls />} />
         <Route path="/landing" element={<Landing />} />
         <Route path="/hallsdetail" element={<HallsDetail />} />
         <Route path="*" element={<NotFound />} />

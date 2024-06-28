@@ -1,7 +1,6 @@
 import React from 'react'
 import { Box, Button, Card, CardBody, CardHeader, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react'
 import './Landing.scss'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Landing = () => {
     return (
