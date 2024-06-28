@@ -38,7 +38,29 @@
     font-weight: normal;
 }
 
-.heading-btn{
-    border-radius: 50px;
-     background: #0f8ba0;
+.img-continer{
+    display: flex;
+    width: auto;
+    height: 200px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 22px;
+    flex-shrink: 0;
 }
+
+.img1-card, .img3-card, .img5-card{
+    margin-top: 55px;
+}
+
+// .map-container {
+//     width: 1728px;
+//     height: 435px;
+//     margin-top: 10px;
+//     flex-shrink: 0;
+    
+// }
+
+// iframe {
+   
+//     border: none;
+// }
