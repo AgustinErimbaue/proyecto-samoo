@@ -23,6 +23,7 @@ const UpdateUser = () => {
         company: '',
         job_title: []
     });
+    const [email, setEmail] = useState('')
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -36,6 +37,7 @@ const UpdateUser = () => {
                 ...formData,
                 ...user
             });
+            setEmail(user.email);
         }
     }, [user]);
 
@@ -104,7 +106,9 @@ const UpdateUser = () => {
             <label>
                 <input required placeholder="Insert your surname" type="text" className="input" name="surname" id="surname" value={formData.surname} onChange={onChange} />
             </label>
-            {/* Note that the email field is omitted */}
+            <label>
+                <input required placeholder="Email" type="email" className="input" name="email" id="email" value={email} readOnly />
+            </label>
             <label>
                 <input required placeholder="Phone prefix" type="tel" className="input" name="phone_prefx" id="phone_prefx" value={formData.phone_prefx} onChange={onChange} />
             </label>
