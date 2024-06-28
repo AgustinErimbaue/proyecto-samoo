@@ -25,7 +25,15 @@ const MeetingsViews = () => {
             [name]: value,
         });
     };
-
+    
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+    
+    if (!meetings) {
+        return <div>No meetings available</div>;
+    }
+    
     const filteredMeetings = meetings.filter((meeting) => {
         return (
             (filters.feedback === '' || meeting.feedback === Number(filters.feedback)) &&
@@ -38,10 +46,6 @@ const MeetingsViews = () => {
         hour,
         meetings: filteredMeetings.filter(meeting => meeting.hour === hour)
     }));
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <div className="meetings-view">
