@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './MeetingsViews.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAll } from '../../features/meeting/meetingSlice';
+import { getUserById, reset } from '../../features/auth/authSlice';
 
 const MeetingsViews = () => {
     const dispatch = useDispatch();
-    const { meetings, isLoading } = useSelector((state) => state.meeting.meetings);
+    const {isLoading} = useSelector((state) => state.meeting.meetings);
+    const { user, token, isError, isSuccess, mesage } = useSelector((state) => state.auth);
+    const meetings=user.ids_meetings 
+    console.log(user)
     const [filters, setFilters] = useState({
         feedback: '',
         table: '',
@@ -16,14 +20,14 @@ const MeetingsViews = () => {
         dispatch(getAll());
     }, [dispatch]);
 
-    const hours = Array.from({ length: 13 }, (_, i) => i + 9).map(hour => `${hour < 10 ? '0' : ''}${hour}:00`);
+    const hours = Array.from({ length: 23 }, (_, i) => i/2+ 9).map(hour => `${hour < 10 ? '0' : ''}${hour -(hour%1) }:${hour%1 > 0?'30':'00' }`);
 
     const onChange = (e) => {
         const { name, value } = e.target;
         setFilters({
             ...filters,
             [name]: value,
-        });
+        });                                  
     };
     
     if (isLoading) {
@@ -82,8 +86,8 @@ const MeetingsViews = () => {
                         <div className="details-column">
                             {meetings.length > 0 ? (
                                 meetings.map(meeting => (
-                                    <div key={meeting.id} className="meeting-details">
-                                        <p>Company ID: {meeting.id_collab} - User ID: {meeting.id_user_collab}</p>
+                                    <div key={meeting._id} className="meeting-details">
+                                        <p> Empresa : {meeting.id_supplier.company_name} - Colaborador: {meeting.id_user_supplier}</p>
                                     </div>
                                 ))
                             ) : (
