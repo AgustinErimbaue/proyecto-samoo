@@ -16,6 +16,7 @@ import UserProfile from "./component/UserProfile/UserProfile";
 import UserContact from "./component/UserContact/UserContact";
 import UpdateUser from "./component/UpdateUser/UpdateUser";
 import Halls from "./views/Halls/Halls";
+import Landing from "./views/Landing/Landing";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/BookingMeeting" element={<BookingMeetings />} />
         <Route path="/participants" element={<Participants />} />
         <Route path="/halls" element={<Halls />} />
+        <Route path="/landing" element={<Landing />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/viewparticipants" element={<ViewParticipants />} />
       </Routes>

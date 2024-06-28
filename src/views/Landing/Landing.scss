@@ -1,0 +1,44 @@
+.landing-continer{
+    background: var(--color-grey-10, #fff);
+   width: 100%;
+   height: 100%;
+   flex-shrink: 0;
+}
+
+.start-landing{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 65px;
+}
+
+.heading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+    margin-top: 80px;
+}
+
+.samoo-heading{
+    color: var(--azul-socuro-30, #1c1c24);
+    text-align: center;
+    font-family: 'DM Sans';
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.subtitle-heading {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.heading-btn{
+    border-radius: 50px;
+     background: #0f8ba0;
+}
