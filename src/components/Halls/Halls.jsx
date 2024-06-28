@@ -16,6 +16,7 @@ import { AddIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPlaces } from "../../features/place/placeSlice";
 import EventsHeader from "../../components/EventsHeader/EventsHeader";
+import CreateEvent from "../CreateEvent/CreateEvent";
 
 const Halls = () => {
   const { places } = useSelector((state) => state.place);
@@ -62,9 +63,7 @@ const Halls = () => {
                 <Text mt={1}>Capacidad para {place.capacity}</Text>
               </CardBody>
               <CardFooter>
-                <Button variant="outline" colorScheme="teal" borderRadius="50px">
-                  Añadir ponencia
-                </Button>
+                <CreateEvent place = {place}/>
               </CardFooter>
             </Card>
           ))}
