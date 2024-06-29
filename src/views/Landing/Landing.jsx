@@ -111,7 +111,7 @@ const Landing = () => {
                         </Box>
                         <Box className='video-section'>
                             <Box className='video-title'>
-                                <Text>Vive la experiencia</Text>
+                                <Text>Vive la experiencia con</Text>
                                 <Text>nosotros</Text>
                             </Box>
                             <Box className='video-continer'>
