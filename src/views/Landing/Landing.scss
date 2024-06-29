@@ -1,11 +1,11 @@
-.landing-continer{
+.landing-continer {
     background: var(--color-grey-10, #fff);
-   width: 100%;
-   height: 100%;
-   flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
 }
 
-.start-landing{
+.start-landing {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -13,7 +13,7 @@
     gap: 65px;
 }
 
-.heading{
+.heading {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +21,7 @@
     margin-top: 80px;
 }
 
-.samoo-heading{
+.samoo-heading {
     color: var(--azul-socuro-30, #1c1c24);
     text-align: center;
     font-family: 'DM Sans';
@@ -38,7 +38,7 @@
     font-weight: normal;
 }
 
-.img-continer{
+.img-continer {
     display: flex;
     width: auto;
     height: 200px;
@@ -48,15 +48,17 @@
     flex-shrink: 0;
 }
 
-.img1-card, .img3-card, .img5-card{
+.img1-card,
+.img3-card,
+.img5-card {
     margin-top: 55px;
 }
 
-.discover-continer{
+.discover-continer {
     width: 100%;
 }
 
-.discover-title{
+.discover-title {
     color: var(--azul-socuro-30, #1c1c24);
     text-align: center;
     font-family: 'DM Sans';
@@ -64,15 +66,43 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    margin-bottom: 60px;
+    margin-bottom: -140px;
 }
 
-.continer-card-description{
+.continer-card-description {
     display: flex;
 
 }
 
-.speakers-continer{
+.description-bodycards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    padding: 20px;
+  }
+  
+  .container-card-description {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 60px; 
+  }
+  
+  .description-card {
+    width: 200px; 
+  }
+  
+  .button-container {
+    margin-top: 40px; 
+    display: flex;
+    justify-content: center; 
+    width: 100%; 
+  }
+
+.speakers-continer,
+.comments-continer {
     display: flex;
     width: 100%;
     height: 482px;
@@ -82,10 +112,10 @@
     gap: 80px;
     align-self: stretch;
     background: var(--azul-socuro-30, #1c1c24);
-    margin-top: 100px;
+    margin-top: -100px;
 }
 
-.speakers-title{
+.speakers-title {
     width: 434px;
     color: var(--blanco-60, #FFF);
     text-align: center;
@@ -97,7 +127,7 @@
 }
 
 
-.speaker-imgs{
+.speaker-imgs {
     display: flex;
     width: auto;
     height: 100px;
@@ -118,15 +148,18 @@
     border-radius: 20px;
 }
 
-.img1-speaker, .img5-speaker{
+.img1-speaker,
+.img5-speaker {
     margin-top: 120px;
 }
 
-.img2-speaker, .img4-speaker{
+.img2-speaker,
+.img4-speaker {
     margin-top: 60px;
 }
 
-.video-title{
+
+.video-title {
     color: var(--azul-socuro-30, #1c1c24);
     text-align: center;
     font-family: 'DM Sans';
@@ -138,8 +171,82 @@
     margin-bottom: 60px;
 }
 
-.video-continer{
+.video-continer {
     display: flex;
     justify-content: center;
     margin-top: 50px;
 }
+
+.registration-continer {
+    display: flex;
+    width: 100%;
+    height: 243px;
+    padding: 50px 390px 6px 390px;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: var(--color-gray-10, #fff);
+}
+
+.registration-title {
+    color: var(--azul-socuro-30, #1c1c24);
+    text-align: center;
+    font-family: 'DM Sans';
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.registration-text {
+    color: var(--azul-oscuro-30, #1C1C24);
+    text-align: center;
+    font-family: 'DM Sans';
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    margin-top: 30px;
+    width: fit-content;
+}
+
+.registration-btn {
+    display: flex;
+    padding: 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 32px;
+    margin-top: 20px;
+}
+
+.companies-container {
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 270px;
+    width: 100%;
+    background: var(--azul-marino-10, #0f8ba0);
+  }
+  
+  .companies-footer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 100px;
+  
+  }
+  
+  .image-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+ 
+
