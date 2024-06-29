@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllEvents } from "../../features/event/eventSlice";
 import EditInfoEvent from '../../components/EditInfoEvent/EditInfo'
 
-const HallsDetail = () => {
+const Events = () => {
   const dispatch = useDispatch();
   const { events } = useSelector((state) => state.event);
   const [selectedEvent, setSelectedEvent] = useState(null); 
@@ -25,7 +25,7 @@ const HallsDetail = () => {
   return (
     <div className="view-hall-container">
       <div className="title">
-        <h1>La Font Blanca</h1>
+        <h2>Todos los eventos</h2>
       </div>
 
       {events.map((event, index) => (
@@ -75,4 +75,4 @@ const HallsDetail = () => {
   );
 };
 
-export default HallsDetail;
+export default Events;

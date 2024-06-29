@@ -3,7 +3,7 @@ import "./ViewEvents.scss";
 import Halls from "../../components/Halls/Halls";
 import EventsHeader from "../../components/EventsHeader/EventsHeader";
 import { Box } from "@chakra-ui/react";
-import HallsDetail from "../HallsDetail/HallsDetail";
+import HallsDetail from "../Events/Events";
 
 const ViewEvents = () => {
   const [visibleComponent, setVisibleComponent] = useState("Salas");

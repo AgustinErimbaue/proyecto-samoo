@@ -10,7 +10,7 @@ import GoldSuppliers from "../../components/GoldSuppliers/GoldSuppliers";
 import SilverSuppliers from "../../components/SilverSuppliers/SilverSuppliers";
 
 const ViewParticipants = () => {
-  const [visibleComponent, setVisibleComponent] = useState("Participants");
+  const [visibleComponent, setVisibleComponent] = useState("Speakers");
 
   const renderComponent = () => {
     switch (visibleComponent) {

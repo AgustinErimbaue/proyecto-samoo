@@ -14,9 +14,8 @@ import UserContact from "./views/UserContact/UserContact";
 import UpdateUser from "./views/UpdateUser/UpdateUser";
 import MeetingsViews from "./views/MeetingsViews/MeetingsViews";
 import ViewEvents from "./views/ViewEvents/ViewEvents";
-import HallsDetail from "./views/HallsDetail/HallsDetail";
+import HallsDetail from "./views/Events/Events";
 import Landing from "./views/Landing/Landing";
-
 
 function App() {
   return (
