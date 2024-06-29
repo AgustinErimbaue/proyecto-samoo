@@ -4,18 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../features/auth/authSlice";
 
 const Assistants = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { users } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  if (!user) {
+  if (!users) {
     return "Cargando";
   }
 
-  if (!Array.isArray(user) || user.length === 0) {
+  if (!Array.isArray(users) || users.length === 0) {
     return (
       <Box padding="20px">
         <Heading as="h2" size="lg" mb="4">

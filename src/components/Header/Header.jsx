@@ -55,7 +55,7 @@ const Header = () => {
   };
 
   let buttons = [];
-  if (!user) {
+  if (!user || user === null) {
     buttons = ["CALENDARIO", "REGISTRO", "LOGIN"];
   } else if (user.user_type === "admin") {
     buttons = [

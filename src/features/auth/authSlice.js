@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem("user")) || null;
 
 const initialState = {
   user: user,
+  users: [],
   userContactInfo: null,
   token: token,
   isError: false,
@@ -34,7 +35,7 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.users = action.payload;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
