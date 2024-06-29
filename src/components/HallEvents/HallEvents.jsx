@@ -9,7 +9,7 @@ const HallEvents = () => {
   const dispatch = useDispatch();
   const { events } = useSelector((state) => state.event);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  console.log("ID del lugar obtenido:", id);
+
   useEffect(() => {
     dispatch(getAllEvents());
   }, [dispatch]);
