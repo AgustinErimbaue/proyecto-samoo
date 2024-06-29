@@ -23,7 +23,7 @@ const getUserById = async (token, userId) => {
       Authorization: token
     }
   })
-  return res.data
+  return res.data.user
 };
 
 const getUserContactInfoById = async (token, userId) => {
