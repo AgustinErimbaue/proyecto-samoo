@@ -1,11 +1,22 @@
 import { useState } from 'react';
 import { Box, Flex, Image, Button } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const [selectedButton, setSelectedButton] = useState(null);
+    const navigate = useNavigate();
 
     const handleButtonClick = (buttonName) => {
         setSelectedButton(buttonName);
+        switch (buttonName) {
+            case "PARTICIPANTES":
+                navigate(`/viewparticipants`);
+
+                break;
+        
+            default:
+                break;
+        }
     };
 
     return (
@@ -18,7 +29,7 @@ const Header = () => {
                 position: 'fixed',
                 top: 0,
                 left: 0,
-                zIndex: 1000, 
+                zIndex: 1000,
             }}>
                 <Flex as='header' width='100%' alignItems='center' justifyContent='space-between'>
                     <Box className='logo-container' sx={{

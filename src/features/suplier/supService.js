@@ -18,7 +18,7 @@ export const login = async (suplier) => {
 
 export const getAllSuppliers = async () => {
   try {
-    const res = await axios.get(API_URL + "companies");
+    const res = await axios.get(API_URL);
     return res.data;
   } catch (error) {
     console.error("Error fetching suppliers:", error);

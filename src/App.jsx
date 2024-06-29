@@ -7,16 +7,16 @@ import Login from "./views/Login/Login";
 import BookingMeetings from "./components/BookingMeetings/BookingMeetings";
 import NotFound from "./views/NotFound/NotFound";
 import Participants from "./components/Participants/Participants";
-import Suppliers from "./components/Suppliers/Suppliers";
 import Footer from "./components/Footer/Footer";
-import Speakers from "./components/Speakers/Speakers";
-import Assistants from "./components/Assistants/Assistants";
 import ViewParticipants from "./views/ViewParticipants/ViewParticipants";
-import UserProfile from "./component/UserProfile/UserProfile";
-import UserContact from "./component/UserContact/UserContact";
-import UpdateUser from "./component/UpdateUser/UpdateUser";
-import Halls from "./views/Halls/Halls";
+import UserProfile from "./views/UserProfile/UserProfile";
+import UserContact from "./views/UserContact/UserContact";
+import UpdateUser from "./views/UpdateUser/UpdateUser";
+import MeetingsViews from "./views/MeetingsViews/MeetingsViews";
+import ViewEvents from "./views/ViewEvents/ViewEvents";
+import HallsDetail from "./views/HallsDetail/HallsDetail";
 import Landing from "./views/Landing/Landing";
+
 
 function App() {
   return (
@@ -32,10 +32,12 @@ function App() {
         <Route path="/CompanyLogin" element={<CompanyLogin />} />
         <Route path="/BookingMeeting" element={<BookingMeetings />} />
         <Route path="/participants" element={<Participants />} />
-        <Route path="/halls" element={<Halls />} />
         <Route path="/landing" element={<Landing />} />
+        <Route path="/hallsdetail" element={<HallsDetail />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/viewparticipants" element={<ViewParticipants />} />
+        <Route path="/meetingsViews" element={<MeetingsViews />} />
+        <Route path="/viewevents" element={<ViewEvents />} />
       </Routes>
       {/* <Footer /> */}
     </BrowserRouter>
