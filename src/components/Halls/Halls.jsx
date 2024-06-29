@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Image,
@@ -16,14 +16,26 @@ import { AddIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPlaces } from "../../features/place/placeSlice";
 import EventsHeader from "../../components/EventsHeader/EventsHeader";
+import AddPlaceForm from "../AddPlace/AddPlaceForm";
 
 const Halls = () => {
   const { places } = useSelector((state) => state.place);
   const dispatch = useDispatch();
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     dispatch(getAllPlaces());
   }, [dispatch]);
+
+  const handleAddPlaceClick = () => {
+    setIsFormOpen(true);
+  };
+
+  const handleCloseForm = () => {
+    setIsFormOpen(false);
+    dispatch(getAllPlaces());
+  };
 
   if (!places) {
     return "Cargando";
@@ -68,7 +80,7 @@ const Halls = () => {
               </CardFooter>
             </Card>
           ))}
-                    <Card
+          <Card
             display="flex"
             flexDirection="column"
             alignItems="center"
@@ -96,13 +108,14 @@ const Halls = () => {
               </Text>
             </CardBody>
             <CardFooter>
-              <Button variant="outline" colorScheme="teal" borderRadius="50px">
+              <Button variant="outline" colorScheme="teal" borderRadius="50px" onClick={handleAddPlaceClick}>
                 Añadir Sala
               </Button>
             </CardFooter>
           </Card>
         </SimpleGrid>
       </Box>
+      <AddPlaceForm isOpen={isFormOpen} onClose={handleCloseForm} />
     </Box>
   );
 };

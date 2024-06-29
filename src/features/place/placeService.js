@@ -12,8 +12,24 @@ const getAllPlaces = async () => {
   }
 };
 
+const createPlace = async (formData) => {
+  try {
+    const token = localStorage.getItem('token');
+    const res = await axios.post(API_URL, formData, {
+      headers: {
+        Authorization: token,
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 const placeService = {
   getAllPlaces,
+  createPlace,
 };
 
 export default placeService;

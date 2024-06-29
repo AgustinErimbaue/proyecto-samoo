@@ -10,6 +10,19 @@ const initialState = {
     place: null,
 };
 
+export const createPlace = createAsyncThunk("place/create", async ({ place, token }, thunkAPI) => {
+  try {
+    return placeService.createPlace(place, token);
+  } catch (error) {
+    console.error(error);
+    const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+  }
+})
+
 export const getAllPlaces = createAsyncThunk("place/getAllPlaces", async (_, thunkAPI) => {
   try {
     return await placeService.getAllPlaces();
@@ -41,6 +54,19 @@ const placeSlice = createSlice({
         state.places = action.payload;
       })
       .addCase(getAllPlaces.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(createPlace.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createPlace.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.places.push(action.payload);
+      })
+      .addCase(createPlace.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
