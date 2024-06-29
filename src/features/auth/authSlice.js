@@ -66,7 +66,7 @@ export const authSlice = createSlice({
         state.isError = true;
       })
       .addCase(getUserContactInfoById.fulfilled, (state, action) => {
-        state.userContactInfo = action.payload;
+        state.userContactInfo = action.payload.user;
         state.isSuccess = true;
         state.isError = false;
         state.message = '';

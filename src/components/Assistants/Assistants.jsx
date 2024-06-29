@@ -32,7 +32,7 @@ const Assistants = () => {
           Asistentes
         </Heading>
       </Box>
-      {user.map((assistant) => (
+      {users.map((assistant) => (
         <Box
           key={assistant.id || assistant.email}
           className="card"
