@@ -1,19 +1,21 @@
 import { useState } from "react";
-import { Box, Flex, Image, Button } from "@chakra-ui/react";
+import { Box, Flex, Image, Button, Menu, MenuButton, MenuList, MenuItem, IconButton } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Header = () => {
   const [selectedButton, setSelectedButton] = useState(null);
   const navigate = useNavigate();
+
   const handleNavigate = () => {
     navigate("/UserProfile");
   };
+
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
     switch (buttonName) {
       case "PARTICIPANTES":
         navigate(`/viewparticipants`);
-
         break;
       case "EVENTOS":
         navigate(`/viewevents`);
@@ -21,10 +23,18 @@ const Header = () => {
       case "CALENDARIO":
         navigate(`/meetingsViews`);
         break;
+      case "FEEDBACK":
+        navigate(`/feedback`);
+        break;
+      case "DASHBOARD":
+        navigate(`/dashboard`);
+        break;
       default:
         break;
     }
   };
+
+  const buttons = ["CALENDARIO", "EVENTOS", "PARTICIPANTES", "FEEDBACK", "DASHBOARD"];
 
   return (
     <>
@@ -47,6 +57,48 @@ const Header = () => {
           alignItems="center"
           justifyContent="space-between"
         >
+
+          <Box
+            sx={{
+              display: { base: "block", md: "none" },
+              margin: "0 20px",
+              cursor: "pointer",
+            }}
+          >
+            <Menu>
+              <MenuButton
+                as={IconButton}
+                aria-label="Options"
+                icon={<HamburgerIcon />}
+                variant="outline"
+                sx={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  color: "white",
+                }}
+              />
+              <MenuList
+                sx={{
+                  border: "none",
+                  backgroundColor: "white",
+                  position: "absolute",
+                  top: "0",
+                  left: "0",
+                  marginTop: "60px",
+                }}
+              >
+                {buttons.map((buttonName) => (
+                  <MenuItem
+                    key={buttonName}
+                    onClick={() => handleButtonClick(buttonName)}
+                    sx={{ color: "black" }}
+                  >
+                    {buttonName}
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
+          </Box>
           <Box
             className="logo-container"
             sx={{
@@ -64,30 +116,24 @@ const Header = () => {
               }}
             />
           </Box>
+
           <Box
             className="btn-header"
             sx={{
-              display: "flex",
+              display: { base: "none", md: "flex" },
               gap: "15px",
               justifyContent: "center",
               flex: "1",
             }}
           >
-            {[
-              "CALENDARIO",
-              "EVENTOS",
-              "PARTICIPANTES",
-              "FEEDBACK",
-              "DASHBOARD",
-            ].map((buttonName) => (
+            {buttons.map((buttonName) => (
               <Button
                 key={buttonName}
                 colorScheme="black"
                 variant="ghost"
                 sx={{
                   color: selectedButton === buttonName ? "black" : "white",
-                  backgroundColor:
-                    selectedButton === buttonName ? "white" : "transparent",
+                  backgroundColor: selectedButton === buttonName ? "white" : "transparent",
                 }}
                 onClick={() => handleButtonClick(buttonName)}
               >
@@ -95,6 +141,8 @@ const Header = () => {
               </Button>
             ))}
           </Box>
+
+
           <Box
             sx={{
               margin: "0 20px",

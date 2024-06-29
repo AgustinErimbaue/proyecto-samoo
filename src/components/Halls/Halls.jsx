@@ -15,7 +15,6 @@ import { AddIcon } from "@chakra-ui/icons";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPlaces } from "../../features/place/placeSlice";
-import EventsHeader from "../../components/EventsHeader/EventsHeader";
 import CreateEvent from "../CreateEvent/CreateEvent";
 
 const Halls = () => {
