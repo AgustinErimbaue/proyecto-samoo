@@ -17,6 +17,20 @@ const login = async (user) => {
     return res.data
   };
 
+  const logout = async () => {
+    const token = localStorage.getItem("token");
+    const res = await axios.delete(API_URL + "/logout", {
+        headers: {
+            Authorization: token,
+        },
+    });
+    if (res.data) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+    }
+    return res.data;
+};
+
 const getUserById = async (token, userId) => {
   const res = await axios.get(API_URL + 'id/' + userId, {
     headers: {
@@ -61,7 +75,8 @@ const authService = {
     getUserById,
     getUserContactInfoById,
     updateUser,
-    getAllUser
+    getAllUser,
+    logout
   };
   
   export default authService;

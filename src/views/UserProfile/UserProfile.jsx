@@ -2,12 +2,14 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserById, reset } from '../../features/auth/authSlice';
 import QRCode from 'react-qr-code';
-import { Link } from 'react-router-dom';
+import { logout } from "../../features/auth/authSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
 
   const dispatch = useDispatch();
   const { user, token, isError, isSuccess, mesage } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
@@ -21,7 +23,14 @@ const UserProfile = () => {
   if (!user) {
     return <div>Loading...</div>;
   }
-
+  const handleLogout = async () => {
+    try {
+      await dispatch(logout()).unwrap();
+      navigate("/login");
+    } catch (error) {
+      console.error("Failed to logout:", error);
+    }
+  };
   const userContactUrl = `http://localhost:5173/userContact/${user._id}`
 
   return (
@@ -46,6 +55,7 @@ const UserProfile = () => {
       <p><strong>Last Updated At:</strong> {new Date(user.updatedAt).toLocaleString()}</p>
       <QRCode value={userContactUrl} />
       <p><Link to={userContactUrl}>View Contact Info</Link></p>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   )
 }

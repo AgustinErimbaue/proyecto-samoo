@@ -62,7 +62,9 @@ const Halls = () => {
               {user && user.user_type === 'supplier' && (
                 <CreateEvent place={place} />
               )}
-            <Button variant="outline" colorScheme="teal" borderRadius="50px"> Ver eventos</Button>
+              {user && user.user_type === 'admin' && (
+                <Button variant="outline" colorScheme="teal" borderRadius="50px"> Ver eventos</Button>
+              )}
               </CardFooter>
             </Card>
           ))}

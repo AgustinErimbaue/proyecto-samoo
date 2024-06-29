@@ -46,6 +46,16 @@ export const authSlice = createSlice({
         state.message = action.payload;
         state.isError = true
       })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
+        state.token = "";
+        state.isSuccessLogout = true;
+    })
+    .addCase(logout.rejected, (state) => {
+        state.isError = true;
+        state.message = action.payload.message;
+        state.isErrorLogout = true;
+    })
       .addCase(getUserById.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isSuccess = true;
@@ -134,6 +144,13 @@ export const getAllUsers = createAsyncThunk("auth/getUsers", async () => {
     return res;
   } catch (error) {
     console.error(error);
+  }
+});
+export const logout = createAsyncThunk("auth/logout", async () => {
+  try {
+      return await authService.logout();
+  } catch (error) {
+      console.error(error);
   }
 });
 
