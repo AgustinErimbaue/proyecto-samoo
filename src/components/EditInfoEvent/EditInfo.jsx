@@ -18,11 +18,11 @@ import { updateEvent } from "../../features/event/eventSlice";
 
 const EditInfoEvent = ({ isOpen, onClose, event }) => {
   const dispatch = useDispatch();
-  const [editedEvent, setEditedEvent] = useState(event);
+  const [editedEvent, setEditedEvent] = useState(event || {_id:null});
 
   useEffect(() => {
     if (event) {
-      setEditedEvent(event); // Resetea el estado local cuando cambia el evento
+      setEditedEvent(event); 
     }
   }, [event]);
 
@@ -35,9 +35,9 @@ const EditInfoEvent = ({ isOpen, onClose, event }) => {
   };
 
   const handleSave = () => {
-    if (editedEvent && editedEvent._id) {
-      dispatch(updateEvent(editedEvent)); // Despacha la acción para actualizar el evento en el estado de Redux
-      onClose(); // Cierra el modal
+    if (editedEvent && editedEvent._id !== null) {
+      dispatch(updateEvent(editedEvent)); 
+      onClose();
     } else {
       console.error("El evento no tiene un id válido.");
     }
