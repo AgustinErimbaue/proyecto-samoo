@@ -54,7 +54,7 @@ const CreateEvent = ({ place }) => {
     avatar_url: "",
     id_place: place.id,
   });
-console.log(formData);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
@@ -166,17 +166,6 @@ console.log(formData);
                         </MenuOptionGroup>
                       </MenuList>
                     </Menu>
-                  </FormControl>
-
-                  <FormControl id="company" mb={4}>
-                    <FormLabel>Compañía</FormLabel>
-                    <Input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder="Tech Innovators Inc."
-                    />
                   </FormControl>
 
                   <FormControl id="avatar_url" mb={4}>
