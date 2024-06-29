@@ -58,34 +58,36 @@ const Landing = () => {
                             <Text>capacidades</Text>
                         </Box>
                         <Box className='description-bodycards'>
-                            <SimpleGrid spacing={10} templateColumns='repeat(auto-fill, minmax(200px, 1fr))' className='continer-card-decription' >
-                                <Card className='description-card'>
-                                    <CardHeader>
-                                        <Heading size='md'> ¿QUÉ ES E-LEARNING EXPERIENCE?</Heading>
-                                    </CardHeader>
-                                    <CardBody>
-                                        <Text>Damos respuesta a la necesidad de crear un punto de encuentro para profesionales de formación online en universidades y admin...</Text>
-                                    </CardBody>
-                                </Card>
-                                <Card className='description-card'>
-                                    <CardHeader>
-                                        <Heading size='md'> ¿POR QUÉ TIENES QUE ASISTIR A E-LEARNING EXPERIENCE?</Heading>
-                                    </CardHeader>
-                                    <CardBody>
-                                        <Text>Por ser un punto de encuentro exclusivo dirigido a los profesionales del ámbito de la educación y la formación.</Text>
-                                    </CardBody>
-                                </Card>
-                                <Card className='description-card'>
-                                    <CardHeader>
-                                        <Heading size='md'> ORGANIZACIÓN Y COORDINACIÓN</Heading>
-                                    </CardHeader>
-                                    <CardBody>
-                                        <Text>Destaca coo lider nacional en formación online e innovación educativa en España y Latam, con mas de 25 años de experiencia</Text>
-                                    </CardBody>
-                                </Card>
-                                <Button colorScheme='teal' variant='outline' borderRadius='50px' width='100px'>Ver más</Button>
-                            </SimpleGrid>
-                        </Box>
+    <Box className='container-card-description'>
+      <Card className='description-card'>
+        <CardHeader>
+          <Heading size='md'>¿QUÉ ES E-LEARNING EXPERIENCE?</Heading>
+        </CardHeader>
+        <CardBody>
+          <Text>Damos respuesta a la necesidad de crear un punto de encuentro para profesionales de formación online en universidades y admin...</Text>
+        </CardBody>
+      </Card>
+      <Card className='description-card'>
+        <CardHeader>
+          <Heading size='md'>¿POR QUÉ TIENES QUE ASISTIR A E-LEARNING EXPERIENCE?</Heading>
+        </CardHeader>
+        <CardBody>
+          <Text>Por ser un punto de encuentro exclusivo dirigido a los profesionales del ámbito de la educación y la formación.</Text>
+        </CardBody>
+      </Card>
+      <Card className='description-card'>
+        <CardHeader>
+          <Heading size='md'>ORGANIZACIÓN Y COORDINACIÓN</Heading>
+        </CardHeader>
+        <CardBody>
+          <Text>Destaca como líder nacional en formación online e innovación educativa en España y Latam, con más de 25 años de experiencia.</Text>
+        </CardBody>
+      </Card>
+    </Box>
+    <Box className='button-container'>
+      <Button colorScheme='teal' variant='outline' borderRadius='50px' width='100px'>Ver más</Button>
+    </Box>
+  </Box>
                         <Box className='speakers-continer'>
                             <Box className='speakers-title'>
                                 <Text>Ponentes destacados</Text>
@@ -119,7 +121,7 @@ const Landing = () => {
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/GEWYbmPnPk8?si=doN9stgibuSwy7N_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </Box>
                         </Box>
-                        <Box className='comments-continer'>
+                        <Box className='comments-continer' mt={100}>
                             <Box className='comments-cards' width='1000px' mt='55px'>
                                 <Image src='src/assets/Img/comments-img.png' alt='comentarios' />
                             </Box>
@@ -139,36 +141,36 @@ const Landing = () => {
                             </Box>
                         </Box>
                         <Box className='companies-container'>
-    <Box className='companies-footer'>
-      <Box className='image-box'>
-        <Image 
-          src='src/assets/Img/Samoo-img-Photoroom.png' 
-          alt='Samoo img' 
-          className='company-image'
-          width={400}
-          height={200}
-        />
-      </Box>
-      <Box className='image-box'>
-        <Image 
-          src='src/assets/Img/OpenLMS-img-Photoroom.png' 
-          alt='OpenLMS img' 
-          className='company-image'
-          width={300}
-          height={150}
-        />
-      </Box>
-      <Box className='image-box'>
-        <Image 
-          src='src/assets/Img/ReadSpeaker-img-Photoroom.png' 
-          alt='ReadSpeaker img' 
-          className='company-image'
-          width={400}
-          height={200}
-        />
-      </Box>
-    </Box>
-  </Box>
+                            <Box className='companies-footer'>
+                                <Box className='image-box'>
+                                    <Image
+                                        src='src/assets/Img/Samoo-img-Photoroom.png'
+                                        alt='Samoo img'
+                                        className='company-image'
+                                        width={420}
+                                        height={200}
+                                    />
+                                </Box>
+                                <Box className='image-box'>
+                                    <Image
+                                        src='src/assets/Img/OpenLMS-img-Photoroom.png'
+                                        alt='OpenLMS img'
+                                        className='company-image'
+                                        width={340}
+                                        height={150}
+                                    />
+                                </Box>
+                                <Box className='image-box'>
+                                    <Image
+                                        src='src/assets/Img/ReadSpeaker-img-Photoroom.png'
+                                        alt='ReadSpeaker img'
+                                        className='company-image'
+                                        width={420}
+                                        height={200}
+                                    />
+                                </Box>
+                            </Box>
+                        </Box>
                     </Box>
                 </Box>
             </Box>
