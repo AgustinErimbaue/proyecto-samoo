@@ -115,11 +115,61 @@ const Landing = () => {
                                 <Text>nosotros</Text>
                             </Box>
                             <Box className='video-continer'>
-                            {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/aFdAJW1CATk?si=reoHDNfydYGLbSXm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
+                                {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/aFdAJW1CATk?si=reoHDNfydYGLbSXm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
 
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/GEWYbmPnPk8?si=doN9stgibuSwy7N_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/GEWYbmPnPk8?si=doN9stgibuSwy7N_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </Box>
                         </Box>
+                        <Box className='comments-continer'>
+                            <Box className='comments-cards' width='1000px' mt='55px'>
+                                <Image src='src/assets/Img/comments-img.png' alt='comentarios' />
+                            </Box>
+                        </Box>
+                        <Box className='registration-continer'>
+                            <Box className='registration-son'>
+                                <Box className='registration-title'>
+                                    <Text>¡INSCRÍBETE AHORA!</Text>
+                                </Box>
+                                <Box className='registration-text'>
+                                    <Text>NO PIERDAS LA OPORTUNIDAD DE SER PARTE DE ESTE EVENTO ÚNICO QUE ESTÁ REDEFINIENDO EL FUTURO DEL APRENDIZAJE</Text>
+                                    <Text>¡RESERVA TU LUGAR AHORA MISMO!</Text>
+                                </Box>
+                                <Box className='registration-btn'>
+                                    <Button colorScheme='teal' variant='solid' borderRadius='50px' >INSCRIPCIONES ABIERTAS</Button>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <Box className='companies-container'>
+    <Box className='companies-footer'>
+      <Box className='image-box'>
+        <Image 
+          src='src/assets/Img/Samoo-img-Photoroom.png' 
+          alt='Samoo img' 
+          className='company-image'
+          width={400}
+          height={200}
+        />
+      </Box>
+      <Box className='image-box'>
+        <Image 
+          src='src/assets/Img/OpenLMS-img-Photoroom.png' 
+          alt='OpenLMS img' 
+          className='company-image'
+          width={300}
+          height={150}
+        />
+      </Box>
+      <Box className='image-box'>
+        <Image 
+          src='src/assets/Img/ReadSpeaker-img-Photoroom.png' 
+          alt='ReadSpeaker img' 
+          className='company-image'
+          width={400}
+          height={200}
+        />
+      </Box>
+    </Box>
+  </Box>
                     </Box>
                 </Box>
             </Box>
