@@ -168,7 +168,7 @@ const Register = () => {
                     <option value="">Select...</option>
                     <option value="vegetariano">Vegetariano</option>
                     <option value="vegano">Vegano</option>
-                    <option value="omnivore">Omnivore</option>
+                    <option value="omnivoro">Omnivoro</option>
                 </select>
             </label>
             <fieldset className="checkbox-group">
