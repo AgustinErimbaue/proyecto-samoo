@@ -62,18 +62,18 @@ const Halls = () => {
         >
           {places.map((place) => (
             <Card key={place.id}>
-              <CardHeader display="flex" justifyContent="center">
+            <CardHeader display="flex" justifyContent="center">
                 <Box boxSize="200px" overflow="hidden">
-                  <Image
-                    src={place.image || "src/assets/Img/Background-img.png"}
-                    alt={place.place_name}
-                    objectFit="cover"
-                    width="100%"
-                    height="100%"
-                    borderRadius="md"
-                  />
+                    <Image
+                        src={place.avatar_url !== "false" ? place.avatar_url : "src/assets/Img/Background-img.png"}
+                        alt={place.place_name}
+                        objectFit="cover"
+                        width="100%"
+                        height="100%"
+                        borderRadius="md"
+                    />
                 </Box>
-              </CardHeader>
+            </CardHeader>
               <CardBody>
                 <Heading size="md">{place.place_name}</Heading>
                 <Text mt={1}>Capacidad para {place.capacity}</Text>
@@ -128,6 +128,7 @@ const Halls = () => {
                   variant="outline"
                   colorScheme="teal"
                   borderRadius="50px"
+                  onClick={handleAddPlaceClick}
                 >
                   Añadir Sala
                 </Button>
