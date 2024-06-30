@@ -1,0 +1,12 @@
+.colab-imgs{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.colab-imgs svg {
+    flex: 1;
+    margin: 0 10px; /* Adjust the margin as needed */
+    max-width: 100px; /* Adjust as needed */
+}

@@ -59,8 +59,8 @@ useEffect(() => {
     <Box className='body-login' p='4' borderRadius='md' mt='40'>
     <Box className="form-box" p="4" borderWidth="none" borderRadius="md" boxShadow="none">
     <form className="form" onSubmit={onSubmit}>
-      <Heading as="span" size="lg" mb="4" display="block">Inicia sesión</Heading>
-      <Box className="form-container" mb="4">
+      <Heading as="span" size="lg" mb="4" display="block">Iniciar sesión</Heading>
+      <Box className="form-container" mb="4" mt='7'>
         <FormControl mb="4">
           <Text>Email</Text>
           <Input 
