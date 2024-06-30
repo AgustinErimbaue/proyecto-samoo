@@ -56,8 +56,8 @@ useEffect(() => {
   }
 
   return (
-    <Box className='body-login' p='4' borderRadius='md'>
-    <Box className="form-box" p="4" borderWidth="1px" borderRadius="md" boxShadow="md">
+    <Box className='body-login' p='4' borderRadius='md' mt='40'>
+    <Box className="form-box" p="4" borderWidth="none" borderRadius="md" boxShadow="none">
     <form className="form" onSubmit={onSubmit}>
       <Heading as="span" size="lg" mb="4" display="block">Inicia sesión</Heading>
       <Box className="form-container" mb="4">
@@ -67,6 +67,7 @@ useEffect(() => {
             type="email" 
             name="email" 
             placeholder="example@youremail.com" 
+            background='#EEE'
             value={email} 
             onChange={onChange} 
           />
@@ -76,14 +77,11 @@ useEffect(() => {
           <Input 
             type="password" 
             name="password" 
-            placeholder="******************" 
+            placeholder="******" 
+            background='#EEE'
             value={password} 
             onChange={onChange} 
           />
-        </FormControl>
-        <FormControl>
-          <Text>Número de participantes</Text>
-          <Input placeholder='aquí deberia ir un contador de asistentes'/>
         </FormControl>
       </Box>
       <Button type="submit" colorScheme="blue" w="full" className='login-btn'>Enviar</Button>
