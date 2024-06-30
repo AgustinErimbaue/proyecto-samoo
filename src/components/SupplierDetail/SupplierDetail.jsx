@@ -20,15 +20,9 @@ const SupplierDetail = ({ company }) => {
 
   return (
     <>
-      <Button
-        onClick={onOpen}
-        colorScheme="teal"
-        variant="solid"
-        size="sm"
-        mt={3}
-      >
-        +Info
-      </Button>
+      <Box className="presentation-inf-btn">
+        <Button onClick={onOpen}>+Info</Button>
+      </Box>
 
       <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
