@@ -6,6 +6,7 @@ const user = JSON.parse(localStorage.getItem("user")) || null;
 
 const initialState = {
   user: user,
+  users: [],
   userContactInfo: null,
   token: token,
   isError: false,
@@ -34,11 +35,11 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.users = action.payload;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.token = action.payload.user.token;
         state.message = action.payload.message;
         state.isSuccess = true;
       })
@@ -46,8 +47,18 @@ export const authSlice = createSlice({
         state.message = action.payload;
         state.isError = true
       })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
+        state.token = "";
+        state.isSuccessLogout = true;
+    })
+    .addCase(logout.rejected, (state) => {
+        state.isError = true;
+        state.message = action.payload.message;
+        state.isErrorLogout = true;
+    })
       .addCase(getUserById.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.isSuccess = true;
       })
       .addCase(getUserById.rejected, (state, action) => {
@@ -55,7 +66,7 @@ export const authSlice = createSlice({
         state.isError = true;
       })
       .addCase(getUserContactInfoById.fulfilled, (state, action) => {
-        state.userContactInfo = action.payload;
+        state.userContactInfo = action.payload.user;
         state.isSuccess = true;
         state.isError = false;
         state.message = '';
@@ -134,6 +145,13 @@ export const getAllUsers = createAsyncThunk("auth/getUsers", async () => {
     return res;
   } catch (error) {
     console.error(error);
+  }
+});
+export const logout = createAsyncThunk("auth/logout", async () => {
+  try {
+      return await authService.logout();
+  } catch (error) {
+      console.error(error);
   }
 });
 

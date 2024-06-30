@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { AvatarGroup, Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSuppliers } from "../../features/suplier/supSlice";
+import SupplierDetail from "../SupplierDetail/SupplierDetail";
 
 const PlatinumSuppliers = () => {
   const { user } = useSelector((state) => state.sup);
@@ -36,7 +37,7 @@ const PlatinumSuppliers = () => {
     <Box className="suppliers-body" padding="20px">
       <Box className="suppliers-header" mb="4" mt="50px">
         <Heading as="h2" size="lg" mb="4">
-          Empresas
+          Empresas Platinum
         </Heading>
       </Box>
       {user
@@ -68,7 +69,11 @@ const PlatinumSuppliers = () => {
                   fill={getColor(company.type_collab)}
                 />
                 <image
-                  href="https://bit.ly/dan-abramov"
+                  href={
+                    company.avatar_url !== "false"
+                      ? company.avatar_url
+                      : "https://bit.ly/dan-abramov"
+                  }
                   x="29"
                   y="29"
                   height="178px"
@@ -82,12 +87,10 @@ const PlatinumSuppliers = () => {
               <Heading as="h4" size="md">
                 {company.company_name}
               </Heading>
-              <Text>Descripción de la empresa:</Text>
+              <Text>E-Mail: {company.email}</Text>
               <Text>Tema de ponencias: {company.interests} </Text>
-              <Text>Representantes: {company.id_users}</Text>
-              <Button className="info-btn" size="md">
-                + Info
-              </Button>
+              <Text>Representantes: {company.employes}</Text>
+              <SupplierDetail company={company} />
             </Box>
 
             <Box

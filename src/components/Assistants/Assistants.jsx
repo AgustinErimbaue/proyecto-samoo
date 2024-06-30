@@ -4,18 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../features/auth/authSlice";
 
 const Assistants = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { users } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  if (!user) {
+  if (!users) {
     return "Cargando";
   }
 
-  if (!Array.isArray(user) || user.length === 0) {
+  if (!Array.isArray(users) || users.length === 0) {
     return (
       <Box padding="20px">
         <Heading as="h2" size="lg" mb="4">
@@ -32,7 +32,7 @@ const Assistants = () => {
           Asistentes
         </Heading>
       </Box>
-      {user.map((assistant) => (
+      {users.map((assistant) => (
         <Box
           key={assistant.id || assistant.email}
           className="card"
@@ -54,7 +54,7 @@ const Assistants = () => {
               fill="none"
             >
               <image
-                href="https://bit.ly/dan-abramov"
+                href={assistant.avatar_url ? assistant.avatar_url : "https://bit.ly/dan-abramov"}
                 x="29"
                 y="29"
                 height="178px"
@@ -79,12 +79,12 @@ const Assistants = () => {
           </Box>
           <Box className="info-container" ml={["0", "20px"]} mb={["4", "0"]}>
             <Heading as="h4" size="md">
-              {assistant.surname}, {assistant.name}
+              {assistant.name} {assistant.surname}
             </Heading>
             <Text>Empresa: {assistant.company}</Text>
             <Text>Cargo: {assistant.position}</Text>
             <Text>Email: {assistant.email}</Text>
-            <Text>Preferencias: {assistant.interests}</Text>
+            <Text>Preferencias: {assistant.interests + ""}</Text>
           </Box>
           <Box
             className="presentation-container"

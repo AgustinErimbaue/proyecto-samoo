@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import { login, reset } from '../../features/auth/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, Button, FormControl, Heading, Input, Text } from '@chakra-ui/react'
+import { Box, Button, FormControl, Heading, Input, Text, useToast } from '@chakra-ui/react'
+
 import './Login.scss'
 
 const Login = () => {
@@ -12,27 +13,35 @@ const Login = () => {
   })
   
   const {email, password} = formData
-//   const {message, isSuccess, isError} = useSelector((state) => state.auth)
+  const { message, isSuccess, isError } = useSelector((state) => state.auth);
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const toast = useToast();
 
-//   useEffect(() => {
-//     if(isSuccess){
-//       notification.success({
-//         message: 'Success',
-//         description: message
-//       })
-//       navigate('/home')
-//     }
-//     if(isError){
-//       notification.error({
-//         message: 'Error',
-//         description: message
-//       })
-//     }
-//     dispatch(reset())
-//   },[isSuccess, message, isError])
+useEffect(() => {
+  if (isSuccess) {
+    toast({
+      title: "Success",
+      description: message,
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+    navigate("/UserProfile");
+  }
+  if (isError) {
+    toast({
+      title: "Contraseña o email incorrecto",
+      description: message,
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+    });
+  }
+  dispatch(reset());
+}, [isSuccess, isError, message, dispatch, navigate, toast]);
+
 
   const onChange = (e) =>{
     setFormData ({

@@ -14,7 +14,9 @@ import UserContact from "./views/UserContact/UserContact";
 import UpdateUser from "./views/UpdateUser/UpdateUser";
 import MeetingsViews from "./views/MeetingsViews/MeetingsViews";
 import ViewEvents from "./views/ViewEvents/ViewEvents";
-import HallsDetail from "./views/HallsDetail/HallsDetail";
+import HallsDetail from "./views/Events/Events";
+import Landing from "./views/Landing/Landing";
+import HallEvents from "./components/HallEvents/HallEvents";
 
 function App() {
   return (
@@ -30,13 +32,15 @@ function App() {
         <Route path="/CompanyLogin" element={<CompanyLogin />} />
         <Route path="/BookingMeeting" element={<BookingMeetings />} />
         <Route path="/participants" element={<Participants />} />
+        <Route path="/landing" element={<Landing />} />
         <Route path="/hallsdetail" element={<HallsDetail />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/viewparticipants" element={<ViewParticipants />} />
         <Route path="/meetingsViews" element={<MeetingsViews />} />
         <Route path="/viewevents" element={<ViewEvents />} />
+        <Route path="/hallsdetail/:id" element={<HallEvents />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
