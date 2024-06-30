@@ -10,6 +10,7 @@ const initialState = {
   place: null,
 };
 
+// Acción para obtener todos los eventos
 export const getAllEvents = createAsyncThunk("event/getAllEvents", async () => {
   try {
     return await eventService.getAllEvents();
@@ -19,6 +20,7 @@ export const getAllEvents = createAsyncThunk("event/getAllEvents", async () => {
   }
 });
 
+// Acción para actualizar un evento
 export const updateEvent = createAsyncThunk(
   "event/updateEvent",
   async (event) => {
@@ -27,6 +29,18 @@ export const updateEvent = createAsyncThunk(
     } catch (error) {
       console.error("Error al actualizar el evento:", error.message);
       throw error;
+    }
+  }
+);
+
+export const createEvent = createAsyncThunk(
+  "event/createEvent",
+  async ({ event, avatarFile }, { rejectWithValue }) => {
+    try {
+      return await eventService.createEvent(event, avatarFile);
+    } catch (error) {
+      console.error("Error al crear el evento:", error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -71,6 +85,19 @@ const eventSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.error.message;
+      })
+      .addCase(createEvent.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createEvent.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.events.push(action.payload);
+      })
+      .addCase(createEvent.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload || action.error.message;
       });
   },
 });
