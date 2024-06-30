@@ -10,9 +10,9 @@ const initialState = {
     place: null,
 };
 
-export const createPlace = createAsyncThunk("place/create", async ({ place, token }, thunkAPI) => {
+export const createPlace = createAsyncThunk("place/create", async ({ formData, token }, thunkAPI) => {
   try {
-    return placeService.createPlace(place, token);
+    return placeService.createPlace(formData, token);
   } catch (error) {
     console.error(error);
     const message =

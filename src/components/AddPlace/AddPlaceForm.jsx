@@ -24,13 +24,17 @@ const AddPlaceForm = ({ isOpen, onClose, token }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const place = {
-      place_name: placeName,
-      capacity: parseInt(capacity, 10),
-    };
-    console.log(place);
-    dispatch(createPlace({ place, token })).then(() => {
+    const formData = new FormData();
+    formData.set('place_name', placeName);
+    formData.set('capacity', parseInt(capacity, 10));
+    if (image) {
+      formData.set('file', image);
+    }
+    console.log(formData)
+    dispatch(createPlace({ formData, token })).then(() => {
       onClose();
+    }).catch((error) => {
+      console.error("Error creating place:", error);
     });
   };
 
@@ -41,13 +45,19 @@ const AddPlaceForm = ({ isOpen, onClose, token }) => {
         <ModalHeader>Añadir nueva sala</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-        <FormControl mt={4}>
+          <FormControl mt={4}>
             <FormLabel>Capacidad</FormLabel>
-            <Input value={capacity} onChange={(e) => setCapacity(e.target.value)} />
+            <Input
+              value={capacity}
+              onChange={(e) => setCapacity(e.target.value)}
+            />
           </FormControl>
           <FormControl>
             <FormLabel>Nombre de la sala</FormLabel>
-            <Input value={placeName} onChange={(e) => setPlaceName(e.target.value)} />
+            <Input
+              value={placeName}
+              onChange={(e) => setPlaceName(e.target.value)}
+            />
           </FormControl>
           <FormControl mt={4}>
             <FormLabel>Imagen</FormLabel>

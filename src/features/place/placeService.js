@@ -18,7 +18,6 @@ const createPlace = async (formData) => {
     const res = await axios.post(API_URL, formData, {
       headers: {
         Authorization: token,
-        'Content-Type': 'multipart/form-data'
       }
     });
     return res.data;
