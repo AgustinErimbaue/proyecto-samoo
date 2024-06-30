@@ -1,14 +1,8 @@
 import React, { useEffect } from "react";
-import {
-  AvatarGroup,
-  Box,
-  Button,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
+import { AvatarGroup, Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSuppliers } from "../../features/suplier/supSlice";
-import EventDetail from "../SupplierDetail/SupplierDetail";
+import SupplierDetail from "../SupplierDetail/SupplierDetail";
 
 const Suppliers = () => {
   const { user } = useSelector((state) => state.sup);
@@ -66,9 +60,18 @@ const Suppliers = () => {
               viewBox="0 0 236 236"
               fill="none"
             >
-              <circle cx="118" cy="118" r="118" fill={getColor(company.type_collab)} />
+              <circle
+                cx="118"
+                cy="118"
+                r="118"
+                fill={getColor(company.type_collab)}
+              />
               <image
-                href="https://bit.ly/dan-abramov"
+                href={
+                  company.avatar_url !== "false"
+                    ? company.avatar_url
+                    : "https://bit.ly/dan-abramov"
+                }
                 x="29"
                 y="29"
                 height="178px"
@@ -85,7 +88,7 @@ const Suppliers = () => {
             <Text>E-Mail: {company.email}</Text>
             <Text>Tema de ponencias: {company.interests} </Text>
             <Text>Representantes: {company.employes}</Text>
-            <EventDetail company={company}/>
+            <SupplierDetail company={company} />
           </Box>
 
           <Box

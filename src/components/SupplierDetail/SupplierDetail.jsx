@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Modal,
   ModalOverlay,
@@ -10,32 +10,79 @@ import {
   Button,
   useDisclosure,
   Text,
-  VStack
-} from '@chakra-ui/react';
+  VStack,
+  Box,
+  HStack,
+} from "@chakra-ui/react";
 
 const SupplierDetail = ({ company }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <Button onClick={onOpen}>+Info</Button>
+      <Button
+        onClick={onOpen}
+        colorScheme="teal"
+        variant="solid"
+        size="sm"
+        mt={3}
+      >
+        +Info
+      </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Informacion de la empresa</ModalHeader>
+          <ModalHeader>Información de la Empresa</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <VStack align="start" spacing={3}>
-              <Text><strong>CIF:</strong> {company.cif}</Text>
-              <Text><strong>Company Name:</strong> {company.company_name}</Text>
-              <Text><strong>Address:</strong> {company.address_contact}</Text>
-              <Text><strong>Country:</strong> {company.country}</Text>
-              <Text><strong>Email:</strong> {company.email}</Text>
-              <Text><strong>Phone:</strong> +{company.phone_prefx} {company.phone_number}</Text>
-              <Text><strong>Type of Collaboration:</strong> {company.type_collab}</Text>
-              <Text><strong>Interests:</strong> {company.interests.length > 0 ? company.interests.join(', ') : 'None'}</Text>
-              <Text><strong>Employees:</strong> {company.employes}</Text>
+            <VStack align="start" spacing={4}>
+              <HStack>
+                <Text fontWeight="bold">CIF:</Text>
+                <Text>{company.cif || "N/A"}</Text>
+              </HStack>
+              <HStack>
+                <Text fontWeight="bold">Nombre de la Empresa:</Text>
+                <Text>{company.company_name || "N/A"}</Text>
+              </HStack>
+              <HStack>
+                <Text fontWeight="bold">Dirección:</Text>
+                <Text>{company.address_contact || "N/A"}</Text>
+              </HStack>
+              <HStack>
+                <Text fontWeight="bold">País:</Text>
+                <Text>{company.country || "N/A"}</Text>
+              </HStack>
+              <HStack>
+                <Text fontWeight="bold">Correo Electrónico:</Text>
+                <Text>{company.email || "N/A"}</Text>
+              </HStack>
+              <HStack>
+                <Text fontWeight="bold">Teléfono:</Text>
+                <Text>
+                  +{company.phone_prefx} {company.phone_number || "N/A"}
+                </Text>
+              </HStack>
+              <HStack>
+                <Text fontWeight="bold">Tipo de Colaboración:</Text>
+                <Text>{company.type_collab || "N/A"}</Text>
+              </HStack>
+              <Box>
+                <Text fontWeight="bold">Intereses:</Text>
+                {company.interests && company.interests.length > 0 ? (
+                  company.interests.map((interest, index) => (
+                    <Text key={index} ml={4}>
+                      - {interest}
+                    </Text>
+                  ))
+                ) : (
+                  <Text ml={4}>Ninguno</Text>
+                )}
+              </Box>
+              <HStack>
+                <Text fontWeight="bold">Empleados:</Text>
+                <Text>{company.employes || "N/A"}</Text>
+              </HStack>
             </VStack>
           </ModalBody>
 

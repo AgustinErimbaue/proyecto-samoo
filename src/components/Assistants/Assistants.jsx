@@ -54,7 +54,7 @@ const Assistants = () => {
               fill="none"
             >
               <image
-                href="https://bit.ly/dan-abramov"
+                href={assistant.avatar_url ? assistant.avatar_url : "https://bit.ly/dan-abramov"}
                 x="29"
                 y="29"
                 height="178px"
@@ -79,12 +79,12 @@ const Assistants = () => {
           </Box>
           <Box className="info-container" ml={["0", "20px"]} mb={["4", "0"]}>
             <Heading as="h4" size="md">
-              {assistant.surname}, {assistant.name}
+              {assistant.name} {assistant.surname}
             </Heading>
             <Text>Empresa: {assistant.company}</Text>
             <Text>Cargo: {assistant.position}</Text>
             <Text>Email: {assistant.email}</Text>
-            <Text>Preferencias: {assistant.interests}</Text>
+            <Text>Preferencias: {assistant.interests + ""}</Text>
           </Box>
           <Box
             className="presentation-container"
