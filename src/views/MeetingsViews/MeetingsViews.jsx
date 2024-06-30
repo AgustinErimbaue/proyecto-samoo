@@ -20,7 +20,8 @@ const MeetingsViews = () => {
         dispatch(getUserById(user._id));
     }, [dispatch]);
 
-    const hours = Array.from({ length: 23 }, (_, i) => i/2+ 9).map(hour => `${hour < 10 ? '0' : ''}${hour -(hour%1) }:${hour%1 > 0?'30':'00' }`);
+    const hoursAndHalf = Array.from({ length: 23 }, (_, i) => i/2+ 9).map(hour => `${hour < 10 ? '0' : ''}${hour -(hour%1) }:${hour%1 > 0?'30':'00' }`);
+    const hours = Array.from({ length: 13 }, (_, i) => i + 9).map(hour => `${hour < 10 ? '0' : ''}${hour}:'00'`);
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -46,7 +47,11 @@ const MeetingsViews = () => {
                 (filters.type === '' || meeting.type === filters.type)   );
     });
 
-    const meetingsByHour = hours.map(hour => ({
+    const meetingsByHour = hoursAndHalf.map(hour => ({
+        hour,
+        meetings: filteredMeetings.filter(meeting => meeting.hour === hour)
+    }));
+    const EventsByHour = hoursAndHalf.map(hour => ({
         hour,
         meetings: filteredMeetings.filter(meeting => meeting.hour === hour)
     }));
