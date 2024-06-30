@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Image,
@@ -14,6 +14,8 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPlaces } from "../../features/place/placeSlice";
+import EventsHeader from "../../components/EventsHeader/EventsHeader";
+import AddPlaceForm from "../AddPlace/AddPlaceForm";
 import CreateEvent from "../CreateEvent/CreateEvent";
 import { useNavigate } from "react-router-dom";
 
@@ -21,11 +23,22 @@ const Halls = () => {
   const { places } = useSelector((state) => state.place);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const token = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllPlaces());
   }, [dispatch]);
+
+  const handleAddPlaceClick = () => {
+    setIsFormOpen(true);
+  };
+
+  const handleCloseForm = () => {
+    setIsFormOpen(false);
+    dispatch(getAllPlaces());
+  };
 
   if (!places) {
     return "Cargando";
@@ -123,6 +136,7 @@ const Halls = () => {
           )}
         </SimpleGrid>
       </Box>
+      <AddPlaceForm isOpen={isFormOpen} onClose={handleCloseForm} />
     </Box>
   );
 };
