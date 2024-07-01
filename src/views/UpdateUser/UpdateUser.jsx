@@ -2,11 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateUser } from '../../features/auth/authSlice';
+import Select from 'react-select';
+import {
+    FormControl,
+    FormLabel,
+    Input,
+    Heading,
+    Button,
+    Text,
+    Link,
+} from '@chakra-ui/react';
+import './UpdateUser.scss';
 
 const UpdateUser = () => {
     const [formData, setFormData] = useState({
         name: '',
         surname: '',
+        email: '',
         password: '',
         confirmed: false,
         phone_prefx: '',
@@ -19,77 +31,149 @@ const UpdateUser = () => {
         interests: [],
         food_preferences: '',
         allergies: [],
-        user_type: 'assitant',
+        user_type: 'assistant',
         company: '',
-        job_title: []
+        job_title: [],
     });
-    const [email, setEmail] = useState('')
+
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { user, isError, isSuccess, message } = useSelector((state) => state.auth);
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const { user, isSuccess } = useSelector((state) => state.auth);
 
     useEffect(() => {
         if (user) {
+            const {
+                name,
+                surname,
+                email,
+                phone_prefx,
+                phone_number,
+                address,
+                zip_code,
+                city,
+                country,
+                url_linkedin,
+                interests,
+                food_preferences,
+                allergies,
+                user_type,
+                company,
+                job_title,
+            } = user;
             setFormData({
-                ...formData,
-                ...user
+                name,
+                surname,
+                email,
+                phone_prefx,
+                phone_number,
+                address,
+                zip_code,
+                city,
+                country,
+                url_linkedin,
+                interests,
+                food_preferences,
+                allergies,
+                user_type,
+                company,
+                job_title,
             });
-            setEmail(user.email);
         }
     }, [user]);
 
     useEffect(() => {
         if (isSuccess) {
             navigate('/UserProfile');
-            dispatch(reset());
         }
-    }, [isSuccess, navigate, dispatch]);
-
-    const onChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        if (type === 'checkbox') {
-            setFormData({
-                ...formData,
-                [name]: checked ? [...formData[name], value] : formData[name].filter(item => item !== value),
-            });
-        } else {
-            setFormData({
-                ...formData,
-                [name]: value,
-            });
-        }
-    };
+    }, [isSuccess, navigate]);
 
     const onConfirmPasswordChange = (e) => {
         setConfirmPassword(e.target.value);
     };
 
+    const onChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const jobOptions = [
+        { value: "Desarrollador de Contenidos", label: "Desarrollador de Contenidos" },
+        { value: "Instructor / Formador", label: "Instructor / Formador" },
+        { value: "Coordinador de Cursos", label: "Coordinador de Cursos" },
+        { value: "Administrador de Plataforma", label: "Administrador de Plataforma" },
+        { value: "Especialista en Evaluación", label: "Especialista en Evaluación" },
+        { value: "Diseñador Instruccional", label: "Diseñador Instruccional" },
+        { value: "Director de Formación", label: "Director de Formación" },
+        { value: "Consultor de E-learning", label: "Consultor de E-learning" },
+        { value: "Gestor de Proyectos", label: "Gestor de Proyectos" },
+        { value: "Desarrollador de E-learning", label: "Desarrollador de E-learning" },
+        { value: "Investigador en E-learning", label: "Investigador en E-learning" },
+        { value: "Especialista en Soporte Técnico", label: "Especialista en Soporte Técnico" },
+        { value: "Gestor de Comunidad", label: "Gestor de Comunidad" },
+        { value: "Responsable de Calidad", label: "Responsable de Calidad" },
+        { value: "Director de Tecnología", label: "Director de Tecnología" },
+        { value: "Analista de Datos Educativos", label: "Analista de Datos Educativos" },
+        { value: "Especialista en Marketing de E-learning", label: "Especialista en Marketing de E-learning" },
+        { value: "Facilitador de Talleres", label: "Facilitador de Talleres" },
+        { value: "Asesor Pedagógico", label: "Asesor Pedagógico" },
+        { value: "Director de Innovación", label: "Director de Innovación" },
+    ];
+
+    const allergyOptions = [
+        { value: "Gluten", label: "Gluten" },
+        { value: "Lácteos", label: "Lácteos" },
+        { value: "Huevos", label: "Huevos" },
+        { value: "Frutos secos", label: "Frutos secos" },
+        { value: "Cacahuetes", label: "Cacahuetes" },
+        { value: "Mariscos", label: "Mariscos" },
+        { value: "Pescado", label: "Pescado" },
+        { value: "Soja", label: "Soja" },
+        { value: "Sésamo", label: "Sésamo" },
+        { value: "Mostaza", label: "Mostaza" },
+        { value: "Apio", label: "Apio" },
+        { value: "Sulfitos", label: "Sulfitos" },
+        { value: "Altramuz", label: "Altramuz" },
+        { value: "Moluscos", label: "Moluscos" },
+        { value: "Azúcar", label: "Azúcar" },
+        { value: "Sal", label: "Sal" },
+    ];
+
+    const interestOptions = [
+        { value: "Tecnología", label: "Tecnología" },
+        { value: "Gestión de Proyectos", label: "Gestión de Proyectos" },
+        { value: "Agile", label: "Agile" },
+        { value: "Softskills", label: "Softskills" },
+        { value: "Marketing Digital", label: "Marketing Digital" },
+        { value: "Negocios", label: "Negocios" },
+        { value: "Emprendimiento", label: "Emprendimiento" },
+        { value: "Educación", label: "Educación" },
+        { value: "Formación", label: "Formación" },
+        { value: "Salud y Bienestar", label: "Salud y Bienestar" },
+        { value: "Creatividad", label: "Creatividad" },
+        { value: "Diseño", label: "Diseño" },
+    ];
+
+    const handleSelectChange = (selectedOptions, field) => {
+        setFormData({
+            ...formData,
+            [field]: selectedOptions ? selectedOptions.map((option) => option.value) : [],
+        });
+    };
+
     const onSubmit = (e) => {
         e.preventDefault();
         if (formData.password === confirmPassword) {
-            console.log('Form Data:', formData);
             dispatch(updateUser(formData));
             setFormData({
-                name: '',
-                surname: '',
+                ...formData,
                 password: '',
                 confirmed: false,
-                phone_prefx: '',
-                phone_number: '',
-                address: '',
-                zip_code: '',
-                city: '',
-                country: '',
-                url_linkedin: '',
-                interests: [],
-                food_preferences: '',
-                allergies: [],
-                user_type: 'assitant',
-                company: '',
-                job_title: []
             });
             setConfirmPassword('');
         } else {
@@ -98,107 +182,207 @@ const UpdateUser = () => {
     };
 
     return (
-        <form className='update-user-form' onSubmit={onSubmit}>
-            <p>Update User</p>
-            <label>
-                <input required placeholder="Insert your name" type="text" className="input" name="name" id="name" value={formData.name} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="Insert your surname" type="text" className="input" name="surname" id="surname" value={formData.surname} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="Email" type="email" className="input" name="email" id="email" value={email} readOnly />
-            </label>
-            <label>
-                <input required placeholder="Phone prefix" type="tel" className="input" name="phone_prefx" id="phone_prefx" value={formData.phone_prefx} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="Phone number" type="tel" className="input" name="phone_number" id="phone_number" value={formData.phone_number} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="Address" type="text" className="input" name="address" id="address" value={formData.address} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="Zip code" type="text" className="input" name="zip_code" id="zip_code" value={formData.zip_code} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="City" type="text" className="input" name="city" id="city" value={formData.city} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="Country" type="text" className="input" name="country" id="country" value={formData.country} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="LinkedIn URL" type="url" className="input" name="url_linkedin" id="url_linkedin" value={formData.url_linkedin} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="Company" type="text" className="input" name="company" id="company" value={formData.company} onChange={onChange} />
-            </label>
-            <fieldset>
-                <legend>Select your job titles:</legend>
-                {[
-                    "Desarrollador de Contenidos",
-                    "Instructor / Formador",
-                    "Coordinador de Cursos",
-                    "Administrador de Plataforma",
-                    "Especialista en Evaluación",
-                    "Diseñador Instruccional",
-                    "Director de Formación",
-                    "Consultor de E-learning",
-                    "Gestor de Proyectos",
-                    "Desarrollador de E-learning",
-                    "Investigador en E-learning",
-                    "Especialista en Soporte Técnico",
-                    "Gestor de Comunidad",
-                    "Responsable de Calidad",
-                    "Director de Tecnología",
-                    "Analista de Datos Educativos",
-                    "Especialista en Marketing de E-learning",
-                    "Facilitador de Talleres",
-                    "Asesor Pedagógico",
-                    "Director de Innovación",
-                ].map((job) => (
-                    <label key={job}>
-                        <input type="checkbox" name="job_title" value={job} checked={formData.job_title.includes(job)} onChange={onChange} />
-                        {job}
-                    </label>
-                ))}
-            </fieldset>
-            <label>
-                <p>Select your food preferences:</p>
-                <select name="food_preferences" id="food_preferences" value={formData.food_preferences} onChange={onChange}>
-                    <option value="">Select...</option>
+        <form className="update-user-form" onSubmit={onSubmit}>
+            <Heading as="h2" size="lg">
+                Update User
+            </Heading>
+            <FormControl>
+                <FormLabel>Nombre</FormLabel>
+                <Input
+                    required
+                    placeholder="Inserte su nombre"
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={formData.name}
+                    onChange={onChange}
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Apellidos</FormLabel>
+                <Input
+                    required
+                    placeholder="Inserte sus apellidos"
+                    type="text"
+                    name="surname"
+                    id="surname"
+                    value={formData.surname}
+                    onChange={onChange}
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Email</FormLabel>
+                <Input
+                    required
+                    placeholder="ejemplo@correo.com"
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={formData.email}
+                    readOnly
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Teléfono</FormLabel>
+                <Input
+                    required
+                    placeholder="xx"
+                    type="text"
+                    name="phone_prefx"
+                    id="phone_prefx"
+                    value={formData.phone_prefx}
+                    onChange={onChange}
+                    width="20%"
+                />
+                <Input
+                    required
+                    placeholder="xxx xxx xxx"
+                    type="tel"
+                    name="phone_number"
+                    id="phone_number"
+                    value={formData.phone_number}
+                    onChange={onChange}
+                    width="80%"
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Dirección</FormLabel>
+                <Input
+                    required
+                    placeholder="Inserte su dirección"
+                    type="text"
+                    name="address"
+                    id="address"
+                    value={formData.address}
+                    onChange={onChange}
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Código postal</FormLabel>
+                <Input
+                    required
+                    placeholder="xxxxx"
+                    type="text"
+                    name="zip_code"
+                    id="zip_code"
+                    value={formData.zip_code}
+                    onChange={onChange}
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Ciudad</FormLabel>
+                <Input
+                    required
+                    placeholder="Inserte su ciudad"
+                    type="text"
+                    name="city"
+                    id="city"
+                    value={formData.city}
+                    onChange={onChange}
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>País</FormLabel>
+                <Input
+                    required
+                    placeholder="Inserte su país"
+                    type="text"
+                    name="country"
+                    id="country"
+                    value={formData.country}
+                    onChange={onChange}
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>LinkedIn URL</FormLabel>
+                <Input
+                    required
+                    placeholder="Inserte su enlace a LinkedIn"
+                    type="url"
+                    name="url_linkedin"
+                    id="url_linkedin"
+                    value={formData.url_linkedin}
+                    onChange={onChange}
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Empresa</FormLabel>
+                <Input
+                    required
+                    placeholder="Inserte su empresa"
+                    type="text"
+                    name="company"
+                    id="company"
+                    value={formData.company}
+                    onChange={onChange}
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Seleccione sus trabajos</FormLabel>
+                <Select
+                    name="job_title"
+                    options={jobOptions}
+                    value={jobOptions.filter((option) => formData.job_title.includes(option.value))}
+                    onChange={(selectedOptions) => handleSelectChange(selectedOptions, 'job_title')}
+                    isMulti
+                    placeholder="Seleccionar..."
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Seleccione sus preferencias alimenticias</FormLabel>
+                <select
+                    name="food_preferences"
+                    value={formData.food_preferences}
+                    onChange={onChange}
+                    className="input"
+                >
+                    <option value="">Seleccionar...</option>
                     <option value="vegetariano">Vegetariano</option>
                     <option value="vegano">Vegano</option>
-                    <option value="omnivore">Omnivore</option>
+                    <option value="omnivoro">Omnívoro</option>
                 </select>
-            </label>
-            <fieldset>
-                <legend>Select your allergies:</legend>
-                {["Gluten", "Lácteos", "Huevos", "Frutos secos", "Cacahuetes", "Mariscos", "Pescado", "Soja", "Sésamo", "Mostaza", "Apio", "Sulfitos", "Altramuz", "Moluscos", "Azucar", "Sal"].map((allergy) => (
-                    <label key={allergy}>
-                        <input type="checkbox" name="allergies" value={allergy} checked={formData.allergies.includes(allergy)} onChange={onChange} />
-                        {allergy}
-                    </label>
-                ))}
-            </fieldset>
-
-            <fieldset>
-                <legend>Select your interests:</legend>
-                {["Tecnología", "Gestión de Proyectos", "Agile", "Softskills", "Marketing Digital", "Negocios", "Emprendimiento", "Educación", "Formación", "Salud y Bienestar", "Creatividad", "Diseño"].map((interest) => (
-                    <label key={interest}>
-                        <input type="checkbox" name="interests" value={interest} checked={formData.interests.includes(interest)} onChange={onChange} />
-                        {interest}
-                    </label>
-                ))}
-            </fieldset>
-            <label>
-                <input required placeholder="Insert your password" type="password" className="input" name="password" id="password" value={formData.password} onChange={onChange} />
-            </label>
-            <label>
-                <input required placeholder="Confirm your password" type="password" className="input" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={onConfirmPasswordChange} />
-            </label>
-            <button className="submit" type="submit">Submit</button>
-            <p className="signin">Want to go back? <a href="/profile">Profile</a></p>
+            </FormControl>
+            <FormControl>
+                <FormLabel>Seleccione sus alergias</FormLabel>
+                <Select
+                    name="allergies"
+                    options={allergyOptions}
+                    value={allergyOptions.filter((option) => formData.allergies.includes(option.value))}
+                    onChange={(selectedOptions) => handleSelectChange(selectedOptions, 'allergies')}
+                    isMulti
+                    placeholder="Seleccionar..."
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Contraseña</FormLabel>
+                <Input
+                    required
+                    placeholder="xxxxxxx"
+                    type="password"
+                    name="password"
+                    id="password"
+                    value={formData.password}
+                    onChange={onChange}
+                />
+            </FormControl>
+            <FormControl>
+                <FormLabel>Confirmar contraseña</FormLabel>
+                <Input
+                    required
+                    placeholder="xxxxxxx"
+                    type="password"
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    value={confirmPassword}
+                    onChange={onConfirmPasswordChange}
+                />
+            </FormControl>
+            <Button className="submit" type="submit" colorScheme="teal">
+                Submit
+            </Button>
+            <Text className="signin">
+                Want to go back? <Link href="/profile">Profile</Link>
+            </Text>
         </form>
     );
 };
