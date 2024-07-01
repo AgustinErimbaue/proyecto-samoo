@@ -43,7 +43,7 @@ const UserContact = () => {
         <Box display="flex" flexDirection="column" width="270px" gap={2}>
             <Box border='1px' borderRadius='8px 8px 0px 0px' height={14}>
                 <Text color='#a4b8c4' ml={15}>Móvil</Text>
-                <Text>{userContactInfo.phone_prefx} {userContactInfo.phone_number}</Text>
+                <Text display='flex' justifyContent='center'>{userContactInfo.phone_prefx} {userContactInfo.phone_number}</Text>
             </Box>
             <Box border='1px' height={14}>
                 <Text color='#a4b8c4' ml={15}>Correo electrónico</Text>
@@ -51,7 +51,7 @@ const UserContact = () => {
             </Box>
             <Box border='1px' borderRadius='0px 0px 8px 8px' height={14}>
                 <Text color='#a4b8c4' ml={15}>Perfil Profesional</Text>
-                <Text><a href={userContactInfo.url_linkedin} target="_blank" rel="noopener noreferrer">{userContactInfo.url_linkedin}</a></Text>
+                <Text display='flex' justifyContent='center'><a href={userContactInfo.url_linkedin} target="_blank" rel="noopener noreferrer">{userContactInfo.url_linkedin}</a></Text>
             </Box>
             <Box display="flex" justifyContent="center" mt={4}>
             <Button size="lg" colorScheme="teal" variant='solid' borderRadius={50} width={150} className='userProfile-btn' _hover='#fff'>Enviar</Button>
