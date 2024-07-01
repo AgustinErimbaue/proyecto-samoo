@@ -53,7 +53,7 @@ const Halls = () => {
   };
 
   return (
-    <Box className="halls-container">
+    <Box className="halls-container" mt={10}>
       <Box className="background-img"></Box>
       <Box className="cards-container">
         <SimpleGrid

@@ -9,10 +9,10 @@ const EventsHeader = ({ onShowComponent }) => {
         <Box className='events-text' mb={4}>
           <Text fontSize="5xl" fontWeight="bold" fontFamily='DM Sans'>EVENTOS</Text>
         </Box>
-        <Divider className='divider-events-header'/>
+        <Divider className='divider-events-header' borderColor="black"/>
         <Box className='btn-events-header' display="flex" gap={4} mt='25px'>
-          <Button colorScheme='teal' variant='link' color='black' onClick={() => onShowComponent('Salas')}>Salas</Button>
-          <Button colorScheme='teal' variant='link' color='black' onClick={() => onShowComponent('Ponencias')}>Ponencias</Button>
+          <Button colorScheme='teal' variant='outline' color='black' onClick={() => onShowComponent('Salas')}>Salas</Button>
+          <Button colorScheme='teal' variant='outline' color='black' onClick={() => onShowComponent('Ponencias')}>Ponencias</Button>
         </Box>
       </Box>
     </Box>
