@@ -13,7 +13,7 @@ const Login = () => {
   })
   
   const {email, password} = formData
-  const { message, isSuccess, isError } = useSelector((state) => state.auth);
+  const { user, message, isSuccess, isError } = useSelector((state) => state.auth);
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -28,7 +28,11 @@ useEffect(() => {
       duration: 5000,
       isClosable: true,
     });
-    navigate("/UserProfile");
+    if (user && !user.completed) {
+      navigate("/updateUser");
+    } else {
+      navigate("/UserProfile");
+    }
   }
   if (isError) {
     toast({

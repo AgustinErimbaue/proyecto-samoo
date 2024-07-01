@@ -10,6 +10,7 @@ import {
     Heading,
     Button,
     Text,
+    Link,
     InputGroup,
     InputLeftAddon,
 } from '@chakra-ui/react';
@@ -108,11 +109,7 @@ const UpdateUser = () => {
     };
 
     const handleNextStep = () => {
-        if (validateStep(step)) {
-            setStep(step + 1);
-        } else {
-            alert('Por favor, complete todos los campos requeridos antes de continuar.');
-        }
+        setStep(step + 1);
     };
 
     const handlePreviousStep = () => {
@@ -191,27 +188,18 @@ const UpdateUser = () => {
         });
     };
 
-    const validateStep = (step) => {
-        if (step === 1) {
-            return Object.values(formData).every(field => field !== '');
-        }
-        if (step === 2) {
-            return additionalData.password !== '' &&
-                additionalData.confirmPassword !== '' &&
-                additionalData.password === additionalData.confirmPassword;
-        }
-        return true;
-    };
-
     const onSubmit = (e) => {
         e.preventDefault();
         if (additionalData.password === additionalData.confirmPassword) {
-            dispatch(updateUser({
-                ...formData,
-                ...additionalData
-            }));
+            dispatch(updateUser(additionalData));
+            setAdditionalData({
+                ...additionalData,
+                password: '',
+                confirmed: false,
+            });
+            setConfirmPassword('');
         } else {
-            alert('Las contraseñas no coinciden');
+            console.error('Passwords do not match');
         }
     };
 
@@ -256,7 +244,7 @@ const UpdateUser = () => {
                             type="email"
                             name="email"
                             value={formData.email}
-                            readOnly 
+                            readOnly
                         />
                     </FormControl>
                     <FormControl mb={4}>
@@ -345,8 +333,8 @@ const UpdateUser = () => {
                             placeholder="Confirmar contraseña"
                             type="password"
                             name="confirmPassword"
-                            value={additionalData.confirmPassword}
-                            onChange={onAdditionalChange}
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                     </FormControl>
                     <Button colorScheme="teal" onClick={handleNextStep} mb={4}>
