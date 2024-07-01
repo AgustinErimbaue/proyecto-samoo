@@ -18,9 +18,6 @@ const Header = () => {
   const [selectedButton, setSelectedButton] = useState(null);
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
   const handleNavigate = () => {
     navigate("/UserProfile");
   };
