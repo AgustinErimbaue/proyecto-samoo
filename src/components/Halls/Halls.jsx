@@ -128,6 +128,7 @@ const Halls = () => {
                   variant="outline"
                   colorScheme="teal"
                   borderRadius="50px"
+                  onClick={handleAddPlaceClick}
                 >
                   Añadir Sala
                 </Button>
