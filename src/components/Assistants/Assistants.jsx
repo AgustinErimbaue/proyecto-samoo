@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Box, Button, Heading, Text, Input } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -9,9 +9,24 @@ const Assistants = () => {
   const { users } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (searchTerm === "") {
+      setFilteredUsers(users);
+    } else {
+      setFilteredUsers(
+        users.filter((user) =>
+          `${user.name} ${user.surname}`.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [users, searchTerm]);
 
   if (!users) {
     return "Cargando";
@@ -30,6 +45,7 @@ const Assistants = () => {
   const handleButton = () => {
     navigate("/assistantdetail");
   };
+
   return (
     <Box className="participants-body" padding="20px">
       <Box className="suppliers-header" mb="4" mt="50px">
@@ -37,7 +53,16 @@ const Assistants = () => {
           Asistentes
         </Heading>
       </Box>
-      {users.map((assistant) => (
+      <Input
+        type="text"
+        placeholder="Buscar por nombre"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        mb={4}
+        p={2}
+        width="100%"
+      />
+      {filteredUsers.map((assistant) => (
         <Box
           key={assistant.id || assistant.email}
           className="card"

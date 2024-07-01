@@ -1,22 +1,44 @@
-import React, { useEffect } from "react";
-import { AvatarGroup, Box, Button, Heading, Text } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import {
+  AvatarGroup,
+  Box,
+  Heading,
+  Text,
+  Input,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSuppliers } from "../../features/suplier/supSlice";
 import SupplierDetail from "../SupplierDetail/SupplierDetail";
 
 const Suppliers = () => {
-  const { user } = useSelector((state) => state.sup);
+  const { suppliers } = useSelector((state) => state.sup);
   const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     dispatch(getAllSuppliers());
   }, [dispatch]);
 
-  if (!user) {
+  useEffect(() => {
+    if (searchTerm === "") {
+      setFilteredUsers(suppliers);
+    } else {
+      setFilteredUsers(
+        suppliers.filter((company) =>
+          company.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [suppliers, searchTerm]);
+
+  if (!suppliers) {
     return "Cargando";
   }
 
-  if (!Array.isArray(user)) {
+  if (!Array.isArray(suppliers)) {
     return "Error: Expected an array of users.";
   }
 
@@ -40,12 +62,21 @@ const Suppliers = () => {
           Empresas
         </Heading>
       </Box>
-      {user.map((company) => (
+      <Input
+        type="text"
+        placeholder="Buscar por nombre"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        mb={4}
+        p={2}
+        width="100%"
+      />
+      {filteredUsers.map((company) => (
         <Box
           key={company.id}
           className="card"
           display="flex"
-          flexDirection={["column", "row"]}
+          flexDirection={isMobile ? "column" : "row"}
           alignItems="center"
           padding="20px"
           borderRadius="md"
@@ -55,8 +86,8 @@ const Suppliers = () => {
           <Box className="image-container" flexShrink="0" mb={["4", "0"]}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="170"
-              height="236"
+              width={isMobile ? "100" : "170"}
+              height={isMobile ? "100" : "236"}
               viewBox="0 0 236 236"
               fill="none"
             >
@@ -89,12 +120,18 @@ const Suppliers = () => {
             mb={["4", "0"]}
             flex="1"
           >
-            <Heading as="h4" size="md">
+            <Heading as="h4" size="md" textAlign={isMobile ? "center" : "left"}>
               {company.company_name}
             </Heading>
-            <Text>E-Mail: {company.email}</Text>
-            <Text>Tema de ponencias: {company.interests}</Text>
-            <Text>Representantes: {company.employes}</Text>
+            <Text textAlign={isMobile ? "center" : "left"}>
+              E-Mail: {company.email}
+            </Text>
+            <Text textAlign={isMobile ? "center" : "left"}>
+              Tema de ponencias: {company.interests + " "}
+            </Text>
+            <Text textAlign={isMobile ? "center" : "left"}>
+              Representantes: {company.employes}
+            </Text>
           </Box>
 
           <Box className="detail-button-container" ml={["0", "20px"]}>
@@ -116,4 +153,3 @@ const Suppliers = () => {
 };
 
 export default Suppliers;
-
