@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Card, CardBody, CardHeader, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, CardHeader, Heading, Image, Text } from '@chakra-ui/react'
 import './Landing.scss'
 
 const Landing = () => {
@@ -58,36 +58,36 @@ const Landing = () => {
                             <Text>capacidades</Text>
                         </Box>
                         <Box className='description-bodycards'>
-    <Box className='container-card-description'>
-      <Card className='description-card'>
-        <CardHeader>
-          <Heading size='md'>¿QUÉ ES E-LEARNING EXPERIENCE?</Heading>
-        </CardHeader>
-        <CardBody>
-          <Text>Damos respuesta a la necesidad de crear un punto de encuentro para profesionales de formación online en universidades y admin...</Text>
-        </CardBody>
-      </Card>
-      <Card className='description-card'>
-        <CardHeader>
-          <Heading size='md'>¿POR QUÉ TIENES QUE ASISTIR A E-LEARNING EXPERIENCE?</Heading>
-        </CardHeader>
-        <CardBody>
-          <Text>Por ser un punto de encuentro exclusivo dirigido a los profesionales del ámbito de la educación y la formación.</Text>
-        </CardBody>
-      </Card>
-      <Card className='description-card'>
-        <CardHeader>
-          <Heading size='md'>ORGANIZACIÓN Y COORDINACIÓN</Heading>
-        </CardHeader>
-        <CardBody>
-          <Text>Destaca como líder nacional en formación online e innovación educativa en España y Latam, con más de 25 años de experiencia.</Text>
-        </CardBody>
-      </Card>
-    </Box>
-    <Box className='button-container'>
-      <Button colorScheme='teal' variant='outline' borderRadius='50px' width='100px'>Ver más</Button>
-    </Box>
-  </Box>
+                            <Box className='container-card-description'>
+                                <Card className='description-card'>
+                                    <CardHeader>
+                                        <Heading size='md'>¿QUÉ ES E-LEARNING EXPERIENCE?</Heading>
+                                    </CardHeader>
+                                    <CardBody>
+                                        <Text>Damos respuesta a la necesidad de crear un punto de encuentro para profesionales de formación online en universidades y admin...</Text>
+                                    </CardBody>
+                                </Card>
+                                <Card className='description-card'>
+                                    <CardHeader>
+                                        <Heading size='md'>¿POR QUÉ TIENES QUE ASISTIR A E-LEARNING EXPERIENCE?</Heading>
+                                    </CardHeader>
+                                    <CardBody>
+                                        <Text>Por ser un punto de encuentro exclusivo dirigido a los profesionales del ámbito de la educación y la formación.</Text>
+                                    </CardBody>
+                                </Card>
+                                <Card className='description-card'>
+                                    <CardHeader>
+                                        <Heading size='md'>ORGANIZACIÓN Y COORDINACIÓN</Heading>
+                                    </CardHeader>
+                                    <CardBody>
+                                        <Text>Destaca como líder nacional en formación online e innovación educativa en España y Latam, con más de 25 años de experiencia.</Text>
+                                    </CardBody>
+                                </Card>
+                            </Box>
+                            <Box className='button-container'>
+                                <Button colorScheme='teal' variant='outline' borderRadius='50px' width='100px'>Ver más</Button>
+                            </Box>
+                        </Box>
                         <Box className='speakers-continer'>
                             <Box className='speakers-title'>
                                 <Text>Ponentes destacados</Text>
