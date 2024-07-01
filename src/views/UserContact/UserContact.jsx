@@ -37,7 +37,7 @@ const UserContact = () => {
           mb={4} 
         />
         <Text fontSize='3xl'>{userContactInfo.name}</Text>
-        <Text fontSize='xl'>{userContactInfo.surname}</Text>
+        <Text fontSize='xl'>{userContactInfo.job_title}</Text>
       </Box>
       <Box display="flex" justifyContent="center" alignItems="center" width="100%">
         <Box display="flex" flexDirection="column" width="270px" gap={2}>
@@ -63,21 +63,3 @@ const UserContact = () => {
 }
 
 export default UserContact
-
-
-
-{/* <div>
-            <h1>Contact Info</h1>
-            <p><strong>Name:</strong> {userContactInfo.name}</p>
-            <p><strong>Surname:</strong> {userContactInfo.surname}</p>
-            <p><strong>Email:</strong> {userContactInfo.email}</p>
-            <p><strong>Phone:</strong> {userContactInfo.phone_prefx} {userContactInfo.phone_number}</p>
-
-            {token && (
-                <>
-                    <p><strong>Company:</strong> {userContactInfo.company}</p>
-                    <p><strong>Job Title:</strong> {userContactInfo.job_title}</p>
-                    <p><strong>LinkedIn:</strong> <a href={userContactInfo.url_linkedin} target="_blank" rel="noopener noreferrer">{userContactInfo.url_linkedin}</a></p>
-                </>
-            )}
-        </div> */}
