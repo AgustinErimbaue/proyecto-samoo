@@ -1,0 +1,83 @@
+.shop-start-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.shop-body {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 150px;
+    gap: 80px;
+}
+
+.text-body {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    .shop-title{
+        color: #1c1c24;
+        font-family: 'DM Sans';
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    .shop-subtitle{
+        color: #1c1c24;
+        text-align: center;
+        font-family: 'DM Sans';
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 20px;
+    }
+}
+
+.speaker-company-btn {
+    margin-top: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    .colab-btn{
+        display: flex;
+        padding: 16px 32px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 32px;
+        border: 1px solid #0f8ba0;
+        background: #0f8ba0;
+        color: #fff;
+        &:hover{
+            background-color: #fff;
+            color: #0f8ba0;
+        }
+    }
+    .company-btn{
+        display: flex;
+        padding: 16px 32px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 32px;
+        border: 1px solid #0f8ba0;
+        background: #fff;
+        color: #0f8ba0;
+        &:hover{
+            background-color:#0f8ba0;
+            color: #fff;
+        }
+    }
+    
+}
+
+.shopView-img {
+    display: flex;
+    align-items: center;
+}
+

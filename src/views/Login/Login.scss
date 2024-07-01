@@ -62,12 +62,12 @@ $form-background: #ffffff;
     .login-btn {
       display: flex;
       padding: 14px 18px;
-      width: 80px;
+      width: 305px;
       justify-content: center;
       align-items: center;
       gap: 3px;
-      border-radius: 6%;
-      background: #4B62B4;
+      border-radius: 40px;
+      background: #0f8ba0;
       box-shadow: 0px 1px 4px 0px rgba(25, 33, 61, 0.08);
 
       &:hover {

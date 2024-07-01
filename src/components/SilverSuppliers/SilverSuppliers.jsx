@@ -83,13 +83,23 @@ const SilverSuppliers = () => {
               </svg>
             </Box>
 
-            <Box className="info-container" ml={["0", "20px"]} mb={["4", "0"]}>
+            <Box
+              className="info-container"
+              display="flex"
+              flexDirection="column"
+              ml={["0", "20px"]}
+              mb={["4", "0"]}
+              flex="1"
+            >
               <Heading as="h4" size="md">
                 {company.company_name}
               </Heading>
               <Text>E-Mail: {company.email}</Text>
-              <Text>Tema de ponencias: {company.interests} </Text>
+              <Text>Tema de ponencias: {company.interests}</Text>
               <Text>Representantes: {company.employes}</Text>
+            </Box>
+
+            <Box className="detail-button-container" ml={["0", "20px"]}>
               <SupplierDetail company={company} />
             </Box>
 
