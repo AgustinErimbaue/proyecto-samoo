@@ -61,8 +61,8 @@ const Halls = () => {
           templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
         >
           {places.map((place) => (
-            <Card key={place.id}>
-            <CardHeader display="flex" justifyContent="center">
+            <Card key={place._id}>
+              <CardHeader display="flex" justifyContent="center">
                 <Box boxSize="200px" overflow="hidden">
                     <Image
                         src={place.avatar_url !== "false" ? place.avatar_url : "src/assets/Img/Background-img.png"}

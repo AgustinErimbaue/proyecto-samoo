@@ -14,7 +14,7 @@ const getAllEvents = async () => {
 
 const updateEvent = async (event) => {
   try {
-    const res = await axios.put(`${API_URL}id/${event._id}`, event);
+    const res = await axios.put(`${API_URL}${event._id}`, event);
     return res.data;
   } catch (error) {
     console.error("Error al actualizar el evento:", error.message);
@@ -22,10 +22,25 @@ const updateEvent = async (event) => {
   }
 };
 
+const createEvent = async (eventData) => {
+  const token = localStorage.getItem("token");
+  try {
+    const res = await axios.post(API_URL, eventData, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    return res.data;
+  } catch (error) {
+    console.error("Error al crear el evento:", error.message);
+    throw error;
+  }
+};
 
 const eventService = {
   getAllEvents,
   updateEvent,
+  createEvent,
 };
 
 export default eventService;

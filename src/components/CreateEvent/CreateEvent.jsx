@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Modal,
   ModalOverlay,
@@ -23,8 +23,8 @@ import {
   MenuItemOption,
   MenuOptionGroup,
 } from "@chakra-ui/react";
-
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { createEvent } from "../../features/event/eventSlice";
 
 const interestsOptions = [
   "Tecnología",
@@ -44,7 +44,10 @@ const interestsOptions = [
 const CreateEvent = ({ place }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const user = JSON.parse(localStorage.getItem("user"));
-
+  const dispatch = useDispatch();
+  const { isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.event
+  );
   const [formData, setFormData] = useState({
     desc_event: "",
     date: "",
@@ -52,17 +55,14 @@ const CreateEvent = ({ place }) => {
     interests: [],
     company: user.company,
     avatar_url: "",
-    id_place: place.id,
+    id_place: place._id,
+    speakerEmail: user.email,
+    id_supplier: user.id_supplier._id,
   });
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === "checkbox") {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: checked,
-      }));
-    } else if (type === "select-multiple") {
+    const { name, value, type } = e.target;
+    if (type === "select-multiple") {
       const selectedOptions = Array.from(
         e.target.selectedOptions,
         (option) => option.value
@@ -88,7 +88,7 @@ const CreateEvent = ({ place }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    dispatch(createEvent({ formData, avatarFile: null }));
   };
 
   return (
@@ -179,9 +179,16 @@ const CreateEvent = ({ place }) => {
                     />
                   </FormControl>
 
-                  <Button type="submit" colorScheme="teal" mt={4}>
+                  <Button
+                    type="submit"
+                    colorScheme="teal"
+                    mt={4}
+                    isLoading={isLoading}
+                  >
                     Crear Evento
                   </Button>
+                  {isSuccess && <p>Evento creado con éxito</p>}
+                  {isError && <p>Error al crear el evento: {message}</p>}
                 </form>
               </Box>{" "}
             </VStack>
