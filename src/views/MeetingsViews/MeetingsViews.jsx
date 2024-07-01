@@ -7,11 +7,10 @@ const MeetingsViews = () => {
     const dispatch = useDispatch();
     const { user, token, isError, isSuccess, mesage,isLoading} = useSelector((state) => state.auth);
     
-    const meetings=[...user.ids_meetings.map((meeting)=>{return({...meeting,type:"Mis Meetings"})}),...user.ids_meetings_atendee.map((meeting)=>{return({...meeting,type:"Meetings Reservados"})})]
+    const meetings=[...user.ids_meetings.map((meeting)=>{return({...meeting,type:"Mis Meetings"})}),...user.ids_meetings_atendee.map((meeting)=>{return({...meeting,type:"Meetings Reservados"})}),...user.speaker_events.map((event)=>{return({...event,type:"Mis Ponencias"})})]
     
 
     const [filters, setFilters] = useState({
-        feedback: '',
         type: 'Mis Meetings',
         date: '',
     });
@@ -21,7 +20,7 @@ const MeetingsViews = () => {
     }, [dispatch]);
 
     const hoursAndHalf = Array.from({ length: 23 }, (_, i) => i/2+ 9).map(hour => `${hour < 10 ? '0' : ''}${hour -(hour%1) }:${hour%1 > 0?'30':'00' }`);
-    const hours = Array.from({ length: 13 }, (_, i) => i + 9).map(hour => `${hour < 10 ? '0' : ''}${hour}:'00'`);
+    const hours = Array.from({ length: 13 }, (_, i) => i + 9).map(hour => `${hour < 10 ? '0' : ''}${hour}:00`);
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -51,7 +50,7 @@ const MeetingsViews = () => {
         hour,
         meetings: filteredMeetings.filter(meeting => meeting.hour === hour)
     }));
-    const EventsByHour = hoursAndHalf.map(hour => ({
+    const EventsByHour = hours.map(hour => ({
         hour,
         meetings: filteredMeetings.filter(meeting => meeting.hour === hour)
     }));
@@ -81,7 +80,7 @@ const MeetingsViews = () => {
                 </div>
             </section>
             <section id="meetings">
-                {meetingsByHour.map(({ hour, meetings }) => (
+                {(filters.type=='Mis Meetings'||filters.type=='Meetings Reservados') ? meetingsByHour.map(({ hour, meetings }) => (
                     <div key={hour} className="meeting">
                         <div className="hour-column">
                             <h2>{hour}</h2>
@@ -95,6 +94,24 @@ const MeetingsViews = () => {
                                 ))
                             ) : (
                                 <p className="no-meeting">No hay meetings en esta hora</p>
+                            )}
+                        </div>
+                    </div>
+                )):
+                EventsByHour.map(({ hour, meetings }) => (
+                    <div key={hour} className="meeting">
+                        <div className="hour-column">
+                            <h2>{hour}</h2>
+                        </div>
+                        <div className="details-column">
+                            {meetings.length > 0 ? (
+                                meetings.map(meeting => (
+                                    <div key={meeting._id} className="meeting-details">
+                                        <p> Empresa : {meeting.company} | Ponente: | Descripción : {meeting.desc_event}</p>
+                                    </div>
+                                ))
+                            ) : (
+                                <p className="no-meeting">No hay Ponencias a esta hora </p>
                             )}
                         </div>
                     </div>
