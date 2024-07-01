@@ -22,6 +22,7 @@ import {
   MenuList,
   MenuItemOption,
   MenuOptionGroup,
+  Select,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { createEvent } from "../../features/event/eventSlice";
@@ -90,6 +91,7 @@ const CreateEvent = ({ place }) => {
     e.preventDefault();
     dispatch(createEvent({ formData, avatarFile: null }));
   };
+  const hoursOptions = Array.from({ length: 13 }, (_, i) => `${9 + i}:00`);
 
   return (
     <>
@@ -136,14 +138,19 @@ const CreateEvent = ({ place }) => {
 
                   <FormControl id="hour" mb={4}>
                     <FormLabel>Hora</FormLabel>
-                    <Input
-                      type="time"
+                    <Select
                       name="hour"
                       value={formData.hour}
                       onChange={handleChange}
-                    />
+                      placeholder="Selecciona una hora"
+                    >
+                      {hoursOptions.map((hour) => (
+                        <option key={hour} value={hour}>
+                          {hour}
+                        </option>
+                      ))}
+                    </Select>
                   </FormControl>
-
                   <FormControl id="interests" mb={4}>
                     <FormLabel>Intereses</FormLabel>
                     <Menu closeOnSelect={false}>
