@@ -42,7 +42,7 @@ const Suppliers = () => {
       </Box>
       {user.map((company) => (
         <Box
-          key={company.id}
+          key={company._id}
           className="card"
           display="flex"
           flexDirection={["column", "row"]}

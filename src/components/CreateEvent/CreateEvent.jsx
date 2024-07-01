@@ -97,7 +97,7 @@ const CreateEvent = ({ place }) => {
         variant="outline"
         colorScheme="teal"
         borderRadius="50px"
-        onClick={onOpen}
+        onClick={onOpen} // Este es el botón que abre el modal
       >
         Añadir ponencia
       </Button>

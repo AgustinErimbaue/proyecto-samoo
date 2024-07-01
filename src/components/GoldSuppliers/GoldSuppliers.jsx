@@ -44,7 +44,7 @@ const GoldSuppliers = () => {
         .filter((company) => company.type_collab === "Gold")
         .map((company) => (
           <Box
-            key={company.id}
+            key={company._id}
             className="card"
             display="flex"
             flexDirection={["column", "row"]}
