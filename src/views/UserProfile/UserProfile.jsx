@@ -4,12 +4,13 @@ import { getUserById, reset, logout } from '../../features/auth/authSlice';
 import QRCode from 'react-qr-code';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { 
-  Box, Text, Heading, Link, Button, Center, VStack, Grid, GridItem, Divider 
+  Box, Text, Heading, Link, Button, Center, VStack, Grid, GridItem, Divider, 
+  Image
 } from "@chakra-ui/react";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
-  const { user, token } = useSelector((state) => state.auth);
+  const { user, token, userContactInfo } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,15 +41,37 @@ const UserProfile = () => {
     <Center py={10}>
       <Box
         w={{ base: "full", md: "80%" }}
-        borderWidth="1px"
-        borderRadius="lg"
         overflow="hidden"
         p={6}
-        boxShadow="lg"
         bg="white"
       >
         <Heading as="h1" size="xl" mb={6} textAlign="center">Perfil de Usuario</Heading>
-        <VStack align="start" spacing={6}>
+        <Box className='profile-body' textAlign="center" mb={20}>
+        <Image
+          borderRadius='full'
+          boxSize='120px'
+          ml={20}
+          mr={20}
+          src='https://bit.ly/dan-abramov'
+          alt='Dan Abramov'
+          mb={4} 
+        />
+        <Text fontSize='3xl'>{user.name}</Text>
+        <Text fontSize='xl'>{user.job_title}</Text>
+      </Box>
+        <Box mb={10}>
+        <Center>
+            <QRCode value={userContactUrl}/>
+          </Center>
+          <Center mt={6} mb={6}>
+            <Link as={RouterLink} to={userContactUrl} color="teal.500">Ver Información de Contacto</Link>
+          </Center>
+          <Center>
+            <Button colorScheme="teal" background='red' onClick={handleLogout}>Cerrar Sesión</Button>
+          </Center>
+        </Box>
+        <Divider/>
+        <VStack align="start" spacing={6} mt={10}>
           <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6} w="full">
             <GridItem>
               <Text><strong>Nombre:</strong> {user.name}</Text>
@@ -132,16 +155,6 @@ const UserProfile = () => {
               <Text><strong>Última Actualización:</strong> {new Date(user.updatedAt).toLocaleString()}</Text>
             </GridItem>
           </Grid>
-          <Divider />
-          <Center>
-            <QRCode value={userContactUrl} />
-          </Center>
-          <Center>
-            <Link as={RouterLink} to={userContactUrl} color="teal.500">Ver Información de Contacto</Link>
-          </Center>
-          <Center>
-            <Button colorScheme="teal" onClick={handleLogout}>Cerrar Sesión</Button>
-          </Center>
         </VStack>
       </Box>
     </Center>
