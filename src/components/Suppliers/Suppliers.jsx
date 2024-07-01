@@ -73,7 +73,7 @@ const Suppliers = () => {
       />
       {filteredUsers.map((company) => (
         <Box
-          key={company.id}
+          key={company._id}
           className="card"
           display="flex"
           flexDirection={isMobile ? "column" : "row"}

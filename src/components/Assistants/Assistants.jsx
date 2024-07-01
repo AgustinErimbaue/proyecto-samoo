@@ -64,7 +64,7 @@ const Assistants = () => {
       />
       {filteredUsers.map((assistant) => (
         <Box
-          key={assistant.id || assistant.email}
+          key={assistant._id || assistant.email}
           className="card"
           display="flex"
           flexDirection={["column", "row"]}
