@@ -47,20 +47,19 @@ const UserProfile = () => {
       >
         <Heading as="h1" size="xl" mb={6} textAlign="center">Perfil de Usuario</Heading>
         <Box className='profile-body' textAlign="center" mb={20}>
-        <Image
-          borderRadius='full'
-          boxSize='120px'
-          ml={20}
-          mr={20}
-          src='https://bit.ly/dan-abramov'
-          alt='Dan Abramov'
-          mb={4} 
-        />
-        <Text fontSize='3xl'>{user.name}</Text>
-        <Text fontSize='xl'>{user.job_title}</Text>
-      </Box>
+          <Center mb={4}>
+            <Image
+              borderRadius='full'
+              boxSize='120px'
+              src='https://bit.ly/dan-abramov'
+              alt='Dan Abramov'
+            />
+          </Center>
+          <Text fontSize='3xl'>{user.name}</Text>
+          <Text fontSize='xl'>{user.job_title + ""}</Text>
+        </Box>
         <Box mb={10}>
-        <Center>
+          <Center>
             <QRCode value={userContactUrl}/>
           </Center>
           <Center mt={6} mb={6}>
