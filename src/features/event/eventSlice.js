@@ -7,10 +7,8 @@ const initialState = {
   isError: false,
   isSuccess: false,
   message: "",
-  place: null,
 };
 
-// Acción para obtener todos los eventos
 export const getAllEvents = createAsyncThunk("event/getAllEvents", async () => {
   try {
     return await eventService.getAllEvents();
@@ -20,7 +18,6 @@ export const getAllEvents = createAsyncThunk("event/getAllEvents", async () => {
   }
 });
 
-// Acción para actualizar un evento
 export const updateEvent = createAsyncThunk(
   "event/updateEvent",
   async (event) => {
@@ -35,12 +32,14 @@ export const updateEvent = createAsyncThunk(
 
 export const createEvent = createAsyncThunk(
   "event/createEvent",
-  async ({ event, avatarFile }, { rejectWithValue }) => {
+  async (eventData) => {
     try {
-      return await eventService.createEvent(event, avatarFile);
+      console.log(eventData.formData);
+      return await eventService.createEvent(eventData.formData);
+      
     } catch (error) {
       console.error("Error al crear el evento:", error.message);
-      return rejectWithValue(error.message);
+      throw error;
     }
   }
 );

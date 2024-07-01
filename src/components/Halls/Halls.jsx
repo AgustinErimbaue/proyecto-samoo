@@ -61,7 +61,7 @@ const Halls = () => {
           templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
         >
           {places.map((place) => (
-            <Card key={place.id}>
+            <Card key={place._id}>
               <CardHeader display="flex" justifyContent="center">
                 <Box boxSize="200px" overflow="hidden">
                   <Image

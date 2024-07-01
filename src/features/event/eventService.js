@@ -22,21 +22,14 @@ const updateEvent = async (event) => {
   }
 };
 
-const createEvent = async (event, avatarFile) => {
-  const formData = new FormData();
-  for (const key in event) {
-    formData.append(key, event[key]);
-  }
-  if (avatarFile) {
-    formData.append("avatar", avatarFile);
-  }
-
+const createEvent = async (eventData) => {
+  const token = localStorage.getItem("token");
   try {
-    const res = await axios.post(API_URL, formData, {
+    const res = await axios.post(API_URL, eventData, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        Authorization: token,
       },
-    });
+    })
     return res.data;
   } catch (error) {
     console.error("Error al crear el evento:", error.message);
