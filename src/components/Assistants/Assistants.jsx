@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import AssistantDetail from "../AssistantDetail/AssistantDetail";
 
 const Assistants = () => {
   const { users } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
@@ -25,6 +27,9 @@ const Assistants = () => {
     );
   }
 
+  const handleButton = () => {
+    navigate("/assistantdetail");
+  };
   return (
     <Box className="participants-body" padding="20px">
       <Box className="suppliers-header" mb="4" mt="50px">
@@ -54,7 +59,11 @@ const Assistants = () => {
               fill="none"
             >
               <image
-                href={assistant.avatar_url ? assistant.avatar_url : "https://bit.ly/dan-abramov"}
+                href={
+                  assistant.avatar_url
+                    ? assistant.avatar_url
+                    : "https://bit.ly/dan-abramov"
+                }
                 x="29"
                 y="29"
                 height="178px"
@@ -91,8 +100,8 @@ const Assistants = () => {
             marginLeft="auto"
             alignItems="center"
           >
-            <Box className="presentation-inf-btn">
-              <Button>+ Info</Button>
+            <Box className="detail-button-container" ml={["0", "20px"]}>
+              <AssistantDetail user={assistant} />
             </Box>
           </Box>
         </Box>

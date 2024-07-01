@@ -18,6 +18,7 @@ import HallsDetail from "./views/Events/Events";
 import Landing from "./views/Landing/Landing";
 import HallEvents from "./components/HallEvents/HallEvents";
 import Shopping from "./views/Shopping/Shopping";
+import AssistantDetail from "./components/AssistantDetail/AssistantDetail";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/viewevents" element={<ViewEvents />} />
         <Route path="/hallsdetail/:id" element={<HallEvents />} />
         <Route path="/shopping" element={<Shopping />} />
+        <Route path="/assistantdetail" element={<AssistantDetail />} />
       </Routes>
       {/* <Footer /> */}
     </BrowserRouter>
