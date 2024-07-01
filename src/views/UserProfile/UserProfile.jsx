@@ -14,7 +14,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(getUserById());
+      dispatch(getUserById(user._id));
     }
     return () => {
       dispatch(reset());
