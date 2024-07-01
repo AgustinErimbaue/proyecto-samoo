@@ -91,12 +91,47 @@ header h1 {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    border: 1px solid #c9c1c1;
+    border-radius: 0.5rem;
+    background: #c9c1c1;
+}
+.meeting-details-booked {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border: 1px solid #4CAF50;
+    border-radius: 0.5rem;
+    background: #83d186;
 }
 
+.meeting-details-avilieable {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border: 1px solid #703c38; 
+    border-radius: 0.5rem;
+    background: #765c5c; 
+}
+
+
 .meeting-details p {
-    margin: 0;
+    margin: 1rem;
     font-size: 1rem;
     color: #555;
+}
+
+.meeting-details-avilieable  p {
+    margin: 1rem;
+    font-size: 1rem;
+    color: #fffefe;
+}
+
+.meeting-details-booked  p {
+    margin: 1rem;
+    font-size: 1rem;
+    color: #fffefe;
 }
 
 .no-meeting {

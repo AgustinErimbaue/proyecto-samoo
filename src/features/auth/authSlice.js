@@ -11,7 +11,8 @@ const initialState = {
   token: token,
   isError: false,
   isSuccess: false,
-  message: ''
+  message: '',
+  isLoading:true
 };
 
 export const authSlice = createSlice({
@@ -57,8 +58,12 @@ export const authSlice = createSlice({
         state.message = action.payload.message;
         state.isErrorLogout = true;
     })
+      .addCase(getUserById.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(getUserById.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.isLoading = false;
+        state.user = action.payload;
         state.isSuccess = true;
       })
       .addCase(getUserById.rejected, (state, action) => {
@@ -118,14 +123,14 @@ export const login = createAsyncThunk('auth/login', async (user) => {
   }
 });
 
-export const getUserById = createAsyncThunk('auth/getUserById', async () => {
+export const getUserById = createAsyncThunk('auth/getUserById', async (id) => {
   const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
-  if (!token || !user) {
-    return ('Token or user not found');
+  //const user = JSON.parse(localStorage.getItem('user'));
+  if (!token) {
+    return ('Token');
   }
   try {
-    return await authService.getUserById(token, user._id);
+    return await authService.getUserById(token, id);
   } catch (error) {
     console.error(error);
   }

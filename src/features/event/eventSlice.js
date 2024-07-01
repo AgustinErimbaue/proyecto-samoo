@@ -7,7 +7,6 @@ const initialState = {
   isError: false,
   isSuccess: false,
   message: "",
-  place: null,
 };
 
 export const getAllEvents = createAsyncThunk("event/getAllEvents", async () => {
@@ -26,6 +25,20 @@ export const updateEvent = createAsyncThunk(
       return await eventService.updateEvent(event);
     } catch (error) {
       console.error("Error al actualizar el evento:", error.message);
+      throw error;
+    }
+  }
+);
+
+export const createEvent = createAsyncThunk(
+  "event/createEvent",
+  async (eventData) => {
+    try {
+      console.log(eventData.formData);
+      return await eventService.createEvent(eventData.formData);
+      
+    } catch (error) {
+      console.error("Error al crear el evento:", error.message);
       throw error;
     }
   }
@@ -71,6 +84,19 @@ const eventSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.error.message;
+      })
+      .addCase(createEvent.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createEvent.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.events.push(action.payload);
+      })
+      .addCase(createEvent.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload || action.error.message;
       });
   },
 });
