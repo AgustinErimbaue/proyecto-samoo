@@ -1,21 +1,38 @@
-import React, { useEffect } from "react";
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Box, Heading, Text, Input, useMediaQuery, Button } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../features/auth/authSlice";
+import AssistantDetail from "../AssistantDetail/AssistantDetail";
 
 const Speakers = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { users } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredSpeakers, setFilteredSpeakers] = useState([]);
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  if (!user) {
+  useEffect(() => {
+    const speakers = users.filter((user) => user.user_type === "speaker");
+    if (searchTerm === "") {
+      setFilteredSpeakers(speakers);
+    } else {
+      setFilteredSpeakers(
+        speakers.filter((speaker) =>
+          speaker.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [users, searchTerm]);
+
+  if (!users) {
     return "Cargando";
   }
 
-  if (!Array.isArray(user) || user.length === 0) {
+  if (!Array.isArray(users) || users.length === 0) {
     return (
       <Box padding="20px">
         <Heading as="h2" size="lg" mb="4">
@@ -24,7 +41,6 @@ const Speakers = () => {
       </Box>
     );
   }
-  const speakers = user.filter((user) => user.user_type === "speaker");
 
   return (
     <Box className="participants-body" padding="20px">
@@ -33,12 +49,21 @@ const Speakers = () => {
           Ponentes
         </Heading>
       </Box>
-      {speakers.map((assistant) => (
+      <Input
+        type="text"
+        placeholder="Buscar por nombre"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        mb={4}
+        p={2}
+        width="100%"
+      />
+      {filteredSpeakers.map((assistant) => (
         <Box
           key={assistant._id || assistant.email}
           className="card"
           display="flex"
-          flexDirection={["column", "row"]}
+          flexDirection={isMobile ? "column" : "row"}
           alignItems="center"
           padding="20px"
           bg="white"
@@ -49,8 +74,8 @@ const Speakers = () => {
           <Box className="image-container" flexShrink="0" mb={["4", "0"]}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="170"
-              height="236"
+              width={isMobile ? "100" : "170"}
+              height={isMobile ? "100" : "236"}
               viewBox="0 0 236 236"
               fill="none"
             >
@@ -79,21 +104,25 @@ const Speakers = () => {
             </svg>
           </Box>
           <Box className="info-container" ml={["0", "20px"]} mb={["4", "0"]}>
-            <Heading as="h4" size="md">
+            <Heading as="h4" size="md" textAlign={isMobile ? "center" : "left"}>
               {assistant.name} {assistant.surname}
             </Heading>
-            <Text>Empresa: {assistant.company}</Text>
-            <Text>Cargo: {assistant.position}</Text>
-            <Text>Email: {assistant.email}</Text>
-            <Text>Preferencias: {assistant.interests}</Text>
+            <Text textAlign={isMobile ? "center" : "left"}>
+              Empresa: {assistant.company}
+            </Text>
+            <Text textAlign={isMobile ? "center" : "left"}>
+              Cargo: {assistant.position}
+            </Text>
+            <Text textAlign={isMobile ? "center" : "left"}>
+              Email: {assistant.email}
+            </Text>
+            <Text textAlign={isMobile ? "center" : "left"}>
+              Preferencias: {assistant.interests}
+            </Text>
           </Box>
-          <Box
-            className="presentation-container"
-            marginLeft="auto"
-            alignItems="center"
-          >
-            <Box className="presentation-inf-btn">
-              <Button>+ Info</Button>
+          <Box className="presentation-container" marginLeft="auto" alignItems="center">
+          <Box className="detail-button-container" ml={["0", "20px"]}>
+              <AssistantDetail user={assistant} />
             </Box>
           </Box>
         </Box>
