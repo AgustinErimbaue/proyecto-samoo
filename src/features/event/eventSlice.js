@@ -20,9 +20,10 @@ export const getAllEvents = createAsyncThunk("event/getAllEvents", async () => {
 
 export const updateEvent = createAsyncThunk(
   "event/updateEvent",
-  async (event) => {
+  async ({ eventId, eventData }) => {
     try {
-      return await eventService.updateEvent(event);
+      console.log(eventData);
+      return await eventService.updateEvent(eventId, eventData);
     } catch (error) {
       console.error("Error al actualizar el evento:", error.message);
       throw error;
@@ -34,11 +35,21 @@ export const createEvent = createAsyncThunk(
   "event/createEvent",
   async (eventData) => {
     try {
-      console.log(eventData.formData);
-      return await eventService.createEvent(eventData.formData);
-      
+      return await eventService.createEvent(eventData);
     } catch (error) {
       console.error("Error al crear el evento:", error.message);
+      throw error;
+    }
+  }
+);
+
+export const addUser = createAsyncThunk(
+  "event/addUser",
+  async ({ eventId }) => {
+    try {
+      return await eventService.addUser(eventId);
+    } catch (error) {
+      console.error("Error al añadir usuario al evento:", error.message);
       throw error;
     }
   }
@@ -97,6 +108,21 @@ const eventSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload || action.error.message;
+      })
+      .addCase(addUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.events = state.events.map((event) =>
+          event._id === action.payload._id ? action.payload : event
+        );
+      })
+      .addCase(addUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.error.message;
       });
   },
 });

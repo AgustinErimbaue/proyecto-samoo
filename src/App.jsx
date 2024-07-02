@@ -20,6 +20,7 @@ import HallEvents from "./components/HallEvents/HallEvents";
 import Shopping from "./views/Shopping/Shopping";
 import AssistantDetail from "./components/AssistantDetail/AssistantDetail";
 import Dashboard from "./views/Dashboard/Dashboard";
+import ChatDetails from "./components/ChatDetails/ChatDetails";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path="/assistantdetail" element={<AssistantDetail />} />
         <Route path="/dashboard" element={<Dashboard/>} />  
       </Routes>
+      <ChatDetails/>
       {/* <Footer /> */}
     </BrowserRouter>
   );
