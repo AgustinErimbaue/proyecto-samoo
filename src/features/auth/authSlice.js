@@ -63,6 +63,7 @@ export const authSlice = createSlice({
       })
       .addCase(getUserById.fulfilled, (state, action) => {
         state.isLoading = false;
+        console.log(action.payload);
         state.user = action.payload;
         state.isSuccess = true;
       })
@@ -130,7 +131,7 @@ export const getUserById = createAsyncThunk('auth/getUserById', async (id) => {
     return ('Token');
   }
   try {
-    return await authService.getUserById(token, id);
+    return await authService.getUserById(id);
   } catch (error) {
     console.error(error);
   }
