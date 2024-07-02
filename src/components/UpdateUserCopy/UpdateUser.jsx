@@ -79,6 +79,8 @@ const UpdateUser = () => {
                 zip_code,
                 city,
                 country,
+                password: '',
+                confirmPassword: '',
             });
             setAdditionalData({
                 url_linkedin,
@@ -88,8 +90,6 @@ const UpdateUser = () => {
                 user_type,
                 company,
                 job_title,
-                password: '',
-                confirmPassword: '',
             });
         }
     }, [user]);

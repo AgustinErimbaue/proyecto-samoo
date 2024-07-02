@@ -78,6 +78,8 @@ const UpdateUser = () => {
                 zip_code,
                 city,
                 country,
+                password: '',
+                confirmPassword: '',
             });
             setAdditionalData({
                 url_linkedin,
@@ -87,8 +89,6 @@ const UpdateUser = () => {
                 user_type,
                 company,
                 job_title,
-                password: '',
-                confirmPassword: '',
             });
         }
     }, [user]);
@@ -193,7 +193,8 @@ const UpdateUser = () => {
 
     const validateStep = (step) => {
         if (step === 1) {
-            return Object.values(formData).every(field => field !== '');
+            return Object.values(formData).every(field => field !== '') &&
+            formData.password === formData.confirmPassword;;
         }
         if (step === 2) {
             return additionalData.password !== '' &&
