@@ -12,9 +12,10 @@ const getAllEvents = async () => {
   }
 };
 
-const updateEvent = async (event) => {
+const updateEvent = async (eventId, eventData) => {
+  console.log(eventData);
   try {
-    const res = await axios.put(`${API_URL}${event._id}`, event);
+    const res = await axios.put(`${API_URL}id/${eventId}`, eventData);
     return res.data;
   } catch (error) {
     console.error("Error al actualizar el evento:", error.message);
@@ -29,7 +30,7 @@ const createEvent = async (eventData) => {
       headers: {
         Authorization: token,
       },
-    })
+    });
     return res.data;
   } catch (error) {
     console.error("Error al crear el evento:", error.message);
@@ -37,10 +38,23 @@ const createEvent = async (eventData) => {
   }
 };
 
+const addUser = async (eventId, userId) => {
+  try {
+    const res = await axios.put(API_URL + "id/" + eventId);
+    return res.data;
+  } catch (error) {
+    console.error("Error al añadir usuario al evento:", error.message);
+    throw error;
+  }
+};
+
+const removeEvent = () => {};
+
 const eventService = {
   getAllEvents,
   updateEvent,
   createEvent,
+  addUser,
 };
 
 export default eventService;
