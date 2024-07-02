@@ -7,8 +7,23 @@ const getAll = async () => {
     return res.data;
 };
 
+const createMeeting = async (meeting) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await axios.post(API_URL, meeting, {
+            headers: {
+                Authorization: token
+            }
+        });
+        return res.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 const meetingService = {
     getAll,
+    createMeeting,
 };
 
 export default meetingService;
