@@ -1,16 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllEvents } from "../../features/event/eventSlice";
-import EditInfoEvent from '../../components/EditInfoEvent/EditInfo'
+import {
+  getAllEvents,
+  addUser,
+  updateEvent,
+} from "../../features/event/eventSlice";
+import EditInfoEvent from "../../components/EditInfoEvent/EditInfo";
+import {
+  Box,
+  Input,
+  Text,
+  Flex,
+  Image,
+  IconButton,
+  Button,
+} from "@chakra-ui/react";
+import { EditIcon } from "@chakra-ui/icons";
 
 const Events = () => {
   const dispatch = useDispatch();
   const { events } = useSelector((state) => state.event);
-  const [selectedEvent, setSelectedEvent] = useState(null); 
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [eventStatus, setEventStatus] = useState({});
+  const userLogged = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     dispatch(getAllEvents());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (searchTerm === "") {
+      setFilteredEvents(events);
+    } else {
+      setFilteredEvents(
+        events.filter((event) =>
+          event.desc_event.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [events, searchTerm]);
+
+  useEffect(() => {
+    const savedEventStatus = JSON.parse(localStorage.getItem("eventStatus"));
+    if (savedEventStatus) {
+      setEventStatus(savedEventStatus);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("eventStatus", JSON.stringify(eventStatus));
+  }, [eventStatus]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -22,56 +63,124 @@ const Events = () => {
     setSelectedEvent(event);
   };
 
-  return (
-    <div className="view-hall-container">
-      <div className="title">
-        <h2>Todos los eventos</h2>
-      </div>
+  const handleRegisterClick = (eventId) => {
+    dispatch(addUser({ eventId, userId: userLogged._id }));
+  };
 
-      {events.map((event, index) => (
-        <div key={index} className="cards-info">
-          <div className="card-1">
-            <div className="img-card">
-              <img src="" alt="" />
-            </div>
-            <div className="text-card">
-              <div className="text-1">
-                <p>{event.desc_event}</p>
-                <p>{event.company}</p>
-              </div>
-              <div className="date">{formatDate(event.date)}</div>
-              <div className="hour">{event.hour}</div>
-              <div className="pencil-and-number">
-                <div className="pencil-img" onClick={() => handleEditClick(event)}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="19"
-                    viewBox="0 0 22 19"
-                    fill="none"
+  const handleUpdateEvent = (eventId, eventData) => {
+    dispatch(updateEvent({ eventId, eventData }));
+    setEventStatus((prevState) => ({ ...prevState, [eventId]: "confirmed" }));
+  };
+
+  const handleCancelClick = (eventId) => {
+    dispatch(updateEvent({ eventId, eventData: { cancelled: true } }));
+    setEventStatus((prevState) => ({ ...prevState, [eventId]: "cancelled" }));
+  };
+
+  const getCardBackgroundColor = (eventId) => {
+    switch (eventStatus[eventId]) {
+      case "confirmed":
+        return "green.200";
+      case "cancelled":
+        return "red.200";
+      default:
+        return "white";
+    }
+  };
+
+  return (
+    <Box className="view-hall-container" p={4}>
+      <Input
+        type="text"
+        placeholder="Buscar por descripción"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        mb={4}
+        p={2}
+        width="100%"
+      />
+
+      {filteredEvents.map((event, index) => (
+        <Box
+          key={index}
+          className="cards-info"
+          mb={4}
+          p={4}
+          bg="white" // Keep the outer background white
+        >
+          <Flex className="card-1" align="center">
+            <Box className="img-card" flexShrink={0} mr={4}>
+              <Image src="" alt="" boxSize="50px" />
+            </Box>
+            <Box
+              className="text-card"
+              bg={getCardBackgroundColor(event._id)} // Apply the background color inside the card
+              p={4}
+              borderRadius="md"
+            >
+              <Box className="text-1" mb={2}>
+                <Text>{event.desc_event}</Text>
+                <Text>{event.company}</Text>
+              </Box>
+              <Text className="date">{formatDate(event.date)}</Text>
+              <Text className="hour">{event.hour}</Text>
+              <Flex className="pencil-and-number" align="center" mt={2}>
+                {userLogged.user_type === "supplier" ? (
+                  <IconButton
+                    aria-label="Edit event"
+                    icon={<EditIcon />}
+                    onClick={() => handleEditClick(event)}
+                    mr={2}
+                  />
+                ) : userLogged.user_type === "admin" ? (
+                  <>
+                    {eventStatus[event._id] !== "confirmed" && eventStatus[event._id] !== "cancelled" && (
+                      <>
+                        <Button
+                          colorScheme="teal"
+                          variant="outline"
+                          color="black"
+                          mr={2}
+                          onClick={() => handleUpdateEvent(event._id, { confirmed: true })}
+                        >
+                          Confirmar
+                        </Button>
+                        <Button
+                          colorScheme="teal"
+                          variant="outline"
+                          color="black"
+                          onClick={() => handleCancelClick(event._id)}
+                        >
+                          Cancelar
+                        </Button>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <Button
+                    colorScheme="teal"
+                    variant="outline"
+                    color="black"
+                    onClick={() => handleRegisterClick(event._id)}
                   >
-                    <path
-                      d="M0.677734 17.25H21.6777V18.6875H0.677734V17.25ZM18.2277 5.03125C18.8277 4.45625 18.8277 3.59375 18.2277 3.01875L15.5277 0.43125C14.9277 -0.14375 14.0277 -0.14375 13.4277 0.43125L2.17773 11.2125V15.8125H6.97773L18.2277 5.03125ZM14.4777 1.4375L17.1777 4.025L14.9277 6.18125L12.2277 3.59375L14.4777 1.4375ZM3.67773 14.375V11.7875L11.1777 4.6L13.8777 7.1875L6.37773 14.375H3.67773Z"
-                      fill="#1C1C24"
-                    />
-                  </svg>
-                </div>
-                <div className="number">{formatDate(event.date)}</div>
-              </div>
-            </div>
-          </div>
-        </div>
+                    Registrarse
+                  </Button>
+                )}
+                <Text className="number">{formatDate(event.date)}</Text>
+              </Flex>
+            </Box>
+          </Flex>
+        </Box>
       ))}
 
-      
       {selectedEvent && (
         <EditInfoEvent
-          isOpen={true} 
-          onClose={() => setSelectedEvent(null)} 
-          event={selectedEvent} 
+          isOpen={true}
+          onClose={() => setSelectedEvent(null)}
+          event={selectedEvent}
         />
       )}
-    </div>
+    </Box>
   );
 };
 

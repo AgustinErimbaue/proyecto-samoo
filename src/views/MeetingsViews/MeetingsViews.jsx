@@ -11,7 +11,7 @@ const MeetingsViews = () => {
     
 
     const [filters, setFilters] = useState({
-        type: 'Mis Meetings',
+        type: meetings[0].type,
         date: '',
     });
 
@@ -41,11 +41,16 @@ const MeetingsViews = () => {
         return <div>No meetings available</div>;
     }
     
+    
+    meetings.map((meeting)=>{console.log(' hola : ',meeting.type+" | "+filters.type)})
+    
+
     const filteredMeetings = meetings.filter((meeting) => {
         return ((filters.date === '' || meeting.date === filters.date) &&
                 (filters.type === '' || meeting.type === filters.type)   );
     });
 
+    
     const meetingsByHour = hoursAndHalf.map(hour => ({
         hour,
         meetings: filteredMeetings.filter(meeting => meeting.hour === hour)

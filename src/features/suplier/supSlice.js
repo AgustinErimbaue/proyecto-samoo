@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import supService from "./supService";
 
 const token = localStorage.getItem("token") || "";
-const user = JSON.parse(localStorage.getItem("suplier")) || null;
 
 const initialState = {
-  user: user,
+  suppliers: [],
+  supplier: null,
   token: token,
   isError: false,
   isSuccess: false,
@@ -23,9 +23,9 @@ export const register = createAsyncThunk(
   }
 );
 
-export const login = createAsyncThunk("sup/login", async (suplier) => {
+export const login = createAsyncThunk("sup/login", async (supplier) => {
   try {
-    return await authService.login(suplier);
+    return await authService.login(supplier);
   } catch (error) {
     console.error(error);
   }
@@ -54,7 +54,7 @@ const supSlice = createSlice({
     builder
       .addCase(register.fulfilled, (state, action) => {
         state.isSuccess = true;
-        state.user = action.payload;
+        state.supplier = action.payload;
         state.message = "Registration successful";
         localStorage.setItem("suplier", JSON.stringify(action.payload));
       })
@@ -63,7 +63,7 @@ const supSlice = createSlice({
         state.message = action.payload || "Registration failed";
       })
       .addCase(getAllSuppliers.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.suppliers = action.payload;
       });
   },
 });
