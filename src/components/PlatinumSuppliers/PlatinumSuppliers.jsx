@@ -5,18 +5,18 @@ import { getAllSuppliers } from "../../features/suplier/supSlice";
 import SupplierDetail from "../SupplierDetail/SupplierDetail";
 
 const PlatinumSuppliers = () => {
-  const { user } = useSelector((state) => state.sup);
+  const { suppliers } = useSelector((state) => state.sup);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllSuppliers());
   }, [dispatch]);
 
-  if (!user) {
+  if (!suppliers) {
     return "Cargando";
   }
 
-  if (!Array.isArray(user)) {
+  if (!Array.isArray(suppliers)) {
     return "Error: Expected an array of users.";
   }
 
@@ -40,7 +40,7 @@ const PlatinumSuppliers = () => {
           Empresas Platinum
         </Heading>
       </Box>
-      {user
+      {suppliers
         .filter((company) => company.type_collab === "Platinum")
         .map((company) => (
           <Box
