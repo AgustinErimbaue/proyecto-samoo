@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import UpdateUser from "../../components/UpdateUserCopy/UpdateUser";
 import { getUserById, reset, logout } from '../../features/auth/authSlice';
 import QRCode from 'react-qr-code';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
@@ -10,6 +11,7 @@ import {
 
 const UserProfile = () => {
   const dispatch = useDispatch();
+  const [showUpdateUser, setShowUpdateUser] = useState(false);
   const { user, token, userContactInfo } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
@@ -34,6 +36,11 @@ const UserProfile = () => {
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
     }
+  };
+
+  const toggleUpdateUser = () => {
+    console.log("Toggling UpdateUser component");
+    setShowUpdateUser(prevState => !prevState);
   };
 
   const userContactUrl = `http://localhost:5173/userContact/${user._id}`;
@@ -155,6 +162,24 @@ const UserProfile = () => {
               <Text><strong>Última Actualización:</strong> {new Date(user.updatedAt).toLocaleString()}</Text>
             </GridItem>
           </Grid>
+          <Divider />
+          <Center>
+            <QRCode value={userContactUrl} />
+          </Center>
+          <Center>
+            <Link as={RouterLink} to={userContactUrl} color="teal.500">Ver Información de Contacto</Link>
+          </Center>
+          <Button colorScheme="teal" onClick={toggleUpdateUser}>
+              {showUpdateUser ? 'Cerrar Actualización' : '¿Quiere actualizar su usuario?'}
+          </Button>
+          {showUpdateUser && (
+            <Box w="full" mt={4}>
+              <UpdateUser />
+            </Box>
+          )}
+          <Center>
+            <Button colorScheme="teal" onClick={handleLogout}>Cerrar Sesión</Button>
+          </Center>
         </VStack>
       </Box>
     </Center>

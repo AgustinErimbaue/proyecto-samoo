@@ -2,7 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../features/auth/authSlice';
-import Select from 'react-select'; // Importa react-select
+import Select from 'react-select';
+import {
+    Input,
+    InputGroup,
+    InputLeftAddon,
+    Stack,
+    Button,
+    FormControl,
+    FormLabel,
+    Heading,
+    Text,
+    Link,
+  } from '@chakra-ui/react';
 import './Register.scss';
 
 const Register = () => {
@@ -157,116 +169,135 @@ const Register = () => {
 
     return (
         <form className='register-form' onSubmit={onSubmit}>
-            {step === 1 && (
-                <>
-                    <p>Información Personal</p>
-                    <label>
-                        Nombre
-                        <input required placeholder="Inserte su nombre" type="text" className="input" name="name" id="name" value={formData.name} onChange={onChange} />
-                    </label>
-                    <label>
-                        Apellidos
-                        <input required placeholder="Inserte sus apellidos" type="text" className="input" name="surname" id="surname" value={formData.surname} onChange={onChange} />
-                    </label>
-                    <label>
-                        Email
-                        <input required placeholder="ejemplo@correo.com" type="email" className="input" name="email" id="email" value={formData.email} onChange={onChange} />
-                    </label>
-                    <label>
-                        Prefijo telefónico
-                        <input required placeholder="+ xx" type="tel" className="input" name="phone_prefx" id="phone_prefx" value={formData.phone_prefx} onChange={onChange} />
-                    </label>
-                    <label>
-                        Número de teléfono
-                        <input required placeholder="xxx xxx xxx" type="tel" className="input" name="phone_number" id="phone_number" value={formData.phone_number} onChange={onChange} />
-                    </label>
-                    <label>
-                        Dirección
-                        <input required placeholder="Inserte su dirección" type="text" className="input" name="address" id="address" value={formData.address} onChange={onChange} />
-                    </label>
-                    <label>
-                        Código postal
-                        <input required placeholder="xxxxx" type="text" className="input" name="zip_code" id="zip_code" value={formData.zip_code} onChange={onChange} />
-                    </label>
-                    <label>
-                        Ciudad
-                        <input required placeholder="Inserte su ciudad" type="text" className="input" name="city" id="city" value={formData.city} onChange={onChange} />
-                    </label>
-                    <label>
-                        País
-                        <input required placeholder="Inserte su país" type="text" className="input" name="country" id="country" value={formData.country} onChange={onChange} />
-                    </label>
-                    <button className="submit" type="button" onClick={nextStep}>Siguiente</button>
-                </>
-            )}
-
-            {step === 2 && (
-                <>
-                    <p>Información Adicional</p>
-                    <label>
-                        Enlace a LinkedIn
-                        <input required placeholder="Inserte su enlace a LinkedIn" type="url" className="input" name="url_linkedin" id="url_linkedin" value={formData.url_linkedin} onChange={onChange} />
-                    </label>
-                    <label>
-                        Empresa
-                        <input required placeholder="Inserte su empresa" type="text" className="input" name="company" id="company" value={formData.company} onChange={onChange} />
-                    </label>
-                    <label>
-                        <p>Seleccione su trabajo:</p>
-                        <Select
-                            name="job_title"
-                            options={jobOptions}
-                            value={jobOptions.find(option => option.value === formData.job_title)}
-                            onChange={option => setFormData({ ...formData, job_title: option.value })}
-                            isClearable
-                            placeholder="Seleccionar..."
-                        />
-                    </label>
-                    <label>
-                        <p>Seleccione sus preferencias alimenticias:</p>
-                        <select name="food_preferences" id="food_preferences" value={formData.food_preferences} onChange={onChange}>
-                            <option value="">Seleccionar...</option>
-                            <option value="vegetariano">Vegetariano</option>
-                            <option value="vegano">Vegano</option>
-                            <option value="omnivoro">Omnívoro</option>
-                        </select>
-                    </label>
-                    <label>
-                        <p>Seleccione sus alergias:</p>
-                        <Select
-                            name="allergies"
-                            options={allergyOptions}
-                            value={allergyOptions.filter(option => formData.allergies.includes(option.value))}
-                            onChange={selectedOptions => handleSelectChange(selectedOptions, 'allergies')}
-                            isMulti
-                            placeholder="Seleccionar..."
-                        />
-                    </label>
-                    <label>
-                        <p>Seleccione sus intereses:</p>
-                        <Select
-                            name="interests"
-                            options={interestOptions}
-                            value={interestOptions.filter(option => formData.interests.includes(option.value))}
-                            onChange={selectedOptions => handleSelectChange(selectedOptions, 'interests')}
-                            isMulti
-                            placeholder="Seleccionar..."
-                        />
-                    </label>
-                    <label>
-                        Contraseña
-                        <input required placeholder="xxxxxxx" type="password" className="input" name="password" id="password" value={formData.password} onChange={onChange} />
-                    </label>
-                    <label>
-                        Confirmar contraseña
-                        <input required placeholder="xxxxxxx" type="password" className="input" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={onConfirmPasswordChange} />
-                    </label>
-                    <button type="button" onClick={previousStep}>Anterior</button>
-                    <button className="submit" type="submit">Submit</button>
-                </>
-            )}
-            <p className="signin">¿Ya tienes cuenta? <a href="/login">Iniciar sesión</a></p>
-        </form>
+      <Heading as="h2" size="lg">Registro</Heading>
+      {step === 1 && (
+        <>
+          <Heading as="h6" size="md">Información Personal</Heading>
+          <FormControl>
+            <FormLabel>Nombre</FormLabel>
+            <Input required placeholder="Inserte su nombre" type="text" name="name" id="name" value={formData.name} onChange={onChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Apellidos</FormLabel>
+            <Input required placeholder="Inserte sus apellidos" type="text" name="surname" id="surname" value={formData.surname} onChange={onChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Email</FormLabel>
+            <Input required placeholder="ejemplo@correo.com" type="email" name="email" id="email" value={formData.email} onChange={onChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Teléfono</FormLabel>
+            <InputGroup>
+              <InputLeftAddon children="+" />
+              <Input
+                required
+                placeholder="xx"
+                type="text"
+                name="phone_prefx"
+                id="phone_prefx"
+                value={formData.phone_prefx}
+                onChange={onChange}
+                width="20%"
+              />
+              <Input
+                required
+                placeholder="xxx xxx xxx"
+                type="tel"
+                name="phone_number"
+                id="phone_number"
+                value={formData.phone_number}
+                onChange={onChange}
+                width="80%"
+              />
+            </InputGroup>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Dirección</FormLabel>
+            <Input required placeholder="Inserte su dirección" type="text" name="address" id="address" value={formData.address} onChange={onChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Código postal</FormLabel>
+            <Input required placeholder="xxxxx" type="text" name="zip_code" id="zip_code" value={formData.zip_code} onChange={onChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Ciudad</FormLabel>
+            <Input required placeholder="Inserte su ciudad" type="text" name="city" id="city" value={formData.city} onChange={onChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>País</FormLabel>
+            <Input required placeholder="Inserte su país" type="text" name="country" id="country" value={formData.country} onChange={onChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Contraseña</FormLabel>
+            <Input required placeholder="xxxxxxx" type="password" name="password" id="password" value={formData.password} onChange={onChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Confirmar contraseña</FormLabel>
+            <Input required placeholder="xxxxxxx" type="password" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={onConfirmPasswordChange} />
+          </FormControl>
+          <Button colorScheme="teal" onClick={nextStep}>Siguiente</Button>
+        </>
+      )}
+      {step === 2 && (
+        <>
+          <Heading as="h6" size="md">Información Profesional</Heading>
+          <FormControl>
+            <FormLabel>Seleccione sus intereses</FormLabel>
+            <Select
+              name="interests"
+              options={interestOptions}
+              value={interestOptions.filter(option => formData.interests.includes(option.value))}
+              onChange={selectedOptions => handleSelectChange(selectedOptions, 'interests')}
+              isMulti
+              placeholder="Seleccionar..."
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Enlace a LinkedIn</FormLabel>
+            <Input required placeholder="Inserte su enlace a LinkedIn" type="url" name="url_linkedin" id="url_linkedin" value={formData.url_linkedin} onChange={onChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Empresa</FormLabel>
+            <Input required placeholder="Inserte su empresa" type="text" name="company" id="company" value={formData.company} onChange={onChange} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Seleccione su trabajo</FormLabel>
+            <Select
+              name="job_title"
+              options={jobOptions}
+              value={jobOptions.find(option => option.value === formData.job_title)}
+              onChange={option => setFormData({ ...formData, job_title: option.value })}
+              isClearable
+              placeholder="Seleccionar..."
+            />
+          </FormControl>
+          <Heading as="h6" size="md">Especificaciones alimenticias</Heading>
+          <FormControl>
+            <FormLabel>Seleccione sus preferencias alimenticias</FormLabel>
+            <select name="food_preferences" id="food_preferences" value={formData.food_preferences} onChange={onChange}>
+              <option value="">Seleccionar...</option>
+              <option value="vegetariano">Vegetariano</option>
+              <option value="vegano">Vegano</option>
+              <option value="omnivoro">Omnívoro</option>
+            </select>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Seleccione sus alergias</FormLabel>
+            <Select
+              name="allergies"
+              options={allergyOptions}
+              value={allergyOptions.filter(option => formData.allergies.includes(option.value))}
+              onChange={selectedOptions => handleSelectChange(selectedOptions, 'allergies')}
+              isMulti
+              placeholder="Seleccionar..."
+            />
+          </FormControl>
+          <Button colorScheme="teal" onClick={previousStep}>Anterior</Button>
+          <Button colorScheme="teal" type="submit">Submit</Button>
+        </>
+      )}
+      <Text className="signin">¿Ya tienes cuenta? <Link href="/login">Iniciar sesión</Link></Text>
+    </form>
     );
 };
 
