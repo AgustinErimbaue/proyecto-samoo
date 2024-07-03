@@ -13,7 +13,7 @@ const EventsHeader = ({ onShowComponent }) => {
         <Box className='btn-events-header' display="flex" gap={4} mt='25px'>
           <Button colorScheme='teal' variant='outline' color='black' onClick={() => onShowComponent('Salas')}>Salas</Button>
           <Button colorScheme='teal' variant='outline' color='black' onClick={() => onShowComponent('Ponencias')}>Ponencias</Button>
-          {/* <Button colorScheme='teal' variant='outline' color='black' onClick={() => onShowComponent('')}>OneToOne</Button> ESTO AUN NO VA */}
+          <Button colorScheme='teal' variant='outline' color='black' onClick={() => onShowComponent('OneToOne')}>OneToOne</Button>
         </Box>
       </Box>
     </Box>

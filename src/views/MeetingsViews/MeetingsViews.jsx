@@ -80,7 +80,7 @@ const MeetingsViews = () => {
                     <select id="type" name="type" value={filters.type} onChange={onChange}>
                     {[...new Set(meetings.map(meeting => meeting.type))].map((type, index) => (
                             <option key={index} value={type}>{type}</option>
-                        ))}
+                        ))} 
                     </select>
                 </div>
                 <div className="filter-item">

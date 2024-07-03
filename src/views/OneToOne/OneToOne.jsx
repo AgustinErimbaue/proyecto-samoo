@@ -17,7 +17,7 @@ const OneToOne = () => {
   }, [dispatch, token]);
 
   const loggedInUserId = user._id;
-  const suppliers = users?.filter(user => user.user_type === 'supplier');
+  const suppliers = users?.filter(user => (user.user_type === 'supplier' && user.ids_meetings.length != 0) );
   const loggedInUser = users?.find(user => user._id === loggedInUserId);
   let filteredSuppliers = suppliers?.filter(user => user._id !== loggedInUserId) || [];
   if (loggedInUser && loggedInUser.user_type === 'supplier') {
