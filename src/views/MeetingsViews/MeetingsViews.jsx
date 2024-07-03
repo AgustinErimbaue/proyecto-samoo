@@ -110,9 +110,9 @@ const MeetingsViews = () => {
                         </div>
                         <div className="details-column">
                             {meetings.length > 0 ? (
-                                meetings.map(meeting => (
-                                    <div key={meeting._id} className="meeting-details">
-                                        <p> Empresa : {meeting.company} | Ponente: | Descripción : {meeting.desc_event}</p>
+                                meetings.map(event => (
+                                    <div key={event._id} className="meeting-details">
+                                        <p> Empresa : {event.company} | Ponente: {event.type=="Mis Ponencias"?user.name:"todo"}| Descripción : {event.desc_event}</p>
                                     </div>
                                 ))
                             ) : (
