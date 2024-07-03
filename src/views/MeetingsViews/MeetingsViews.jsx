@@ -7,8 +7,16 @@ const MeetingsViews = () => {
     const dispatch = useDispatch();
     const { user, token, isError, isSuccess, mesage,isLoading} = useSelector((state) => state.auth);
     
-    const meetings=[...user.ids_meetings.map((meeting)=>{return({...meeting,type:"Mis Meetings"})}),...user.ids_meetings_atendee.map((meeting)=>{return({...meeting,type:"Meetings Reservados"})}),...user.speaker_events.map((event)=>{return({...event,type:"Mis Ponencias"})})]
+    const meetings=[...user.ids_meetings.map((meeting)=>{return({...meeting,type:"Mis Meetings"})}),
+                    ...user.ids_meetings_atendee.map((meeting)=>{return({...meeting,type:"Meetings Reservados"})}),
+                    ...user.speaker_events.map((event)=>{return({...event,type:"Mis Ponencias"})}),
+                    ...user.eventsId.map((event)=>{return({...event,type:"Ponencias Reservadas"})})
+                ]
     
+
+    if (!meetings || meetings.length == 0) {
+        return <div>No hay meetings ni Ponencias en el calendario</div>;
+    }
 
     const [filters, setFilters] = useState({
         type: meetings[0].type,
@@ -37,9 +45,7 @@ const MeetingsViews = () => {
     
     
 
-    if (!meetings) {
-        return <div>No meetings available</div>;
-    }
+   
     
     
     meetings.map((meeting)=>{console.log(' hola : ',meeting.type+" | "+filters.type)})
@@ -110,9 +116,9 @@ const MeetingsViews = () => {
                         </div>
                         <div className="details-column">
                             {meetings.length > 0 ? (
-                                meetings.map(meeting => (
-                                    <div key={meeting._id} className="meeting-details">
-                                        <p> Empresa : {meeting.company} | Ponente: | Descripción : {meeting.desc_event}</p>
+                                meetings.map(event => (
+                                    <div key={event._id} className="meeting-details">
+                                        <p> Empresa : {event.company} | Ponente: {event.type=="Mis Ponencias"?user.name:"todo"}| Descripción : {event.desc_event}</p>
                                     </div>
                                 ))
                             ) : (

@@ -97,26 +97,21 @@ export const authSlice = createSlice({
 
 export const register = createAsyncThunk("auth/register", async (user) => {
   try {
-    console.log(user);
     return authService.register(user);
   } catch (error) {
-    console.error(error);
   }
 });
 
 export const updateUser = createAsyncThunk('auth/updateUser', async (user) => {
   try {
-    console.log(user);
     return await authService.updateUser(user);
   } catch (error) {
-    console.error(error);
     throw error.response.data;
   }
 });
 
 export const login = createAsyncThunk('auth/login', async (user) => {
   try {
-    console.log(user)
     return authService.login(user)
   } catch (error) {
     console.error(error);
@@ -130,7 +125,7 @@ export const getUserById = createAsyncThunk('auth/getUserById', async (id) => {
     return ('Token');
   }
   try {
-    return await authService.getUserById(token, id);
+    return await authService.getUserById(id);
   } catch (error) {
     console.error(error);
   }

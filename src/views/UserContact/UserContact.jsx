@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { getUserContactInfoById, reset } from '../../features/auth/authSlice';
-import { Box, Button, Image, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Center, Image, Input, Text } from '@chakra-ui/react';
 import './UserContact.scss'
 
 const UserContact = () => {
@@ -27,15 +27,14 @@ const UserContact = () => {
     return (
         <Box className='userContact-container' mt={10} display="flex" justifyContent="center" alignItems="center" flexDirection="column" gap={4}>
       <Box className='profile-body' textAlign="center" mb={20}>
+        <Center mb={4}>
         <Image
           borderRadius='full'
           boxSize='120px'
-          ml={20}
-          mr={20}
           src='https://bit.ly/dan-abramov'
           alt='Dan Abramov'
-          mb={4} 
         />
+        </Center>
         <Text fontSize='3xl'>{userContactInfo.name}</Text>
         <Text fontSize='xl'>{userContactInfo.job_title}</Text>
       </Box>

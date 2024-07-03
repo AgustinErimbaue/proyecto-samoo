@@ -17,7 +17,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(getUserById(user._id));
+      console.log(user._id);
+      dispatch(getUserById( user._id ));
     }
     return () => {
       dispatch(reset());
@@ -77,6 +78,11 @@ const UserProfile = () => {
           </Center>
         </Box>
         <Divider/>
+        <Center mb={6} mt={6}>
+            <Button colorScheme="teal" onClick={toggleUpdateUser}>
+                {showUpdateUser ? 'Cerrar Actualización' : '¿Quiere actualizar su usuario?'}
+            </Button>
+          </Center>
         <VStack align="start" spacing={6} mt={10}>
           <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6} w="full">
             <GridItem>
@@ -161,24 +167,6 @@ const UserProfile = () => {
               <Text><strong>Última Actualización:</strong> {new Date(user.updatedAt).toLocaleString()}</Text>
             </GridItem>
           </Grid>
-          <Divider />
-          <Center>
-            <QRCode value={userContactUrl} />
-          </Center>
-          <Center>
-            <Link as={RouterLink} to={userContactUrl} color="teal.500">Ver Información de Contacto</Link>
-          </Center>
-          <Button colorScheme="teal" onClick={toggleUpdateUser}>
-              {showUpdateUser ? 'Cerrar Actualización' : '¿Quiere actualizar su usuario?'}
-          </Button>
-          {showUpdateUser && (
-            <Box w="full" mt={4}>
-              <UpdateUser />
-            </Box>
-          )}
-          <Center>
-            <Button colorScheme="teal" onClick={handleLogout}>Cerrar Sesión</Button>
-          </Center>
         </VStack>
       </Box>
     </Center>
