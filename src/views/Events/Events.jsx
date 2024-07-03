@@ -90,6 +90,8 @@ const Events = () => {
 
   return (
     <Box className="view-hall-container" p={4}>
+      <Box display='flex'
+      justifyContent='flex-start'>
       <Input
         type="text"
         placeholder="Buscar por descripción"
@@ -97,8 +99,10 @@ const Events = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         mb={4}
         p={2}
-        width="100%"
+        width="30%"
+        ml={80}
       />
+      </Box>
 
       {filteredEvents.map((event, index) => (
         <Box
@@ -106,7 +110,7 @@ const Events = () => {
           className="cards-info"
           mb={4}
           p={4}
-          bg="white" // Keep the outer background white
+          bg="white"
         >
           <Flex className="card-1" align="center">
             <Box className="img-card" flexShrink={0} mr={4}>
