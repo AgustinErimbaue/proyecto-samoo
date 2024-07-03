@@ -11,7 +11,7 @@ import {
   MenuItem,
   IconButton,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Header = () => {
@@ -157,6 +157,7 @@ const Header = () => {
               textAlign: "center",
             }}
           >
+           <Link to='/'>
             <Image
               src="src/assets/Img/logo-empresa.png"
               alt="logo"
@@ -166,6 +167,7 @@ const Header = () => {
                 height: "auto",
               }}
             />
+            </Link>
           </Box>
 
           <Box
