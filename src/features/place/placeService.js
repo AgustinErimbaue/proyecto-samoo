@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://159.89.21.34:8080/places/";
+const API_URL = "https://www.samoo-elearningexperience.tech:8081/places/";
 
 const getAllPlaces = async () => {
   try {
