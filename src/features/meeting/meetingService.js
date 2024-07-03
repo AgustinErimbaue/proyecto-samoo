@@ -19,11 +19,26 @@ const createMeeting = async (meeting) => {
     } catch (error) {
         console.error(error);
     }
-}
+};
+
+const bookMeeting = async (meetingId) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await axios.put(API_URL + 'bookingmeeting/' + meetingId, {}, {
+            headers: {
+                Authorization: token
+            }
+        });
+        return res.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 const meetingService = {
     getAll,
     createMeeting,
+    bookMeeting,
 };
 
 export default meetingService;
