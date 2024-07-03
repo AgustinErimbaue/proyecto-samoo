@@ -33,7 +33,7 @@ const login = async (user) => {
 
 const getUserById = async (userId) => {
   const token = localStorage.getItem('token');
-  console.log(userId);
+  console.log('getUserById : ', userId);
   const res = await axios.get(API_URL + 'id/' + userId, {
     headers: {
       Authorization: token
