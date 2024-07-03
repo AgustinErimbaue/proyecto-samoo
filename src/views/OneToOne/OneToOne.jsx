@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../../features/auth/authSlice';
-import { createMeeting } from '../../features/meeting/meetingSlice';
+import { bookMeeting, createMeeting } from '../../features/meeting/meetingSlice';
 import './OneToOne.scss';
 
 const OneToOne = () => {
@@ -16,15 +16,26 @@ const OneToOne = () => {
     }
   }, [dispatch, token]);
 
+  const loggedInUserId = user._id;
   const suppliers = users?.filter(user => user.user_type === 'supplier');
+  const loggedInUser = users?.find(user => user._id === loggedInUserId);
+  let filteredSuppliers = suppliers?.filter(user => user._id !== loggedInUserId) || [];
+  if (loggedInUser && loggedInUser.user_type === 'supplier') {
+    filteredSuppliers = [loggedInUser, ...filteredSuppliers];
+  };
 
   const handleCreateMeeting = (supplierId) => {
     const meeting = {
       ...newMeeting,
       id_supplier: supplierId,
     };
-    dispatch(createMeeting({ meeting, token }));
+    dispatch(createMeeting({ meeting, token })).then(() => dispatch(getAllUsers()));
     setShowForm(null);
+  };
+
+  const handleBookMeeting = (meetingId) => {
+    dispatch(bookMeeting({ meetingId, token }));
+    dispatch(getAllUsers());
   };
 
   const handleInputChange = (e) => {
@@ -41,14 +52,14 @@ const OneToOne = () => {
       times.push(`${String(hour).padStart(2, '0')}:00`);
       if (hour < 18) {
         times.push(`${String(hour).padStart(2, '0')}:30`);
-      }
-    }
+      };
+    };
     return times;
   };
 
   return (
     <div style={{ width: '100%', padding: '20px' }}>
-      {suppliers && suppliers.map(supplier => (
+      {filteredSuppliers && filteredSuppliers.map(supplier => (
         <div key={supplier._id} style={{
           padding: '20px',
           marginBottom: '20px',
@@ -113,8 +124,8 @@ const OneToOne = () => {
                     </select>
                   </label>
                 </div>
-                <button type="submit">Save Meeting</button>
-                <button type="button" onClick={() => setShowForm(null)}>Cancel</button>
+                <button className="save-button" type="submit">Save Meeting</button>
+                <button className="cancel-button" type="button" onClick={() => setShowForm(null)}>Cancel</button>
               </form>
             ) : (
               <button onClick={() => setShowForm(supplier._id)}style={{

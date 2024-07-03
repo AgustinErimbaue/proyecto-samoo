@@ -1,6 +1,62 @@
-h3 {
-    font-size: 1.25rem;
-    margin-bottom: 16px;
-    text-align: center;
-    grid-column: span 2;
-}
+.one-to-one-container {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .supplier-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .supplier-card h3 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  
+  .supplier-card p {
+    margin: 5px 0;
+  }
+  
+  .book-button, .add-meeting-button, .save-button, .cancel-button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .book-button:hover, .add-meeting-button:hover, .save-button:hover, .cancel-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .meeting-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .meeting-form div {
+    margin-bottom: 10px;
+  }
+  
+  .meeting-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .meeting-form input, .meeting-form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  

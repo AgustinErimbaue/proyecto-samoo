@@ -49,7 +49,10 @@ const Header = () => {
         navigate(`/viewevents`);
         break;
       case "CALENDARIO":
-        navigate(`/meetingsViews`);
+        navigate(`/eventscalendar`);
+        break;
+      case "MI CALENDARIO":
+        navigate(`/meetingsViews`)
         break;
       case "FEEDBACK":
         navigate(`/feedback`);
@@ -80,9 +83,9 @@ const Header = () => {
       "DASHBOARD",
     ];
   } else if (user.user_type === "supplier") {
-    buttons = ["CALENDARIO", "EVENTOS", "FEEDBACK"];
+    buttons = ["MI CALENDARIO", "EVENTOS", "FEEDBACK"];
   } else if (user.user_type === "attendee") {
-    buttons = ["CALENDARIO", "EVENTOS"];
+    buttons = ["MI CALENDARIO", "EVENTOS"];
   }
 
   return (

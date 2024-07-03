@@ -18,7 +18,7 @@ const UserProfile = () => {
   useEffect(() => {
     if (token) {
       console.log(user._id);
-      dispatch(getUserById( user._id ));
+      dispatch(getUserById(user._id));
     }
     return () => {
       dispatch(reset());
@@ -68,7 +68,7 @@ const UserProfile = () => {
         </Box>
         <Box mb={10}>
           <Center>
-            <QRCode value={userContactUrl}/>
+            <QRCode value={userContactUrl} />
           </Center>
           <Center mt={6} mb={6}>
             <Link as={RouterLink} to={userContactUrl} color="teal.500">Ver Información de Contacto</Link>
@@ -77,12 +77,17 @@ const UserProfile = () => {
             <Button colorScheme="teal" background='red' onClick={handleLogout}>Cerrar Sesión</Button>
           </Center>
         </Box>
-        <Divider/>
+        <Divider />
         <Center mb={6} mt={6}>
-            <Button colorScheme="teal" onClick={toggleUpdateUser}>
-                {showUpdateUser ? 'Cerrar Actualización' : '¿Quiere actualizar su usuario?'}
-            </Button>
+          <Button colorScheme="teal" onClick={toggleUpdateUser}>
+            {showUpdateUser ? 'Cerrar Actualización' : '¿Quiere actualizar su usuario?'}
+          </Button>
+        </Center>
+        {showUpdateUser && (
+          <Center mb={6} mt={6}>
+            <UpdateUser user={user} />
           </Center>
+        )}
         <VStack align="start" spacing={6} mt={10}>
           <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6} w="full">
             <GridItem>
