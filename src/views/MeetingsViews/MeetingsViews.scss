@@ -19,38 +19,38 @@ header h1 {
     background: #fff;
     border-radius: 0.5rem;
     background-color: black;
-    margin-bottom: 10px; /* Espacio hacia abajo */
-    margin-left: 0px; /* Eliminación de márgenes a la izquierda */
-    margin-right: 0px; /* Eliminación de márgenes a la derecha */
+    margin-bottom: 10px;
+    margin-left: 0px; 
+    margin-right: 0px; 
 }
 
 .filter-item {
     display: flex;
-    gap: 0.5rem; /* Espacio entre los elementos internos */
-    align-items: center; /* Alinear elementos verticalmente */
+    gap: 0.5rem; 
+    align-items: center; 
     background-color: black;
 }
 
 .filter-item label {
     font-weight: bold;
     color: white;
-    margin-right: 0.5rem; /* Espacio entre etiqueta y control */
+    margin-right: 0.5rem; 
     background-color: black;
 }
 
 .filter-item select, .filter-item input {
-    flex: 1; /* El control ocupa todo el espacio restante */
+    flex: 1;
     padding: 0.5rem;
     color: white;
     border: 1px solid white;
     border-radius: 0.25rem;
-    width: 100%; /* Asegurar que ocupe el ancho completo */
-    max-width: 100%; /* Máximo ancho permitido */
+    width: 100%; 
+    max-width: 100%; 
     background-color: black;
 }
 
 #day {
-    margin-left: auto; /* Empujar hacia la derecha alineándolo a la derecha */
+    margin-left: auto; 
 }
 
 #meetings {
@@ -60,7 +60,7 @@ header h1 {
 }
 
 .meeting {
-    display: flex; /* Mostrar elementos en línea */
+    display: flex; 
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 0.5rem;
@@ -87,22 +87,30 @@ header h1 {
 }
 
 .meeting-details {
-    flex: 1; /* Que los detalles ocupen todo el espacio disponible */
+    flex: 1; 
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    border: 1px solid #c9c1c1;
-    border-radius: 0.5rem;
-    background: #c9c1c1;
+   padding: 7px 32px;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 8px;
+   flex-shrink: 0;
+   border-radius: 8px;
+   border: 1px solid #a4bbc4;
+   background: rgba(15, 139, 160, 0.50);
+   color: #fff;
 }
+
+
 .meeting-details-booked {
     flex: 1; 
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    border: 1px solid #4CAF50;
+    border: 1px solid #22ba87;
     border-radius: 0.5rem;
-    background: #83d186;
+    background: #2cba8a;
+    color: #fff;
 }
 
 .meeting-details-avilieable {
@@ -110,16 +118,16 @@ header h1 {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    border: 1px solid #703c38; 
+    border: 1px solid #fdac4e; 
     border-radius: 0.5rem;
-    background: #765c5c; 
+    background: #fdac4e; 
 }
 
 
 .meeting-details p {
     margin: 1rem;
     font-size: 1rem;
-    color: #555;
+    color: #fff;
 }
 
 .meeting-details-avilieable  p {
@@ -140,30 +148,30 @@ header h1 {
     text-align: left;
 }
 
-/* Responsive Styles */
+
 @media (min-width: 600px) {
     .meetings-view {
         padding: 1rem;
     }
 
     #filters {
-        justify-content: space-between; /* Distribuir filtros horizontalmente */
-        align-items: center; /* Alinear elementos al centro verticalmente */
+        justify-content: space-between;
+        align-items: center; 
         padding: 1rem;
-        margin-bottom: 1rem; /* Espacio hacia abajo con el contenido siguiente */
-        margin-left: 0px; /* Eliminar márgenes a la izquierda */
-        margin-right: 0px; /* Eliminar márgenes a la derecha */
+        margin-bottom: 1rem; 
+        margin-left: 0px; 
+        margin-right: 0px; 
     }
 
     .filter-item {
-        flex: 1; /* Para ocupar el espacio disponible */
+        flex: 1; 
     }
 
     #day {
-        margin-left: 0; /* Resetear margen para el filtro de día */
+        margin-left: 0; 
     }
 
     #meetings {
-        margin: 0; /* Eliminar margen */
+        margin: 0;
     }
 }
