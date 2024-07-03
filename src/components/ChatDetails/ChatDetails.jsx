@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { speakWithBot } from '../../features/bot/botSlice';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { 
   Box, 
   Button, 
@@ -14,17 +16,26 @@ import {
   useDisclosure,
   InputGroup,
   InputRightElement
-} from '@chakra-ui/react';
-import { FloatButton } from 'antd';
-import { ArrowForwardIcon } from '@chakra-ui/icons';
-
-const ChatDetails = () => {
+  } from '@chakra-ui/react';
+  import { FloatButton } from 'antd';
+  import { ArrowForwardIcon } from '@chakra-ui/icons';
+  
+  const ChatDetails = () => {
+  const dispatch = useDispatch();
+  const { botAnswer} = useSelector((state) => state.bot);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
 
-  const handleSendMessage = () => {
-    if (newMessage.trim() !== '') {
+  useEffect(() => {
+    setMessages([...messages,{ text: botAnswer, sender: 'bot' }]);
+}, [botAnswer]);
+
+  const handleSendMessage = async() => {
+    if (newMessage.trim() !== '') {  
+      const formData = new FormData();
+      formData.append("chat", newMessage);
+      dispatch(speakWithBot(formData));
       setMessages([...messages, { text: newMessage, sender: 'user' }]);
       setNewMessage('');
     }
@@ -65,8 +76,9 @@ const ChatDetails = () => {
               value={newMessage}
               color='#0f8ba0' 
               borderRadius="full"
-              onChange={(e) => setNewMessage(e.target.value)} 
-              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+              onChange={(e) => {setNewMessage(e.target.value)}} 
+              onKeyPress={(e) => {e.key === 'Enter' && handleSendMessage()
+              }}
             />
             <InputRightElement width="4.5rem">
               <Button 

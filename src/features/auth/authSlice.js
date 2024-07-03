@@ -63,7 +63,6 @@ export const authSlice = createSlice({
       })
       .addCase(getUserById.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log(action.payload);
         state.user = action.payload;
         state.isSuccess = true;
       })
@@ -98,26 +97,21 @@ export const authSlice = createSlice({
 
 export const register = createAsyncThunk("auth/register", async (user) => {
   try {
-    console.log(user);
     return authService.register(user);
   } catch (error) {
-    console.error(error);
   }
 });
 
 export const updateUser = createAsyncThunk('auth/updateUser', async (user) => {
   try {
-    console.log(user);
     return await authService.updateUser(user);
   } catch (error) {
-    console.error(error);
     throw error.response.data;
   }
 });
 
 export const login = createAsyncThunk('auth/login', async (user) => {
   try {
-    console.log(user)
     return authService.login(user)
   } catch (error) {
     console.error(error);

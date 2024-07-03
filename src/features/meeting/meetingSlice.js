@@ -42,5 +42,13 @@ export const getAll = createAsyncThunk("meeting/getAll", async () => {
     }
 });
 
+export const createMeeting = createAsyncThunk("meeting/createMeeting", async ({meeting, token}) => {
+    try {
+        return meetingService.createMeeting(meeting, token)
+    } catch (error) {
+        console.error(error);
+    }
+})
+
 export const { reste } = meetingSlice.actions;
 export default meetingSlice.reducer;

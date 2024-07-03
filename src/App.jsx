@@ -21,6 +21,7 @@ import Shopping from "./views/Shopping/Shopping";
 import AssistantDetail from "./components/AssistantDetail/AssistantDetail";
 import Dashboard from "./views/Dashboard/Dashboard";
 import ChatDetails from "./components/ChatDetails/ChatDetails";
+import OneToOne from "./views/OneToOne/OneToOne";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path="/shopping" element={<Shopping />} />
         <Route path="/assistantdetail" element={<AssistantDetail />} />
         <Route path="/dashboard" element={<Dashboard/>} />  
+        <Route path="/OneToOne" element={<OneToOne/>} />  
       </Routes>
       <ChatDetails/>
       {/* <Footer /> */}
