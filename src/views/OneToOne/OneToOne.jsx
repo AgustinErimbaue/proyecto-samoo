@@ -50,34 +50,50 @@ const OneToOne = () => {
     <div style={{ width: '100%', padding: '20px' }}>
       {suppliers && suppliers.map(supplier => (
         <div key={supplier._id} style={{
-          border: '1px solid #ccc',
           padding: '20px',
           marginBottom: '20px',
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
+          borderRadius: '8px',
+          border: '1px solid #0f8ba0',
+          fontFamily: 'DM Sans',
         }}>
           <div>
             <h3>{supplier.name} {supplier.surname}</h3>
-            <p>{supplier.company}</p>
+            <p style={{
+              marginBottom:'15px'
+            }}><strong>{supplier.company}</strong></p>
           </div>
-          <div>
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+          }}>
             {supplier.ids_meetings && supplier.ids_meetings.length > 0 ? (
               <ul>
                 {supplier.ids_meetings.map(meeting => (
-                  <li key={meeting._id}>
-                    <p>Date: {new Date(meeting.date).toLocaleDateString()}</p>
-                    <p>Hour: {meeting.hour}</p>
-                    <p>Supplier: {meeting.id_supplier.company_name}</p>
+                  <li key={meeting._id} style={{
+                    borderRadius: '8px',
+                    border: '1px solid #0f8ba0',
+                    marginBottom: '5px',
+                    listStyle: 'none'
+                  }}>
+                    <div style={{
+                      padding: '10px'
+                    }}>
+                    <p>Fecha: {new Date(meeting.date).toLocaleDateString()}</p>
+                    <p>Hora: {meeting.hour}</p>
+                     <p>Colaboradores: {meeting.id_supplier.company_name}</p>
+                    </div>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p>No meetings available</p>
+              <p>No hay ninguna reunión disponible</p>
             )}
           </div>
-          {user._id === supplier._id && ( // Mostrar botón solo si es el usuario actual
+          {user._id === supplier._id && ( 
             showForm === supplier._id ? (
               <form onSubmit={(e) => { e.preventDefault(); handleCreateMeeting(supplier._id); }}>
                 <div>
@@ -101,7 +117,20 @@ const OneToOne = () => {
                 <button type="button" onClick={() => setShowForm(null)}>Cancel</button>
               </form>
             ) : (
-              <button onClick={() => setShowForm(supplier._id)}>Add Meeting</button>
+              <button onClick={() => setShowForm(supplier._id)}style={{
+                width: '127px',
+                display: 'flex',
+                justifyContent: 'center',
+                textAlign: 'center',
+                alignItems: 'center',
+                gap: '8px',
+                borderRadius: '24px',
+                border: '1px solid #0f8ba0',
+                background: '#0f8ba0',
+                color: '#fff',
+                marginTop: '12px'
+
+              }}>Añadir Reunión</button>
             )
           )}
         </div>
