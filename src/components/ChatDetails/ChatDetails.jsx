@@ -47,7 +47,7 @@ const ChatDetails = () => {
     <Modal isOpen={isOpen} onClose={onClose} size="sm" borderRadius='8px'>
       <ModalOverlay />
       <ModalContent position="fixed" top="20%" right="0" width="300px">
-        <ModalHeader background='#0f8ba0' color='#fff' borderRadius={7}>Asistente</ModalHeader>
+        <ModalHeader background='#0f8ba0' color='#fff' borderRadius={5}>Asistente</ModalHeader>
         <ModalCloseButton color='#fff'/>
         <ModalBody>
           <VStack align="start" spacing={4} h="300px" overflowY="auto" border="1px solid #0f8ba0" p={4} borderRadius="md">
