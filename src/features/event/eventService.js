@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/events/";
+const API_URL = "http://159.89.21.34:8080/events/";
 
 const getAllEvents = async () => {
   try {
