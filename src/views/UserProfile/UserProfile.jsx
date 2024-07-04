@@ -43,7 +43,7 @@ const UserProfile = () => {
     setShowUpdateUser(prevState => !prevState);
   };
 
-  const userContactUrl = `http://localhost:5173/userContact/${user._id}`;
+  const userContactUrl = `https://www.samoo-elearningexperience.tech/userContact/${user._id}`;
 
   return (
     <Center py={10}>

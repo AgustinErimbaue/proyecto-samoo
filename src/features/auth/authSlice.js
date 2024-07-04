@@ -99,6 +99,7 @@ export const register = createAsyncThunk("auth/register", async (user) => {
   try {
     return authService.register(user);
   } catch (error) {
+    console.error(error)
   }
 });
 
@@ -106,6 +107,7 @@ export const updateUser = createAsyncThunk('auth/updateUser', async (user) => {
   try {
     return await authService.updateUser(user);
   } catch (error) {
+    console.error(error)
     throw error.response.data;
   }
 });
