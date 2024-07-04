@@ -53,7 +53,7 @@ const Landing = () => {
                         </Box>
                     </Box>
                     <Box className='discover-continer'>
-                        <Box className='discover-title'>
+                        <Box className='discover-title' mb={1}>
                             <Text>Descubre nuestras</Text>
                             <Text>capacidades</Text>
                         </Box>
