@@ -14,8 +14,13 @@ const getAllEvents = async () => {
 
 const updateEvent = async (eventId, eventData) => {
   console.log(eventData);
+  const token = localStorage.getItem("token");
   try {
-    const res = await axios.put(`${API_URL}id/${eventId}`, eventData);
+    const res = await axios.put(`${API_URL}id/${eventId}`, eventData, {
+      headers: {
+        Authorization: token,
+      },
+    });
     return res.data;
   } catch (error) {
     console.error("Error al actualizar el evento:", error.message);
@@ -41,11 +46,15 @@ const createEvent = async (eventData) => {
 export const addUser = async (eventId) => {
   const token = localStorage.getItem("token");
   try {
-    const res = await axios.put(`${API_URL}/id/${eventId}`, {}, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.put(
+      `${API_URL}/id/${eventId}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return res.data;
   } catch (error) {
     console.error("Error al añadir usuario al evento:", error.message);
@@ -53,7 +62,7 @@ export const addUser = async (eventId) => {
   }
 };
 
-const removeUserFromEvent=async (eventId) => {
+const removeUserFromEvent = async (eventId) => {
   const token = localStorage.getItem("token");
   try {
     const res = await axios.put(API_URL + "/removeuser/id/" + eventId, {
