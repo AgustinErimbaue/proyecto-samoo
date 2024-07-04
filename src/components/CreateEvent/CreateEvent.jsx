@@ -60,6 +60,7 @@ const CreateEvent = ({ place }) => {
     speakerEmail: user.email,
     id_supplier: user.id_supplier._id,
   });
+  const [image, setImage] = useState(null);
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
@@ -89,8 +90,17 @@ const CreateEvent = ({ place }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createEvent({ formData, avatarFile: null }));
+    const formData2 = new FormData();
+    for (const key in formData) {
+      formData2.append(key, formData[key]);
+    }
+    if (image) {
+      formData2.append('file', image);
+    }
+    console.log(formData2);
+    dispatch(createEvent(formData2));
   };
+
   const hoursOptions = Array.from({ length: 13 }, (_, i) => `${9 + i}:00`);
 
   return (
@@ -175,14 +185,11 @@ const CreateEvent = ({ place }) => {
                     </Menu>
                   </FormControl>
 
-                  <FormControl id="avatar_url" mb={4}>
-                    <FormLabel>URL del Avatar</FormLabel>
+                  <FormControl mt={4}>
+                    <FormLabel>Imagen</FormLabel>
                     <Input
-                      type="url"
-                      name="avatar_url"
-                      value={formData.avatar_url}
-                      onChange={handleChange}
-                      placeholder="https://example.com/avatar.jpg"
+                      type="file"
+                      onChange={(e) => setImage(e.target.files[0])}
                     />
                   </FormControl>
 
