@@ -13,6 +13,7 @@ import UserProfile from "./views/UserProfile/UserProfile";
 import UserContact from "./views/UserContact/UserContact";
 import UpdateUser from "./views/UpdateUser/UpdateUser";
 import MeetingsViews from "./views/MeetingsViews/MeetingsViews";
+import EventsCalendar from "./views/EventsCalendar/EventsCalendar";
 import ViewEvents from "./views/ViewEvents/ViewEvents";
 import HallsDetail from "./views/Events/Events";
 import Landing from "./views/Landing/Landing";
@@ -20,6 +21,8 @@ import HallEvents from "./components/HallEvents/HallEvents";
 import Shopping from "./views/Shopping/Shopping";
 import AssistantDetail from "./components/AssistantDetail/AssistantDetail";
 import Dashboard from "./views/Dashboard/Dashboard";
+import ChatDetails from "./components/ChatDetails/ChatDetails";
+import OneToOne from "./views/OneToOne/OneToOne";
 
 function App() {
   return (
@@ -40,12 +43,15 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/viewparticipants" element={<ViewParticipants />} />
         <Route path="/meetingsViews" element={<MeetingsViews />} />
+        <Route path="/eventscalendar" element={<EventsCalendar/>} />
         <Route path="/viewevents" element={<ViewEvents />} />
         <Route path="/hallsdetail/:id" element={<HallEvents />} />
         <Route path="/shopping" element={<Shopping />} />
         <Route path="/assistantdetail" element={<AssistantDetail />} />
         <Route path="/dashboard" element={<Dashboard/>} />  
+        <Route path="/OneToOne" element={<OneToOne/>} />  
       </Routes>
+      <ChatDetails/>
       {/* <Footer /> */}
     </BrowserRouter>
   );

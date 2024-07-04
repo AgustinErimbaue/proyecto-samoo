@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'http://localhost:8080/users/';
+const API_URL = 'https://www.samoo-elearningexperience.tech:8081/users/'; 
 
 const register = async (user) => {
     const res = await axios.post(API_URL, user);
@@ -31,7 +31,9 @@ const login = async (user) => {
     return res.data;
 };
 
-const getUserById = async (token, userId) => {
+const getUserById = async (userId) => {
+  const token = localStorage.getItem('token');
+  console.log('getUserById : ', userId);
   const res = await axios.get(API_URL + 'id/' + userId, {
     headers: {
       Authorization: token

@@ -4,6 +4,7 @@ import sup from "../features/suplier/supSlice";
 import place from "../features/place/placeSlice";
 import meeting from "../features/meeting/meetingSlice";
 import event from "../features/event/eventSlice";
+import bot from "../features/bot/botSlice";
 
 
 export const store = configureStore({
@@ -13,5 +14,6 @@ export const store = configureStore({
     place,
     meeting,
     event,
+    bot
   },
 });

@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import UpdateUser from "../../components/UpdateUserCopy/UpdateUser";
 import { getUserById, reset, logout } from '../../features/auth/authSlice';
 import QRCode from 'react-qr-code';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
@@ -10,11 +11,13 @@ import {
 
 const UserProfile = () => {
   const dispatch = useDispatch();
+  const [showUpdateUser, setShowUpdateUser] = useState(false);
   const { user, token, userContactInfo } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
+      console.log(user._id);
       dispatch(getUserById(user._id));
     }
     return () => {
@@ -35,7 +38,12 @@ const UserProfile = () => {
     }
   };
 
-  const userContactUrl = `http://localhost:5173/userContact/${user._id}`;
+  const toggleUpdateUser = () => {
+    console.log("Toggling UpdateUser component");
+    setShowUpdateUser(prevState => !prevState);
+  };
+
+  const userContactUrl = `https://www.samoo-elearningexperience.tech/userContact/${user._id}`;
 
   return (
     <Center py={10}>
@@ -60,7 +68,7 @@ const UserProfile = () => {
         </Box>
         <Box mb={10}>
           <Center>
-            <QRCode value={userContactUrl}/>
+            <QRCode value={userContactUrl} />
           </Center>
           <Center mt={6} mb={6}>
             <Link as={RouterLink} to={userContactUrl} color="teal.500">Ver Información de Contacto</Link>
@@ -69,7 +77,17 @@ const UserProfile = () => {
             <Button colorScheme="teal" background='red' onClick={handleLogout}>Cerrar Sesión</Button>
           </Center>
         </Box>
-        <Divider/>
+        <Divider />
+        <Center mb={6} mt={6}>
+          <Button colorScheme="teal" onClick={toggleUpdateUser}>
+            {showUpdateUser ? 'Cerrar Actualización' : '¿Quiere actualizar su usuario?'}
+          </Button>
+        </Center>
+        {showUpdateUser && (
+          <Center mb={6} mt={6}>
+            <UpdateUser user={user} />
+          </Center>
+        )}
         <VStack align="start" spacing={6} mt={10}>
           <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6} w="full">
             <GridItem>

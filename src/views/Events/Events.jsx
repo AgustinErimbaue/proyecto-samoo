@@ -97,6 +97,8 @@ const Events = () => {
 
   return (
     <Box className="view-hall-container" p={4}>
+      <Box display='flex'
+      justifyContent='flex-start'>
       <Input
         type="text"
         placeholder="Buscar por descripción"
@@ -104,8 +106,10 @@ const Events = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         mb={4}
         p={2}
-        width="100%"
+        width="30%"
+        ml={80}
       />
+      </Box>
 
       {events
         .filter((event) =>

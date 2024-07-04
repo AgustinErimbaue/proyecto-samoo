@@ -29,7 +29,32 @@ export const meetingSlice = createSlice({
         .addCase(getAll.rejected, (state, action) => {
             state.isError = true;
             state.message = action.payload;
-        });
+        })
+        .addCase(createMeeting.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(createMeeting.fulfilled, (state, action) => {
+            state.meetings.push(action.payload);
+            state.isSuccess = true;
+        })
+        .addCase(createMeeting.rejected, (state, action) => {
+            state.isError = true;
+            state.message = action.payload;
+        })
+        .addCase(bookMeeting.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(bookMeeting.fulfilled, (state, action) => {
+            const index = state.meetings.findIndex(meeting => meeting._id === action.payload._id);
+            if (index !== -1) {
+                state.meetings[index] = action.payload;
+            }
+            state.isSuccess = true;
+        })
+        .addCase(bookMeeting.rejected, (state, action) => {
+            state.isError = true;
+            state.message = action.payload;
+        });;
     }
 });
 
@@ -41,6 +66,22 @@ export const getAll = createAsyncThunk("meeting/getAll", async () => {
         console.error(error);
     }
 });
+
+export const createMeeting = createAsyncThunk("meeting/createMeeting", async ({meeting, token}) => {
+    try {
+        return meetingService.createMeeting(meeting, token)
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+export const bookMeeting = createAsyncThunk("meeting/bookingmeeting", async ({meetingId, token}) => {
+    try {
+        return meetingService.bookMeeting(meetingId, token)
+    } catch (error) {
+        console.error(error);
+    }
+})
 
 export const { reste } = meetingSlice.actions;
 export default meetingSlice.reducer;

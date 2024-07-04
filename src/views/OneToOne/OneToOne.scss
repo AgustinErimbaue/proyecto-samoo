@@ -1,0 +1,107 @@
+.one-to-one-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.supplier-card {
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+  border: 1px solid #0f8ba0;
+  font-family: 'DM Sans';
+}
+
+.supplier-company {
+  margin-bottom: 15px;
+}
+
+.meetings-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.meeting-item {
+  border-radius: 8px;
+  border: 1px solid #0f8ba0;
+  margin-bottom: 5px;
+  list-style: none;
+}
+
+.book-btn-continer{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.book-button,
+.add-meeting-button {
+  width: 127px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 24px;
+  border: 1px solid #0f8ba0;
+  background: #0f8ba0;
+  color: #fff;
+  margin-top: 12px;
+}
+
+.save-button,
+.cancel-button {
+  margin-top: 12px;
+}
+
+.meeting-details-in {
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5px;
+  border: 1px solid #a4b8c4;
+  border-radius: 0.5rem;
+  background: #fdac43;
+}
+.meeting-details-in-booked {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border: 1px solid #4CAF50;
+  border-radius: 0.5rem;
+  background: #83d186;
+}
+
+.meeting-details-in-avilieable {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border: 1px solid #c4bbba; 
+  border-radius: 0.5rem;
+  background: #fdac43; 
+}
+
+
+.meeting-details-in p {
+  margin: 1rem;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.meeting-details-in-avilieable  p {
+  margin: 1rem;
+  font-size: 1rem;
+  color: #fffefe;
+}
+
+.meeting-details-in-booked  p {
+  margin: 1rem;
+  font-size: 1rem;
+  color: #fffefe;
+}

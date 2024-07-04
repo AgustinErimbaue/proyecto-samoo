@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/events/";
+const API_URL = "https://www.samoo-elearningexperience.tech:8081/events/";
 
 const getAllEvents = async () => {
   try {

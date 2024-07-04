@@ -7,8 +7,16 @@ const MeetingsViews = () => {
     const dispatch = useDispatch();
     const { user, token, isError, isSuccess, mesage,isLoading} = useSelector((state) => state.auth);
     
-    const meetings=[...user.ids_meetings.map((meeting)=>{return({...meeting,type:"Mis Meetings"})}),...user.ids_meetings_atendee.map((meeting)=>{return({...meeting,type:"Meetings Reservados"})}),...user.speaker_events.map((event)=>{return({...event,type:"Mis Ponencias"})})]
+    const meetings=[...user.ids_meetings.map((meeting)=>{return({...meeting,type:"Mis Meetings"})}),
+                    ...user.ids_meetings_atendee.map((meeting)=>{return({...meeting,type:"Meetings Reservados"})}),
+                    ...user.speaker_events.map((event)=>{return({...event,type:"Mis Ponencias"})}),
+                    ...user.eventsId.map((event)=>{return({...event,type:"Ponencias Reservadas"})})
+                ]
     
+
+    if (!meetings || meetings.length == 0) {
+        return <div>No hay meetings ni Ponencias en el calendario</div>;
+    }
 
     const [filters, setFilters] = useState({
         type: meetings[0].type,
@@ -37,9 +45,7 @@ const MeetingsViews = () => {
     
     
 
-    if (!meetings) {
-        return <div>No meetings available</div>;
-    }
+   
     
     
     meetings.map((meeting)=>{console.log(' hola : ',meeting.type+" | "+filters.type)})
@@ -74,7 +80,7 @@ const MeetingsViews = () => {
                     <select id="type" name="type" value={filters.type} onChange={onChange}>
                     {[...new Set(meetings.map(meeting => meeting.type))].map((type, index) => (
                             <option key={index} value={type}>{type}</option>
-                        ))}
+                        ))} 
                     </select>
                 </div>
                 <div className="filter-item">
@@ -94,7 +100,10 @@ const MeetingsViews = () => {
                             {meetings.length > 0 ? (
                                 meetings.map(meeting => (
                                     <div key={meeting._id} className={meeting.id_user ? "meeting-details-booked":"meeting-details-avilieable"}>
-                                        <p> Empresa : {meeting.id_supplier.company_name} | Colaborador: {meeting.type=="Mis Meetings"? user.name:meeting.id_user_supplier.name} | Asistente : {meeting.id_user ? (meeting.type=="Meetings Reservados"? user.name+" (usted)":meeting.id_user.name): "..."}</p>
+                                        <div className=''>
+                                        <p> <strong>Empresa :</strong> {meeting.id_supplier.company_name} <span><strong>Colaborador:</strong> {meeting.type=="Mis Meetings"? user.name:meeting.id_user_supplier.name}</span></p>
+                                        <p><strong>Asistente :</strong> {meeting.id_user ? (meeting.type=="Meetings Reservados"? user.name+" (usted)":meeting.id_user.name): "..."}</p>
+                                        </div>
                                     </div>
                                 ))
                             ) : (
@@ -110,9 +119,13 @@ const MeetingsViews = () => {
                         </div>
                         <div className="details-column">
                             {meetings.length > 0 ? (
-                                meetings.map(meeting => (
-                                    <div key={meeting._id} className="meeting-details">
-                                        <p> Empresa : {meeting.company} | Ponente: | Descripción : {meeting.desc_event}</p>
+                                meetings.map(event => (
+                                    <div key={event._id} className="meeting-details">
+                                        <div className='info-meeting'>
+                                        <p className='description-info'>Descripción : {event.desc_event}</p>
+                                        <p className='company-info'> <strong>Empresa :</strong> {event.company} | <span><strong>Ponente:</strong> {event.type=="Mis Ponencias"?user.name:"todo"} </span></p>
+                                        </div>
+                                        
                                     </div>
                                 ))
                             ) : (

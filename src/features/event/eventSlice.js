@@ -11,6 +11,7 @@ const initialState = {
 
 export const getAllEvents = createAsyncThunk("event/getAllEvents", async () => {
   try {
+      console.log('getAllEvents')
     return await eventService.getAllEvents();
   } catch (error) {
     console.error("Error al obtener eventos:", error.message);
