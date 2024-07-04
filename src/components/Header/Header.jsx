@@ -159,7 +159,7 @@ const Header = () => {
           >
            <Link to='/'>
             <Image
-              src="src/assets/Img/logo-empresa.png"
+              src="https://www.samoo-elearningexperience.tech/src/assets/Img/logo-empresa.png"
               alt="logo"
               className="logo-company"
               sx={{
