@@ -17,7 +17,7 @@ const OneToOne = () => {
   }, [dispatch, token]);
 
   const loggedInUserId = user._id;
-  const suppliers = users?.filter(user => (user.user_type === 'supplier' && user.ids_meetings.length != 0) );
+  const suppliers = users?.filter(user => (user.user_type === 'supplier' && user.ids_meetings.length != 0));
   const loggedInUser = users?.find(user => user._id === loggedInUserId);
   let filteredSuppliers = suppliers?.filter(user => user._id !== loggedInUserId) || [];
   if (loggedInUser && loggedInUser.user_type === 'supplier') {
@@ -58,45 +58,36 @@ const OneToOne = () => {
   };
 
   return (
-    <div style={{ width: '100%', padding: '20px' }}>
+    <div className="one-to-one-container">
       {filteredSuppliers && filteredSuppliers.map(supplier => (
-        <div key={supplier._id} style={{
-          padding: '20px',
-          marginBottom: '20px',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          borderRadius: '8px',
-          border: '1px solid #0f8ba0',
-          fontFamily: 'DM Sans',
-        }}>
+        <div key={supplier._id} className="supplier-card">
           <div>
             <h3>{supplier.name} {supplier.surname}</h3>
-            <p style={{
-              marginBottom:'15px'
-            }}><strong>{supplier.company}</strong></p>
+            <p className="supplier-company"><strong>{supplier.company}</strong></p>
           </div>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-          }}>
+          <div className="meetings-list">
             {supplier.ids_meetings && supplier.ids_meetings.length > 0 ? (
               <ul>
                 {supplier.ids_meetings.map(meeting => (
-                  <li key={meeting._id} style={{
-                    borderRadius: '8px',
-                    border: '1px solid #0f8ba0',
-                    marginBottom: '5px',
-                    listStyle: 'none'
-                  }}>
-                    <div style={{
-                      padding: '10px'
-                    }}>
-                    <p>Fecha: {new Date(meeting.date).toLocaleDateString()}</p>
-                    <p>Hora: {meeting.hour}</p>
-                     <p>Colaboradores: {meeting.id_supplier.company_name}</p>
+                  <li key={meeting._id} className="meeting-item">
+                    <div className={meeting.id_user? "meeting-details-in-booked ":"meeting-details-in-avilieable"}>
+                      <p>Fecha: {new Date(meeting.date).toLocaleDateString()}</p>
+                      <p>Hora: {meeting.hour}</p>
+                      <p>Colaboradores: {meeting.id_supplier.company_name}</p>
+                      {meeting.id_user ? (
+                        <p>Asistente: {meeting.id_user?.name}</p>
+                      ) : (
+                        <p>Meeting disponible</p>
+                      )}
                     </div>
+
+                    {(meeting.id_user_supplier != user._id && meeting.id_user == null) && (
+                      <div className='book-btn-continer'>
+                        <button onClick={() => handleBookMeeting(meeting._id)} className="book-button">
+                          Asistir
+                        </button>
+                      </div>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -104,7 +95,7 @@ const OneToOne = () => {
               <p>No hay ninguna reunión disponible</p>
             )}
           </div>
-          {user._id === supplier._id && ( 
+          {user._id === supplier._id && (
             showForm === supplier._id ? (
               <form onSubmit={(e) => { e.preventDefault(); handleCreateMeeting(supplier._id); }}>
                 <div>
@@ -128,20 +119,9 @@ const OneToOne = () => {
                 <button className="cancel-button" type="button" onClick={() => setShowForm(null)}>Cancel</button>
               </form>
             ) : (
-              <button onClick={() => setShowForm(supplier._id)}style={{
-                width: '127px',
-                display: 'flex',
-                justifyContent: 'center',
-                textAlign: 'center',
-                alignItems: 'center',
-                gap: '8px',
-                borderRadius: '24px',
-                border: '1px solid #0f8ba0',
-                background: '#0f8ba0',
-                color: '#fff',
-                marginTop: '12px'
-
-              }}>Añadir Reunión</button>
+              <button onClick={() => setShowForm(supplier._id)} className="add-meeting-button">
+                Añadir Reunión
+              </button>
             )
           )}
         </div>
