@@ -45,7 +45,7 @@ import {
     <>
     <Box>
       <FloatButton 
-        icon={<img src='src/assets/Img/Vector.png' alt="Chat Icon" style={{ width: '100%', height: '100%' }} />}
+        icon={<img src="https://www.samoo-elearningexperience.tech/src/assets/Img/Vector.png" alt="Chat Icon" style={{ width: '100%', height: '100%' }} />}
         type="primary"
         style={{
           right: 24,
