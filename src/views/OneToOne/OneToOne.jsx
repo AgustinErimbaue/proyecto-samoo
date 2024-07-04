@@ -93,7 +93,7 @@ const OneToOne = () => {
               <p>No meetings available</p>
             )}
           </div>
-          {user._id === supplier._id && ( // Mostrar botón solo si es el usuario actual
+          {user?._id === supplier._id && (
             showForm === supplier._id ? (
               <form onSubmit={(e) => { e.preventDefault(); handleCreateMeeting(supplier._id); }}>
                 <div>
