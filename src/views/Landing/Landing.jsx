@@ -21,7 +21,6 @@ const Landing = () => {
                             background: '#0f8ba0',
                             variant: 'solid',
                             borderRadius: '50px',
-                            background: '#0f8ba0',
                             color: 'white',
                             border: '1px solid #0f8ba0'
                         }}>
