@@ -53,7 +53,7 @@ const UserContact = () => {
                 <Text display='flex' justifyContent='center'><a href={userContactInfo.url_linkedin} target="_blank" rel="noopener noreferrer">{userContactInfo.url_linkedin}</a></Text>
             </Box>
             <Box display="flex" justifyContent="center" mt={4}>
-            <Button size="lg" colorScheme="teal" variant='solid' borderRadius={50} width={150} className='userProfile-btn' _hover='#fff'>Enviar</Button>
+            <Button size="lg" colorScheme="teal" variant='solid' borderRadius={50} width={150} className='userProfile-btn' _hover={{ backgroundColor: '#fff' }} >Guardar</Button>
           </Box>
         </Box>
       </Box>

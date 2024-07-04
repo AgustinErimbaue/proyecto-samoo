@@ -11,6 +11,7 @@ const initialState = {
 
 export const getAllEvents = createAsyncThunk("event/getAllEvents", async () => {
   try {
+      console.log('getAllEvents')
     return await eventService.getAllEvents();
   } catch (error) {
     console.error("Error al obtener eventos:", error.message);
@@ -50,6 +51,30 @@ export const addUser = createAsyncThunk(
       return await eventService.addUser(eventId);
     } catch (error) {
       console.error("Error al añadir usuario al evento:", error.message);
+      throw error;
+    }
+  }
+);
+
+export const removeUserFromEvent = createAsyncThunk(
+  "event/removeUser",
+  async ({ eventId }) => {
+    try {
+      return await eventService.removeUserFromEvent(eventId);
+    } catch (error) {
+      console.error("Error al eliminar usuario del evento:", error.message);
+      throw error;
+    }
+  }
+);
+
+export const removeEvent = createAsyncThunk(
+  "event/removeEvent",
+  async (eventId) => {
+    try {
+      return await eventService.removeEvent(eventId);
+    } catch (error) {
+      console.error("Error al eliminar el evento:", error.message);
       throw error;
     }
   }
@@ -120,6 +145,36 @@ const eventSlice = createSlice({
         );
       })
       .addCase(addUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.error.message;
+      })
+      .addCase(removeEvent.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(removeEvent.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.events = state.events.filter(
+          (event) => event._id !== action.payload._id
+        );
+      })
+      .addCase(removeEvent.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.error.message;
+      })
+      .addCase(removeUserFromEvent.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(removeUserFromEvent.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.events = state.events.map((event) =>
+          event._id === action.payload._id ? action.payload : event
+        );
+      })
+      .addCase(removeUserFromEvent.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.error.message;

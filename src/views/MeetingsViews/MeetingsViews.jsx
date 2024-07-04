@@ -80,7 +80,7 @@ const MeetingsViews = () => {
                     <select id="type" name="type" value={filters.type} onChange={onChange}>
                     {[...new Set(meetings.map(meeting => meeting.type))].map((type, index) => (
                             <option key={index} value={type}>{type}</option>
-                        ))}
+                        ))} 
                     </select>
                 </div>
                 <div className="filter-item">
@@ -101,8 +101,8 @@ const MeetingsViews = () => {
                                 meetings.map(meeting => (
                                     <div key={meeting._id} className={meeting.id_user ? "meeting-details-booked":"meeting-details-avilieable"}>
                                         <div className=''>
-                                        <p> Empresa : {meeting.id_supplier.company_name} <span>Colaborador: {meeting.type=="Mis Meetings"? user.name:meeting.id_user_supplier.name}</span></p>
-                                        <p>Asistente : {meeting.id_user ? (meeting.type=="Meetings Reservados"? user.name+" (usted)":meeting.id_user.name): "..."}</p>
+                                        <p> <strong>Empresa :</strong> {meeting.id_supplier.company_name} <span><strong>Colaborador:</strong> {meeting.type=="Mis Meetings"? user.name:meeting.id_user_supplier.name}</span></p>
+                                        <p><strong>Asistente :</strong> {meeting.id_user ? (meeting.type=="Meetings Reservados"? user.name+" (usted)":meeting.id_user.name): "..."}</p>
                                         </div>
                                     </div>
                                 ))
@@ -123,7 +123,7 @@ const MeetingsViews = () => {
                                     <div key={event._id} className="meeting-details">
                                         <div className='info-meeting'>
                                         <p className='description-info'>Descripción : {event.desc_event}</p>
-                                        <p className='company-info'> Empresa : {event.company} | <span>Ponente: {event.type=="Mis Ponencias"?user.name:"todo"} </span></p>
+                                        <p className='company-info'> <strong>Empresa :</strong> {event.company} | <span><strong>Ponente:</strong> {event.type=="Mis Ponencias"?user.name:"todo"} </span></p>
                                         </div>
                                         
                                     </div>

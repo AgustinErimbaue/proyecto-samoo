@@ -17,7 +17,7 @@ const OneToOne = () => {
   }, [dispatch, token]);
 
   const loggedInUserId = user._id;
-  const suppliers = users?.filter(user => user.user_type === 'supplier');
+  const suppliers = users?.filter(user => (user.user_type === 'supplier' && user.ids_meetings.length != 0));
   const loggedInUser = users?.find(user => user._id === loggedInUserId);
   let filteredSuppliers = suppliers?.filter(user => user._id !== loggedInUserId) || [];
   if (loggedInUser && loggedInUser.user_type === 'supplier') {
@@ -58,42 +58,44 @@ const OneToOne = () => {
   };
 
   return (
-    <div style={{ width: '100%', padding: '20px' }}>
+    <div className="one-to-one-container">
       {filteredSuppliers && filteredSuppliers.map(supplier => (
-        <div key={supplier._id} style={{
-          border: '1px solid #ccc',
-          padding: '20px',
-          marginBottom: '20px',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between'
-        }}>
+        <div key={supplier._id} className="supplier-card">
           <div>
             <h3>{supplier.name} {supplier.surname}</h3>
-            <p>{supplier.company}</p>
+            <p className="supplier-company"><strong>{supplier.company}</strong></p>
           </div>
-          <div>
+          <div className="meetings-list">
             {supplier.ids_meetings && supplier.ids_meetings.length > 0 ? (
               <ul>
                 {supplier.ids_meetings.map(meeting => (
-                  <li key={meeting._id}>
-                    <p>Date: {new Date(meeting.date).toLocaleDateString()}</p>
-                    <p>Hour: {meeting.hour}</p>
-                    <p>Supplier: {meeting.id_supplier.company_name}</p>
-                    {meeting.id_user ? (
-                      <p>Reserved by: {meeting.id_user.name}</p>
-                    ) : (
-                      <button className="book-button" onClick={() => handleBookMeeting(meeting._id)}>Book Meeting</button>
+                  <li key={meeting._id} className="meeting-item">
+                    <div className={meeting.id_user? "meeting-details-in-booked ":"meeting-details-in-avilieable"}>
+                      <p>Fecha: {new Date(meeting.date).toLocaleDateString()}</p>
+                      <p>Hora: {meeting.hour}</p>
+                      <p>Colaboradores: {meeting.id_supplier.company_name}</p>
+                      {meeting.id_user ? (
+                        <p>Asistente: {meeting.id_user?.name}</p>
+                      ) : (
+                        <p>Meeting disponible</p>
+                      )}
+                    </div>
+
+                    {(meeting.id_user_supplier != user._id && meeting.id_user == null) && (
+                      <div className='book-btn-continer'>
+                        <button onClick={() => handleBookMeeting(meeting._id)} className="book-button">
+                          Asistir
+                        </button>
+                      </div>
                     )}
                   </li>
                 ))}
               </ul>
             ) : (
-              <p>No meetings available</p>
+              <p>No hay ninguna reunión disponible</p>
             )}
           </div>
-          {user._id === supplier._id && ( // Mostrar botón solo si es el usuario actual
+          {user?._id === supplier._id && (
             showForm === supplier._id ? (
               <form onSubmit={(e) => { e.preventDefault(); handleCreateMeeting(supplier._id); }}>
                 <div>
@@ -117,7 +119,9 @@ const OneToOne = () => {
                 <button className="cancel-button" type="button" onClick={() => setShowForm(null)}>Cancel</button>
               </form>
             ) : (
-              <button className="add-meeting-button" onClick={() => setShowForm(supplier._id)}>Add Meeting</button>
+              <button onClick={() => setShowForm(supplier._id)} className="add-meeting-button">
+                Añadir Reunión
+              </button>
             )
           )}
         </div>

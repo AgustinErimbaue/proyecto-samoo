@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'http://localhost:8080/meetings/';
+const API_URL = 'https://www.samoo-elearningexperience.tech:8081/meetings/';
 
 const getAll = async () => {
     const res = await axios.get(API_URL + 'getall');

@@ -27,6 +27,8 @@ const UpdateUser = () => {
         zip_code: '',
         city: '',
         country: '',
+        password: '',
+        confirmPassword: '',
     });
 
     const [additionalData, setAdditionalData] = useState({
@@ -36,12 +38,8 @@ const UpdateUser = () => {
         allergies: [],
         user_type: 'assistant',
         company: '',
-        job_title: [],
-        password: '',
-        confirmPassword: '',
+        job_title: '',
     });
-
-    const [confirmPassword, setConfirmPassword] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -194,19 +192,17 @@ const UpdateUser = () => {
     const validateStep = (step) => {
         if (step === 1) {
             return Object.values(formData).every(field => field !== '') &&
-            formData.password === formData.confirmPassword;;
+            formData.password === formData.confirmPassword;
         }
         if (step === 2) {
-            return additionalData.password !== '' &&
-                additionalData.confirmPassword !== '' &&
-                additionalData.password === additionalData.confirmPassword;
+            return true;
         }
         return true;
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
-        if (additionalData.password === additionalData.confirmPassword) {
+        if (formData.password === formData.confirmPassword) {
             dispatch(updateUser({
                 ...formData,
                 ...additionalData
@@ -335,8 +331,8 @@ const UpdateUser = () => {
                             placeholder="Contraseña"
                             type="password"
                             name="password"
-                            value={additionalData.password}
-                            onChange={onAdditionalChange}
+                            value={formData.password}
+                            onChange={onChange}
                         />
                     </FormControl>
                     <FormControl mb={4}>
@@ -346,8 +342,8 @@ const UpdateUser = () => {
                             placeholder="Confirmar contraseña"
                             type="password"
                             name="confirmPassword"
-                            value={additionalData.confirmPassword}
-                            onChange={onAdditionalChange}
+                            value={formData.confirmPassword}
+                            onChange={onChange}
                         />
                     </FormControl>
                     <Button colorScheme="teal" onClick={handleNextStep} mb={4}>
@@ -398,12 +394,12 @@ const UpdateUser = () => {
                             name="job_title"
                             options={jobOptions}
                             value={jobOptions.find(option => option.value === additionalData.job_title)}
-                            onChange={(option) => setAdditionalData({ ...additionalData, job_title: option.value })}
+                            onChange={(option) => setAdditionalData({ ...additionalData, job_title: option ? option.value : '' })}
                             isClearable
                             placeholder="Seleccionar..."
                         />
                     </FormControl>
-                    <Heading as="h6" size="md">Especificaciones alimenticias</Heading>
+                    <Heading as="h6" size="md" mb={4}>Especificaciones alimenticias</Heading>
                     <FormControl mb={4}>
                         <FormLabel>Especificaciones alimenticias</FormLabel>
                         <Select

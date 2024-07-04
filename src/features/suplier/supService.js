@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/suppliers/";
+const API_URL = "https://www.samoo-elearningexperience.tech:8081/suppliers/";
 
 const register = async (suplier) => {
   const res = await axios.post(API_URL, suplier);
