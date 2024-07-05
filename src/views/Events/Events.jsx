@@ -72,8 +72,8 @@ const Events = () => {
     setEventStatus((prevState) => ({ ...prevState, [eventId]: "confirmed" }));
   };
 
-  const handleCancelClick = (eventId) => {
-    dispatch(updateEvent({ eventId, eventData: { cancelled: true } }));
+  const handleCancelClick = (eventId,eventData) => {
+    dispatch(updateEvent({ eventId,eventData }));
     setEventStatus((prevState) => ({ ...prevState, [eventId]: "cancelled" }));
   };
 
@@ -153,7 +153,7 @@ const Events = () => {
                           colorScheme="teal"
                           variant="outline"
                           color="black"
-                          onClick={() => handleCancelClick(event._id)}
+                          onClick={() => handleCancelClick(event._id,{ canceled: true })}
                         >
                           Cancelar
                         </Button>

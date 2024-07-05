@@ -18,8 +18,8 @@ const EventsCalendar = () => {
         dispatch(getAllEvents());
     }, []);
     
-    const meetings = [...events.map((event) => { return ({ ...event, type: "Ponencias" }) })]
-    
+    const meetings = [...events.map((event) => { return (event.canceled != true && { ...event, type: "Ponencias" }) })]
+    console.log(meetings)
     
     if (!meetings || meetings.length == 0) {
         return <div>No hay meetings ni Ponencias en el calendario</div>;
@@ -47,7 +47,8 @@ const EventsCalendar = () => {
     const filteredMeetings = meetings.filter((meeting) => {
         return ((filters.date === '' || meeting.date === filters.date||meeting.date?.split("T")[0] === filters.date?.split("T")[0]) &&
                 (filters.type === '' || meeting.type === filters.type) && 
-                (filters.place === ''|| meeting.id_place?.place_name === filters.place) );
+                (filters.place === ''|| meeting.id_place?.place_name === filters.place)
+            );
     });
 
     const EventsByHour = hours.map(hour => ({
@@ -89,8 +90,8 @@ const EventsCalendar = () => {
                         <div className="details-column">
                             {meetings.length > 0 ? (
                                 meetings.map(event => (
-                                    <div key={event._id} className="meeting-details">
-                                        <p> Empresa : {event.company} | Ponente:{event.speaker.name} | Descripción : {event.desc_event} | Sala: {event.id_place?.place_name}</p>
+                                    <div key={event._id} className={event.confirmed==true?"meeting-details-booked":"meeting-details"}>
+                                        <p> Empresa : {event.company} | Ponente:{event.speaker?.name} | Descripción : {event.desc_event} | Sala: {event.id_place?.place_name}</p>
                                     </div>
                                 ))
                             ) : (
