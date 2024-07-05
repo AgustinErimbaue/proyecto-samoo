@@ -95,7 +95,7 @@ const OneToOne = () => {
               <p>No hay ninguna reunión disponible</p>
             )}
           </div>
-          {user._id === supplier._id && (
+          {user?._id === supplier._id && (
             showForm === supplier._id ? (
               <form onSubmit={(e) => { e.preventDefault(); handleCreateMeeting(supplier._id); }}>
                 <div>

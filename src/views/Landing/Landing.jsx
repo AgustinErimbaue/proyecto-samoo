@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Button, Card, CardBody, CardHeader, Heading, Image, Text } from '@chakra-ui/react'
 import './Landing.scss'
+import { Link } from 'react-router-dom'
 
 const Landing = () => {
     return (
@@ -17,14 +18,13 @@ const Landing = () => {
                     </Box>
                     <Box className='heading-btn'>
                         <Button className='heading-btn' sx={{
-                            colorScheme: 'teal',
+                            background: '#0f8ba0',
                             variant: 'solid',
                             borderRadius: '50px',
-                            background: '#0f8ba0',
                             color: 'white',
                             border: '1px solid #0f8ba0'
                         }}>
-                            INSCRIPCIONES ABIERTAS
+                            <Link to='/register'>INSCRIPCIONES ABIERTAS</Link>
                         </Button>
                     </Box>
                     <Box className='img-continer'>
@@ -53,7 +53,7 @@ const Landing = () => {
                         </Box>
                     </Box>
                     <Box className='discover-continer'>
-                        <Box className='discover-title'>
+                        <Box className='discover-title' mb={1}>
                             <Text>Descubre nuestras</Text>
                             <Text>capacidades</Text>
                         </Box>
@@ -136,7 +136,7 @@ const Landing = () => {
                                     <Text>¡RESERVA TU LUGAR AHORA MISMO!</Text>
                                 </Box>
                                 <Box className='registration-btn'>
-                                    <Button colorScheme='teal' variant='solid' borderRadius='50px' >INSCRIPCIONES ABIERTAS</Button>
+                                    <Button background='#0f8ba0' variant='solid' borderRadius='50px' color='#fff'><Link to='/register'>INSCRIPCIONES ABIERTAS</Link></Button>
                                 </Box>
                             </Box>
                         </Box>
@@ -147,8 +147,8 @@ const Landing = () => {
                                         src='src/assets/Img/Samoo-img-Photoroom.png'
                                         alt='Samoo img'
                                         className='company-image'
-                                        width={420}
-                                        height={200}
+                                        width={410}
+                                        height={160}
                                     />
                                 </Box>
                                 <Box className='image-box'>
@@ -156,8 +156,8 @@ const Landing = () => {
                                         src='src/assets/Img/OpenLMS-img-Photoroom.png'
                                         alt='OpenLMS img'
                                         className='company-image'
-                                        width={340}
-                                        height={150}
+                                        width={310}
+                                        height={90}
                                     />
                                 </Box>
                                 <Box className='image-box'>
@@ -165,8 +165,8 @@ const Landing = () => {
                                         src='src/assets/Img/ReadSpeaker-img-Photoroom.png'
                                         alt='ReadSpeaker img'
                                         className='company-image'
-                                        width={420}
-                                        height={200}
+                                        width={400}
+                                        height={100}
                                     />
                                 </Box>
                             </Box>

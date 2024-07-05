@@ -13,6 +13,7 @@ const getAllEvents = async () => {
 };
 
 const updateEvent = async (eventId, eventData) => {
+<<<<<<< HEAD
   const token = localStorage.getItem("token");
   try {
     const res = await axios.put(`${API_URL}id/${eventId}`, eventData,
@@ -22,6 +23,16 @@ const updateEvent = async (eventId, eventData) => {
         }
     }
     );
+=======
+  console.log(eventData);
+  const token = localStorage.getItem("token");
+  try {
+    const res = await axios.put(`${API_URL}id/${eventId}`, eventData, {
+      headers: {
+        Authorization: token,
+      },
+    });
+>>>>>>> develop
     return res.data;
   } catch (error) {
     console.error("Error al actualizar el evento:", error.message);
@@ -44,9 +55,18 @@ const createEvent = async (eventData) => {
   }
 };
 
-const addUser = async (eventId, userId) => {
+export const addUser = async (eventId) => {
+  const token = localStorage.getItem("token");
   try {
-    const res = await axios.put(API_URL + "id/" + eventId);
+    const res = await axios.put(
+      `${API_URL}/id/${eventId}`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return res.data;
   } catch (error) {
     console.error("Error al añadir usuario al evento:", error.message);
@@ -54,13 +74,43 @@ const addUser = async (eventId, userId) => {
   }
 };
 
-const removeEvent = () => {};
+const removeUserFromEvent = async (eventId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const res = await axios.put(API_URL + "/removeuser/id/" + eventId, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error al añadir usuario al evento:", error.message);
+    throw error;
+  }
+};
+
+const removeEvent = async (eventId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const res = await axios.delete(API_URL + "id/" + eventId, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error al añadir usuario al evento:", error.message);
+    throw error;
+  }
+};
 
 const eventService = {
   getAllEvents,
   updateEvent,
   createEvent,
   addUser,
+  removeEvent,
+  removeUserFromEvent,
 };
 
 export default eventService;
