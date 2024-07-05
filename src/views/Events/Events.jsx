@@ -78,8 +78,8 @@ const Events = () => {
     dispatch(getAllEvents());
   };
 
-  const handleCancelClick = (eventId) => {
-    dispatch(updateEvent({ eventId, eventData: { cancelled: true } }));
+  const handleCancelClick = (eventId,eventData) => {
+    dispatch(updateEvent({ eventId,eventData }));
     setEventStatus((prevState) => ({ ...prevState, [eventId]: "cancelled" }));
     dispatch(getAllEvents());
   };
@@ -200,7 +200,7 @@ const Events = () => {
                           colorScheme="teal"
                           variant="outline"
                           color="black"
-                          onClick={() => handleRegisterClick(event._id)}
+                          onClick={() => handleCancelClick(event._id,{ canceled: true })}
                         >
                           Registrarse
                         </Button>
