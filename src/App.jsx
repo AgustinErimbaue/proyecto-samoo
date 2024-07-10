@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Register from "./views/Register/Register";
-import CompanyRegister from "./views/CompanyRegister/CompanyRegister";
+import SupplierRegister from "./views/SupplierRegister/SupplierRegister";
 import CompanyLogin from "./views/CompanyLogin/CompanyLogin";
 import Login from "./views/Login/Login";
 import BookingMeetings from "./components/BookingMeetings/BookingMeetings";
@@ -31,7 +31,7 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/updateUser" element={<UpdateUser />} />
-        <Route path="/CompanyRegister" element={<CompanyRegister />} />
+        <Route path="/SupplierRegister" element={<SupplierRegister />} />
         <Route path="/UserProfile" element={<UserProfile />} />
         <Route path="/UserContact/:id" element={<UserContact />} />
         <Route path="/login" element={<Login />} />

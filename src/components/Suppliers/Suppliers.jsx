@@ -5,11 +5,14 @@ import {
   Heading,
   Text,
   Input,
+  Button,
+  Flex,
   useMediaQuery,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSuppliers } from "../../features/suplier/supSlice";
 import SupplierDetail from "../SupplierDetail/SupplierDetail";
+import { useNavigate } from 'react-router-dom';
 
 const Suppliers = () => {
   const { suppliers } = useSelector((state) => state.sup);
@@ -17,6 +20,7 @@ const Suppliers = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllSuppliers());
@@ -55,10 +59,14 @@ const Suppliers = () => {
     }
   };
 
+  const handleButton = () => {
+    navigate("/SupplierRegister");
+  };
+
   return (
     <Box className="suppliers-body" padding="20px">
       <Box className="suppliers-header" mb="4" mt="50px">
-        <Heading as="h2" size="lg" mb="4">
+        <Heading as="h2" size="lg">
           Empresas
         </Heading>
       </Box>
@@ -71,6 +79,9 @@ const Suppliers = () => {
         p={2}
         width="100%"
       />
+
+      <Button onClick={handleButton} m="5">Añadir empresa</Button>
+
       {filteredUsers.map((company) => (
         <Box
           key={company._id}
