@@ -1,4 +1,4 @@
-.meetings-view {
+.events-view {
     padding: 1rem;
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
@@ -53,13 +53,13 @@ header h1 {
     margin-left: auto; 
 }
 
-#meetings {
+#events {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.meeting {
+.event {
     display: flex; 
     padding: 1rem;
     border: 1px solid #ddd;
@@ -82,11 +82,11 @@ header h1 {
     gap: 0.5rem;
 }
 
-.meeting h2 {
+.event h2 {
     font-size: 1.25rem;
 }
 
-.meeting-details {
+.event-details {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -95,7 +95,7 @@ header h1 {
     border-radius: 0.5rem;
     background: #fdac43;
 }
-.meeting-details-booked {
+.event-details-booked {
     flex: 1; 
     display: flex;
     flex-direction: column;
@@ -105,7 +105,7 @@ header h1 {
     background: #83d186;
 }
 
-.meeting-details-avilieable {
+.event-details-avilieable {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -116,25 +116,25 @@ header h1 {
 }
 
 
-.meeting-details p {
+.event-details p {
     margin: 1rem;
     font-size: 1rem;
     color: #fff;
 }
 
-.meeting-details-avilieable  p {
+.event-details-avilieable  p {
     margin: 1rem;
     font-size: 1rem;
     color: #fffefe;
 }
 
-.meeting-details-booked  p {
+.event-details-booked  p {
     margin: 1rem;
     font-size: 1rem;
     color: #fffefe;
 }
 
-.no-meeting {
+.no-event {
     font-size: 1rem;
     color: #999;
     text-align: left;
@@ -142,7 +142,7 @@ header h1 {
 
 
 @media (min-width: 600px) {
-    .meetings-view {
+    .events-view {
         padding: 1rem;
     }
 
@@ -163,7 +163,7 @@ header h1 {
         margin-left: 0; 
     }
 
-    #meetings {
+    #events {
         margin: 0;
     }
 }

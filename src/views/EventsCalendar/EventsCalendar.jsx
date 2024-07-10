@@ -11,18 +11,18 @@ const EventsCalendar = () => {
     const [filters, setFilters] = useState({
         type: 'Ponencias',
         date: '',
-        salas:''
+        place:''
     });
 
     useEffect(() => {
         dispatch(getAllEvents());
     }, []);
     
-    const meetings = [...events.map((event) => { return (event.canceled != true && { ...event, type: "Ponencias" }) })]
-    console.log(meetings)
+    const eventsInCalendar = [...events.map((event) => { return (event.cancelled != true && { ...event, type: "Ponencias" }) })]
+    console.log(eventsInCalendar)
     
-    if (!meetings || meetings.length == 0) {
-        return <div>No hay meetings ni Ponencias en el calendario</div>;
+    if (!eventsInCalendar || eventsInCalendar.length == 0) {
+        return <div>No hay Ponencias en el calendario</div>;
     }
     
     const hours = Array.from({ length: 13 }, (_, i) => i + 9).map(hour => `${hour < 10 ? '0' : ''}${hour}:00`);
@@ -44,58 +44,58 @@ const EventsCalendar = () => {
 
 
 
-    const filteredMeetings = meetings.filter((meeting) => {
-        return ((filters.date === '' || meeting.date === filters.date||meeting.date?.split("T")[0] === filters.date?.split("T")[0]) &&
-                (filters.type === '' || meeting.type === filters.type) && 
-                (filters.place === ''|| meeting.id_place?.place_name === filters.place)
+    const filteredeventsInCalendar = eventsInCalendar.filter((event) => {
+        return ((filters.date === '' || event.date === filters.date||event.date?.split("T")[0] === filters.date?.split("T")[0]) &&
+                (filters.type === '' || event.type === filters.type) && 
+                (filters.place === ''|| event.id_place?.place_name === filters.place)
             );
     });
 
     const EventsByHour = hours.map(hour => ({
         hour,
-        meetings: filteredMeetings.filter(meeting => meeting.hour === hour)
+        eventsInCalendar: filteredeventsInCalendar.filter(event => event.hour === hour)
     }));
     return (
-        <div className="meetings-view">
+        <div className="eventsInCalendar-view">
             <section id="filters">
                 <div className="filter-item">
                     <select id="date" name="date" value={filters.date} onChange={onChange}>
-                        {[...new Set(meetings.map(meeting => { 
-                            return meeting.date}))].map((date, index) => {return (
+                        {[...new Set(eventsInCalendar.map(event => { 
+                            return event.date}))].map((date, index) => {return (
                             <option key={index} value={date}>{date?.split("T")[0]}</option>
                         )})}
                     </select>
                 </div>
                 <div className="filter-item">
                     <select id="type" name="type" value={filters.type} onChange={onChange}>
-                    {[...new Set(meetings.map(meeting => meeting.type))].map((type, index) => (
+                    {[...new Set(eventsInCalendar.map(event => event.type))].map((type, index) => (
                             <option key={index} value={type}>{type}</option>
                         ))}
                     </select>
                 </div>
                 <div className="filter-item">
                 <select id="place" name="place" value={filters.place} onChange={onChange}>
-                    {[...new Set(meetings.map(meeting => meeting.id_place?.place_name))].map((place, index) => (
+                    {[...new Set(eventsInCalendar.map(event => event.id_place?.place_name))].map((place, index) => (
                             <option key={index} value={place}>{place}</option>
                         ))}
                     </select>
                 </div>
             </section>
-            <section id="meetings">
-                {EventsByHour.map(({ hour, meetings }) => (
-                    <div key={hour} className="meeting">
+            <section id="eventsInCalendar">
+                {EventsByHour.map(({ hour, eventsInCalendar }) => (
+                    <div key={hour} className="event">
                         <div className="hour-column">
                             <h2>{hour}</h2>
                         </div>
                         <div className="details-column">
-                            {meetings.length > 0 ? (
-                                meetings.map(event => (
-                                    <div key={event._id} className={event.confirmed==true?"meeting-details-booked":"meeting-details"}>
+                            {eventsInCalendar.length > 0 ? (
+                                eventsInCalendar.map(event => (
+                                    <div key={event._id} className={event.confirmed==true?"event-details-booked":"event-details"}>
                                         <p> Empresa : {event.company} | Ponente:{event.speaker?.name} | Descripción : {event.desc_event} | Sala: {event.id_place?.place_name}</p>
                                     </div>
                                 ))
                             ) : (
-                                <p className="no-meeting">No hay Ponencias a esta hora </p>
+                                <p className="no-event">No hay Ponencias a esta hora </p>
                             )}
                         </div>
                     </div>
