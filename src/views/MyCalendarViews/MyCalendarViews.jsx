@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './MeetingsViews.scss';
+import './MyCalendarViews.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserById, reset } from '../../features/auth/authSlice';
 
-const MeetingsViews = () => {
+const MyCalendarViews = () => {
     const dispatch = useDispatch();
     const { user, token, isError, isSuccess, mesage,isLoading} = useSelector((state) => state.auth);
     
@@ -133,4 +133,4 @@ const MeetingsViews = () => {
     );
 };
 
-export default MeetingsViews;
+export default MyCalendarViews;

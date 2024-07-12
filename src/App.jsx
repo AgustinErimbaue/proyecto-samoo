@@ -12,7 +12,7 @@ import ViewParticipants from "./views/ViewParticipants/ViewParticipants";
 import UserProfile from "./views/UserProfile/UserProfile";
 import UserContact from "./views/UserContact/UserContact";
 import UpdateUser from "./views/UpdateUser/UpdateUser";
-import MeetingsViews from "./views/MeetingsViews/MeetingsViews";
+import MyCalendarViews from "./views/MyCalendarViews/MyCalendarViews";
 import EventsCalendar from "./views/EventsCalendar/EventsCalendar";
 import ViewEvents from "./views/ViewEvents/ViewEvents";
 import HallsDetail from "./views/Events/Events";
@@ -42,7 +42,7 @@ function App() {
         <Route path="/hallsdetail" element={<HallsDetail />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/viewparticipants" element={<ViewParticipants />} />
-        <Route path="/meetingsViews" element={<MeetingsViews />} />
+        <Route path="/MyCalendarViews" element={<MyCalendarViews />} />
         <Route path="/eventscalendar" element={<EventsCalendar/>} />
         <Route path="/viewevents" element={<ViewEvents />} />
         <Route path="/hallsdetail/:id" element={<HallEvents />} />

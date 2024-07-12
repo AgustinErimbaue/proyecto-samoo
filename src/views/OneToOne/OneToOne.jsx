@@ -17,8 +17,6 @@ const OneToOne = () => {
     }
   }, [dispatch, token]);
 
-  console.log('token : ', token)
-
   const loggedInUserId = user._id;
   const suppliers = users?.filter(user => (user.user_type === 'supplier' && user.ids_meetings.length != 0));
   const loggedInUser = users?.find(user => user._id === loggedInUserId);
@@ -118,8 +116,8 @@ const OneToOne = () => {
                     </select>
                   </label>
                 </div>
-                <button className="save-button" type="submit">Save Meeting</button>
-                <button className="cancel-button" type="button" onClick={() => setShowForm(null)}>Cancel</button>
+                <button className="save-button" type="submit">Crear Meeting</button>
+                <button className="cancel-button" type="button" onClick={() => setShowForm(null)}>Cancelar</button>
               </form>
             ) : (
               <button onClick={() => setShowForm(supplier._id)} className="add-meeting-button">

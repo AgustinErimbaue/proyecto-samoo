@@ -7,7 +7,7 @@ import { getAllEvents } from "../../features/event/eventSlice";
 const EventsCalendar = () => {
     const dispatch = useDispatch();
     const { events, isLoading } = useSelector((state) => state.event);
-
+    const user = JSON.parse(localStorage.getItem("user")) || null;
     const [filters, setFilters] = useState({
         type: 'Ponencias',
         date: '',
@@ -18,7 +18,10 @@ const EventsCalendar = () => {
         dispatch(getAllEvents());
     }, []);
     
-    const eventsInCalendar = [...events.map((event) => { return (event.cancelled != true && { ...event, type: "Ponencias" }) })]
+    let eventsInCalendar = [...events.map((event) => { return (event.cancelled != true && { ...event, type: "Ponencias" }) })]
+    
+     user?.user_type !="admin" && (eventsInCalendar=eventsInCalendar.filter((event)=>(event.confirmed == true && event.cancelled == false) ));
+
     console.log(eventsInCalendar)
     
     if (!eventsInCalendar || eventsInCalendar.length == 0) {
