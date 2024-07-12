@@ -53,7 +53,7 @@ const EventsCalendar = () => {
 
     const EventsByHour = hours.map(hour => ({
         hour,
-        eventsInCalendar: filteredeventsInCalendar.filter(event => event.hour === hour)
+        eventsInCalendar: filteredeventsInCalendar.filter(event => (event.hour === hour || '0'+event.hour === hour))
     }));
     return (
         <div className="eventsInCalendar-view">

@@ -5,7 +5,8 @@ import { bookMeeting, createMeeting } from '../../features/meeting/meetingSlice'
 import './OneToOne.scss';
 
 const OneToOne = () => {
-  const { user, users, token } = useSelector((state) => state.auth);
+  const token= localStorage.getItem('token')
+  const { user, users} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [newMeeting, setNewMeeting] = useState({ date: '', hour: '', id_supplier: '' });
   const [showForm, setShowForm] = useState(null);
@@ -15,6 +16,8 @@ const OneToOne = () => {
       dispatch(getAllUsers());
     }
   }, [dispatch, token]);
+
+  console.log('token : ', token)
 
   const loggedInUserId = user._id;
   const suppliers = users?.filter(user => (user.user_type === 'supplier' && user.ids_meetings.length != 0));
@@ -56,7 +59,7 @@ const OneToOne = () => {
     };
     return times;
   };
-
+  
   return (
     <div className="one-to-one-container">
       {filteredSuppliers && filteredSuppliers.map(supplier => (

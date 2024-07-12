@@ -59,11 +59,11 @@ const MeetingsViews = () => {
     
     const meetingsByHour = hoursAndHalf.map(hour => ({
         hour,
-        meetings: filteredMeetings.filter(meeting => meeting.hour === hour)
+        meetings: filteredMeetings.filter(meeting => (meeting.hour === hour||'0'+meeting.hour === hour))
     }));
     const EventsByHour = hours.map(hour => ({
         hour,
-        meetings: filteredMeetings.filter(meeting => meeting.hour === hour)
+        meetings: filteredMeetings.filter(meeting => (meeting.hour === hour ||'0'+meeting.hour === hour))
     }));
     return (
         <div className="meetings-view">
@@ -81,12 +81,6 @@ const MeetingsViews = () => {
                     {[...new Set(meetings.map(meeting => meeting.type))].map((type, index) => (
                             <option key={index} value={type}>{type}</option>
                         ))} 
-                    </select>
-                </div>
-                <div className="filter-item">
-                <select id="day" name="day" value={filters.day} onChange={onChange}>
-                        <option value="Dia 1">Día 1</option>
-                        <option value="Dia 2">Día 2</option>
                     </select>
                 </div>
             </section>

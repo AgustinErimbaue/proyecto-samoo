@@ -49,8 +49,8 @@ const CreateEvent = ({ place }) => {
   const { isLoading, isSuccess, isError, message } = useSelector(
     (state) => state.event
   );
-  const [formData, setFormData] = useState({
-    desc_event: "",
+
+  const formDataInitialStatus = {desc_event: "",
     date: "",
     hour: "",
     interests: [],
@@ -58,8 +58,9 @@ const CreateEvent = ({ place }) => {
     avatar_url: "",
     id_place: place._id,
     speakerEmail: user.email,
-    id_supplier: user.id_supplier._id,
-  });
+    id_supplier: user.id_supplier._id,}
+
+  const [formData, setFormData] = useState(formDataInitialStatus);
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
@@ -89,7 +90,9 @@ const CreateEvent = ({ place }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createEvent({ formData, avatarFile: null }));
+    dispatch(createEvent({ ...formData, avatarFile: null })).then(()=>{
+      isSuccess && setFormData(formDataInitialStatus)
+    });
   };
   const hoursOptions = Array.from({ length: 13 }, (_, i) => `${9 + i}:00`);
 

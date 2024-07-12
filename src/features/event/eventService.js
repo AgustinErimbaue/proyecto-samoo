@@ -48,11 +48,11 @@ export const addUser = async (eventId) => {
   const token = localStorage.getItem("token");
   try {
     const res = await axios.put(
-      `${API_URL}/id/${eventId}`,
+      `${API_URL}adduser/id/${eventId}`,
       {},
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: token
         },
       }
     );
@@ -66,7 +66,9 @@ export const addUser = async (eventId) => {
 const removeUserFromEvent = async (eventId) => {
   const token = localStorage.getItem("token");
   try {
-    const res = await axios.put(API_URL + "/removeuser/id/" + eventId, {
+    const res = await axios.put(API_URL + "removeuser/id/" + eventId,
+      {},
+      {
       headers: {
         Authorization: token,
       },

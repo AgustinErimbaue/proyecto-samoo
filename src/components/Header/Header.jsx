@@ -84,7 +84,7 @@ const Header = () => {
     ];
   } else if (user.user_type === "supplier") {
     buttons = ["MI CALENDARIO", "EVENTOS", "FEEDBACK"];
-  } else if (user.user_type === "attendee") {
+  } else {
     buttons = ["MI CALENDARIO", "EVENTOS"];
   }
 

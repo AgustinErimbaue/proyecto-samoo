@@ -12,17 +12,18 @@ import {
   VStack,
   Input,
   Textarea,
+  Select
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-import { updateEvent } from "../../features/event/eventSlice";
+import { updateEvent, getAllEvents } from "../../features/event/eventSlice";
 
 const EditInfoEvent = ({ isOpen, onClose, event }) => {
   const dispatch = useDispatch();
-  const [editedEvent, setEditedEvent] = useState(event || {_id:null});
+  const [editedEvent, setEditedEvent] = useState(event || { _id: null });
 
   useEffect(() => {
     if (event) {
-      setEditedEvent(event); 
+      setEditedEvent(event);
     }
   }, [event]);
 
@@ -36,12 +37,23 @@ const EditInfoEvent = ({ isOpen, onClose, event }) => {
 
   const handleSave = () => {
     if (editedEvent && editedEvent._id !== null) {
-      dispatch(updateEvent(editedEvent)); 
+      console.log('editedEvent : ', editedEvent)
+      console.log('editedEvent._id : ', editedEvent._id)
+      const eventId = editedEvent._id
+      const eventData = { desc_event: editedEvent.desc_event,
+                          date: editedEvent.date,
+                          hour : editedEvent.hour,
+                          cancelled: false,
+                          confirmed:false
+       }
+      dispatch(updateEvent({ eventId, eventData })).then(() => dispatch(getAllEvents()))
       onClose();
     } else {
       console.error("El evento no tiene un id válido.");
     }
   };
+
+  const hoursOptions = Array.from({ length: 13 }, (_, i) => `${9 + i}:00`);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -57,12 +69,27 @@ const EditInfoEvent = ({ isOpen, onClose, event }) => {
               value={editedEvent?.desc_event || ""}
               onChange={handleChange}
             />
-            <Text><strong>Nombre de la empresa:</strong></Text>
+            <Text>Fecha</Text>
             <Input
-              name="company"
-              value={editedEvent?.company || ""}
+              type="date"
+              name="date"
+              value={editedEvent.date.split('T')[0]}
               onChange={handleChange}
             />
+            <Text>Hora</Text>
+            <Select
+              name="hour"
+              value={editedEvent.hour}
+              onChange={handleChange}
+              placeholder="Selecciona una hora"
+            >
+              {hoursOptions.map((hour) => (
+                <option key={hour} value={hour}>
+                  {hour}
+                </option>
+              ))}
+            </Select>
+
           </VStack>
         </ModalBody>
         <ModalFooter>

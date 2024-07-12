@@ -46,7 +46,7 @@ export const createEvent = createAsyncThunk(
 
 export const addUser = createAsyncThunk(
   "event/addUser",
-  async ({ eventId }) => {
+  async (eventId) => {
     try {
       return await eventService.addUser(eventId);
     } catch (error) {
@@ -58,7 +58,7 @@ export const addUser = createAsyncThunk(
 
 export const removeUserFromEvent = createAsyncThunk(
   "event/removeUser",
-  async ({ eventId }) => {
+  async (eventId) => {
     try {
       return await eventService.removeUserFromEvent(eventId);
     } catch (error) {
@@ -127,6 +127,7 @@ const eventSlice = createSlice({
       .addCase(createEvent.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.isError = false;
         state.events.push(action.payload);
       })
       .addCase(createEvent.rejected, (state, action) => {
