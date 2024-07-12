@@ -116,9 +116,9 @@ const Landing = () => {
                                 <Text>nosotros</Text>
                             </Box>
                             <Box className='video-continer'>
-                                {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/aFdAJW1CATk?si=reoHDNfydYGLbSXm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
+                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/aFdAJW1CATk?si=reoHDNfydYGLbSXm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/GEWYbmPnPk8?si=doN9stgibuSwy7N_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/GEWYbmPnPk8?si=doN9stgibuSwy7N_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>  */}
                             </Box>
                         </Box>
                         <Box className='comments-continer' mt={100}>
