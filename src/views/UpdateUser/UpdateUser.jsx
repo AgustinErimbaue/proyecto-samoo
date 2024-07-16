@@ -205,7 +205,8 @@ const UpdateUser = () => {
         if (formData.password === formData.confirmPassword) {
             dispatch(updateUser({
                 ...formData,
-                ...additionalData
+                ...additionalData,
+                completed:true
             }));
         } else {
             alert('Las contraseñas no coinciden');

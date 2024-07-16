@@ -191,11 +191,10 @@ const UpdateUser = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         if (additionalData.password === additionalData.confirmPassword) {
-            dispatch(updateUser(additionalData));
+            dispatch(updateUser({...additionalData,completed:true}));
             setAdditionalData({
                 ...additionalData,
                 password: '',
-                confirmed: false,
             });
             setConfirmPassword('');
         } else {

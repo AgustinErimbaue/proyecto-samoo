@@ -51,9 +51,10 @@ const getUserContactInfoById = async (token, userId) => {
   return res.data;
 };
 
-const updateUser = async (user) => {
+const updateUser = async (userData) => {
   const token = localStorage.getItem('token');
-  const res = await axios.put(API_URL + 'id/' + user._id, user, {
+  const user = JSON.parse(localStorage.getItem("user"))
+  const res = await axios.put(API_URL + 'id/' + user._id, userData, {
       headers: {
           Authorization: token
       }
